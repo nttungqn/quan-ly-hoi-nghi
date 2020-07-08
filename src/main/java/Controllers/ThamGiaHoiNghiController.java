@@ -1,6 +1,7 @@
 package Controllers;
 
 import Models.HoiNghi;
+import Models.ThamGiaHoiNghi;
 import Utils.HibernateAnnotationUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -9,13 +10,13 @@ import org.hibernate.query.Query;
 
 import java.util.List;
 
-public class HoiNghiController {
-    public boolean add(HoiNghi hoiNghi) {
+public class ThamGiaHoiNghiController {
+    public boolean add(ThamGiaHoiNghi thamGiaHoiNghi) {
         try {
 
             Session session= HibernateAnnotationUtil.getSessionFactory().getCurrentSession();
             Transaction transacsion=session.beginTransaction();
-            session.save(hoiNghi);
+            session.save(thamGiaHoiNghi);
             transacsion.commit();
             return  true;
         } catch (Exception e) {
@@ -24,11 +25,11 @@ public class HoiNghiController {
     }
 
 
-    public boolean update(HoiNghi hoiNghi) {
+    public boolean update(ThamGiaHoiNghi thamGiaHoiNghi) {
         try {
             Session session = HibernateAnnotationUtil.getSessionFactory().getCurrentSession();
             Transaction transaction =session.beginTransaction();
-            session.update(hoiNghi);
+            session.update(thamGiaHoiNghi);
             transaction.commit();
             return true;
         } catch (HibernateException e) {
@@ -37,12 +38,12 @@ public class HoiNghiController {
     }
 
 
-    public boolean delete(HoiNghi hoiNghi) {
+    public boolean delete(ThamGiaHoiNghi thamGiaHoiNghi) {
         try {
 
             Session session =HibernateAnnotationUtil.getSessionFactory().getCurrentSession();
             Transaction transacsion=session.beginTransaction();
-            session.delete(hoiNghi);
+            session.delete(thamGiaHoiNghi);
             transacsion.commit();
             return true;
         } catch (HibernateException e) {
@@ -50,24 +51,24 @@ public class HoiNghiController {
         }
     }
 
-    public HoiNghi load(HoiNghi maHN)
+    public ThamGiaHoiNghi load(ThamGiaHoiNghi thamGiaHoiNghi)
     {
         Session session=HibernateAnnotationUtil.getSessionFactory().getCurrentSession();
         Transaction transaction=session.beginTransaction();
-        HoiNghi bd =(HoiNghi) session.get(Models.HoiNghi.class, maHN);
+        ThamGiaHoiNghi bd =(ThamGiaHoiNghi) session.get(Models.ThamGiaHoiNghi.class, thamGiaHoiNghi);
         transaction.commit();
         return bd;
     }
 
 
-    public List<HoiNghi> loadList()
+    public List<ThamGiaHoiNghi> loadList()
     {
         Session session =HibernateAnnotationUtil.getSessionFactory().getCurrentSession();
         Transaction transacsion=session.beginTransaction();
         // lenh hql
         String hql="from DiaDiem ";
         Query query=session.createQuery(hql);
-        List<HoiNghi > list =query.list();
+        List<ThamGiaHoiNghi > list =query.list();
         transacsion.commit();
         return list;
     }

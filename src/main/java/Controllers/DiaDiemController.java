@@ -51,7 +51,6 @@ public class DiaDiemController {
         }
     }
 
-    // tra ra 1 dong lop hoc vs ma
     public DiaDiem load(DiaDiem maDD)
     {
         Session session=HibernateAnnotationUtil.getSessionFactory().getCurrentSession();
