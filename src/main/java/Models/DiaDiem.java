@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 @Entity
-@Table(name = "DIADIEM", schema = "qlthamgiahoinghi")
+@Table(name = "DIADIEM", schema = "qlhoinghi")
 public class DiaDiem implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

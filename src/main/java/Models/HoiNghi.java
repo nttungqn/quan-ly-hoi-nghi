@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table(name = "HOINGHI", schema = "qlthamgiahoinghi")
+@Table(name = "HOINGHI", schema = "qlhoinghi")
 public class HoiNghi implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,8 +38,8 @@ public class HoiNghi implements Serializable {
     private Date ngayKT;
 
     @Basic
-    @Column(name = "NGUOITHAMDU", nullable = false)
-    private int nguoiThamDu;
+    @Column(name = "SLNGTHAMDU", nullable = false)
+    private int slngThamDu;
 
     @ManyToOne(targetEntity = Models.DiaDiem.class)
     @JoinColumn(name = "DIADIEM", referencedColumnName = "MADD", nullable = false)
@@ -48,15 +48,17 @@ public class HoiNghi implements Serializable {
     @OneToMany(mappedBy = "hoiNghiByMaHN", cascade = CascadeType.ALL)
     private Set<ThamGiaHoiNghi> thamGiaHoiNghi;
 
-    public HoiNghi(String tenHN, String mtNganGon, String mtChiTiet, String anh, Date ngayBD, Date ngayKT, int nguoiThamDu, DiaDiem diaDiem) {
+    public HoiNghi() {
+    }
+
+    public HoiNghi(String tenHN, String mtNganGon, String mtChiTiet, String anh, Date ngayBD, Date ngayKT, int slngThamDu) {
         this.tenHN = tenHN;
         this.mtNganGon = mtNganGon;
         this.mtChiTiet = mtChiTiet;
         this.anh = anh;
         this.ngayBD = ngayBD;
         this.ngayKT = ngayKT;
-        this.nguoiThamDu = nguoiThamDu;
-        this.diaDiem = diaDiem;
+        this.slngThamDu = slngThamDu;
     }
 
     public int getMaHN() {
@@ -115,12 +117,12 @@ public class HoiNghi implements Serializable {
         this.ngayKT = ngayKT;
     }
 
-    public int getNguoiThamDu() {
-        return nguoiThamDu;
+    public int getSlngThamDu() {
+        return slngThamDu;
     }
 
-    public void setNguoiThamDu(int nguoiThamDu) {
-        this.nguoiThamDu = nguoiThamDu;
+    public void setSlngThamDu(int slngThamDu) {
+        this.slngThamDu = slngThamDu;
     }
 
     public DiaDiem getDiaDiem() {
@@ -149,7 +151,7 @@ public class HoiNghi implements Serializable {
                 ", anh='" + anh + '\'' +
                 ", ngayBD=" + ngayBD +
                 ", ngayKT=" + ngayKT +
-                ", nguoiThamDu=" + nguoiThamDu +
+                ", slngThamDu=" + slngThamDu +
                 ", diaDiem=" + diaDiem +
                 '}';
     }

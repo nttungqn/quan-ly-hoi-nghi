@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "THAMGIAHOINGHI", schema = "qlthamgiahoinghi")
+@Table(name = "THAMGIAHOINGHI", schema = "qlhoinghi")
 //@IdClass(ThamgiahoinghiEntityPK.class)
 public class ThamGiaHoiNghi implements Serializable {
     @Id
@@ -42,6 +42,9 @@ public class ThamGiaHoiNghi implements Serializable {
 
     public void setMaTK(int maTK) {
         this.maTK = maTK;
+    }
+
+    public ThamGiaHoiNghi() {
     }
 
     public ThamGiaHoiNghi(int maHN, int maTK, int ttXetDuyet) {

@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "TAIKHOAN", schema = "qlthamgiahoinghi")
+@Table(name = "TAIKHOAN", schema = "qlhoinghi")
 public class TaiKhoan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,6 +40,9 @@ public class TaiKhoan {
     @Enumerated(EnumType.STRING)
     @Column(name = "LOAIND", nullable = false)
     private LoaiND loaiND;
+
+    public TaiKhoan() {
+    }
 
     public TaiKhoan(String ten, String username, String password, String email, int trangThai, LoaiND loaiND) {
         Ten = ten;
