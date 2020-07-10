@@ -22,13 +22,13 @@ public class Main extends Application{
     }
 
     public static void main(final String[] args) throws Exception {
+        Session session;
+        Transaction transaction;
+        // create session to connect database
+        sessionFactory = HibernateAnnotationUtil.getSessionFactory();
+        session = sessionFactory.openSession();
+        System.out.println("Session created");
         launch(args);
-//        Session session;
-//        Transaction transaction;
-//        // create session to connect database
-//        sessionFactory = HibernateAnnotationUtil.getSessionFactory();
-//        session = sessionFactory.openSession();
-//        System.out.println("Session created");
 //        transaction = session.beginTransaction();
 //
 //        String hql;
