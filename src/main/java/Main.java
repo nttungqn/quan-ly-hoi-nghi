@@ -1,7 +1,12 @@
+import Controllers.AddConference;
+import Controllers.DiaDiemController;
+import Handlers.DatabaseHandler;
+import Handlers.DiaDiemHandler;
 import Models.DiaDiem;
 import Utils.HibernateAnnotationUtil;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.hibernate.*;
-import org.hibernate.query.Query;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,24 +16,48 @@ import javafx.stage.Stage;
 import java.util.List;
 
 public class Main extends Application{
-    private static SessionFactory sessionFactory;
+
+    static {
+        new Thread(() -> {
+            DatabaseHandler.getInstance();
+        }).start();
+
+        try {
+            Session session = HibernateAnnotationUtil.getSessionFactory().openSession();
+            Transaction transaction=session.beginTransaction();
+
+            System.out.println("Create successfully!!");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        Parent root = FXMLLoader.load(getClass().getResource("/Views/addConference.fxml"));
+        primaryStage.setTitle("Add conference");
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 
     public static void main(final String[] args) throws Exception {
-        Session session;
-        Transaction transaction;
-        // create session to connect database
-        sessionFactory = HibernateAnnotationUtil.getSessionFactory();
-        session = sessionFactory.openSession();
-        System.out.println("Session created");
+
         launch(args);
+
+//        DiaDiem diaDiem = new DiaDiem("Hoi truong A", "HCMUS", 150);
+//        Session session = null;
+//        try {
+//            session = HibernateAnnotationUtil.getSessionFactory().openSession();
+//            Transaction transaction=session.beginTransaction();
+//            session.save(diaDiem);
+//            transaction.commit();
+//            System.out.println("Success");
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+//        session.close();
+
 //        transaction = session.beginTransaction();
 //
 //        String hql;
@@ -41,7 +70,7 @@ public class Main extends Application{
 //        // error: Transaction not successfully started
 ////        transaction.commit();
 //
-//        DiaDiem diaDiem = new DiaDiem("Hoi truong A", "HCMUS", 150);
+        
 //        session.save(diaDiem);
 //        hql = "from DiaDiem";
 //        query = session.createQuery(hql);

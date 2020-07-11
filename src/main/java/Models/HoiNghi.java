@@ -2,7 +2,8 @@ package Models;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
@@ -31,11 +32,11 @@ public class HoiNghi implements Serializable {
 
     @Basic
     @Column(name = "NGAYBD", nullable = true)
-    private Date ngayBD;
+    private LocalDate ngayBD;
 
     @Basic
     @Column(name = "NGAYKT", nullable = true)
-    private Date ngayKT;
+    private LocalDate ngayKT;
 
     @Basic
     @Column(name = "SLNGTHAMDU", nullable = false)
@@ -51,7 +52,7 @@ public class HoiNghi implements Serializable {
     public HoiNghi() {
     }
 
-    public HoiNghi(String tenHN, String mtNganGon, String mtChiTiet, String anh, Date ngayBD, Date ngayKT, int slngThamDu) {
+    public HoiNghi(String tenHN, String mtNganGon, String mtChiTiet, String anh, LocalDate ngayBD, LocalDate ngayKT, int slngThamDu) {
         this.tenHN = tenHN;
         this.mtNganGon = mtNganGon;
         this.mtChiTiet = mtChiTiet;
@@ -101,19 +102,19 @@ public class HoiNghi implements Serializable {
         this.anh = anh;
     }
 
-    public Date getNgayBD() {
+    public LocalDate getNgayBD() {
         return ngayBD;
     }
 
-    public void setNgayBD(Date ngayBD) {
+    public void setNgayBD(LocalDate ngayBD) {
         this.ngayBD = ngayBD;
     }
 
-    public Date getNgayKT() {
+    public LocalDate getNgayKT() {
         return ngayKT;
     }
 
-    public void setNgayKT(Date ngayKT) {
+    public void setNgayKT(LocalDate ngayKT) {
         this.ngayKT = ngayKT;
     }
 

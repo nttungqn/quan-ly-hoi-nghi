@@ -1,0 +1,38 @@
+* {
+    -fx-primary : #474aff;
+    -fx-secondary : #6c747e;
+    -fx-success: #00b73e;
+    -fx-danger: #e8003f;
+    -fx-warning: #ffca00;
+    -fx-info: #00a3ba;
+    -fx-light: #f8f9fa;
+    -fx-dark: #343940;
+    -fx-primarytext : #B2B2B2;
+    -fx-blue: #1976D2;
+    -fx-red: #FF0000;
+    -fx-color-1:#1976D2;
+}
+
+.root{
+    -fx-background-color: -fx-light;
+}
+
+.jfx-button{
+    -fx-background-color: -fx-info;
+    -fx-text-fill: -fx-light;
+    /*-fx-text-fill: -fx-primary;*/
+    /*-fx-border-color: -fx-light;*/
+    /*-fx-background-radius: 20px;*/
+
+}
+
+.button:hover, .button:focused{
+    -fx-background-color: #00606d;
+}
+
+.text-field
+{
+    -fx-text-fill: -fx-primarytext;
+    -jfx-focus-color: -fx-secondary;
+    -fx-text-fill: derive(-fx-secondary, 20%);
+}

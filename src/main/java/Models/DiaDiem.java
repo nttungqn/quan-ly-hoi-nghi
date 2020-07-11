@@ -78,11 +78,6 @@ public class DiaDiem implements Serializable {
 
     @Override
     public String toString() {
-        return "DiaDiem = {" +
-                "maDD=" + maDD +
-                ", tenDD='" + tenDD + '\'' +
-                ", diaChi='" + diaChi + '\'' +
-                ", soLuong=" + soLuong +
-                '}';
+        return this.tenDD + ", " + this.diaChi;
     }
 }
