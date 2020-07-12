@@ -36,3 +36,25 @@
     -jfx-focus-color: -fx-secondary;
     -fx-text-fill: derive(-fx-secondary, 20%);
 }
+
+.jfx-textfield {
+    -fx-tick-label-fill: #474aff;
+    -fx-border-width: 0;
+}
+
+.hover-border:hover {
+    -fx-border-color: #0fbcf9;
+    -fx-border-width: 0px 0px 0px 2px;
+    -fx-background-color: -fx-info;
+}
+
+.hover-fade:hover {
+    -fx-background-color: #f0f0f0 !important;
+}
+
+.cursor_hand {
+    -fx-cursor: hand;
+}
+
+
+

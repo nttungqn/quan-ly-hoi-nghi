@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+       <BorderPane prefHeight="200.0" prefWidth="200.0" >
+           <top>
+               <HBox>
+                   <TextField fx:id="txField" promptText="Translate X" text="20" onAction="#setTranslate"/>
+                   <TextField fx:id="tyField" promptText="Translate Y" text="5" onAction="#setTranslate"/>
+               </HBox>
+           </top>
+           <center>
+               <CardStackView fx:id="stack" cardTranslateX="50" cardTranslateY="10">
+                   <CardView suitNum="1" cardNum="6"/>
+                   <CardView cardNum="1"/>
+                   <CardView faceDown="true"/>
+               </CardStackView>
+           </center>
+           <bottom>
+               <VBox>
+                   <TextField fx:id="rotateField" promptText="Rotate" text="10" onAction="#setRotate"/>
+                   <CardFanView fx:id="fan" cardRotate="20">
+                       <CardView suitNum="1" cardNum="6"/>
+                       <CardView cardNum="1"/>
+                       <CardView faceDown="true"/>
+                   </CardFanView>
+               </VBox>
+           </bottom>
+       </BorderPane>
+   </children>
+</AnchorPane>
