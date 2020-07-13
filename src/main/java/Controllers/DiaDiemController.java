@@ -1,6 +1,6 @@
 package Controllers;
 
-import Models.DiaDiem;
+import Models.Place;
 import Utils.HibernateAnnotationUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -11,12 +11,12 @@ import java.util.List;
 
 
 public class DiaDiemController {
-    public boolean add(DiaDiem diaDiem) {
+    public boolean add(Place place) {
         try {
 
             Session session= HibernateAnnotationUtil.getSessionFactory().getCurrentSession();
             Transaction transacsion=session.beginTransaction();
-            session.save(diaDiem);
+            session.save(place);
             transacsion.commit();
             return  true;
         } catch (Exception e) {
@@ -25,11 +25,11 @@ public class DiaDiemController {
     }
 
 
-    public boolean update(DiaDiem diaDiem) {
+    public boolean update(Place place) {
         try {
             Session session = HibernateAnnotationUtil.getSessionFactory().getCurrentSession();
             Transaction transaction =session.beginTransaction();
-            session.update(diaDiem);
+            session.update(place);
             transaction.commit();
             return true;
         } catch (HibernateException e) {
@@ -38,12 +38,12 @@ public class DiaDiemController {
     }
 
 
-    public boolean delete(DiaDiem diaDiem) {
+    public boolean delete(Place place) {
         try {
 
             Session session =HibernateAnnotationUtil.getSessionFactory().getCurrentSession();
             Transaction transacsion=session.beginTransaction();
-            session.delete(diaDiem);
+            session.delete(place);
             transacsion.commit();
             return true;
         } catch (HibernateException e) {
@@ -51,24 +51,24 @@ public class DiaDiemController {
         }
     }
 
-    public DiaDiem load(DiaDiem maDD)
+    public Place load(Place maDD)
     {
         Session session=HibernateAnnotationUtil.getSessionFactory().getCurrentSession();
         Transaction transaction=session.beginTransaction();
-        DiaDiem bd =(DiaDiem) session.get(Models.DiaDiem.class, maDD);
+        Place bd =(Place) session.get(Place.class, maDD);
         transaction.commit();
         return bd;
     }
 
 
-    public List<DiaDiem> loadList()
+    public List<Place> loadList()
     {
         Session session =HibernateAnnotationUtil.getSessionFactory().getCurrentSession();
         Transaction transacsion=session.beginTransaction();
         // lenh hql
-        String hql="from DiaDiem ";
+        String hql="from Place ";
         Query query=session.createQuery(hql);
-        List<DiaDiem > list =query.list();
+        List<Place> list =query.list();
         transacsion.commit();
         return list;
     }

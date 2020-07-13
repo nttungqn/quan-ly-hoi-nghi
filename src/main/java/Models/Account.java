@@ -5,15 +5,15 @@ import java.util.Set;
 
 @Entity
 @Table(name = "TAIKHOAN", schema = "qlhoinghi")
-public class TaiKhoan {
+public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "MATK", nullable = false)
-    private int maTK;
+    private int accountId;
 
     @Basic
     @Column(name = "TEN", nullable = false, length = 255)
-    private String Ten;
+    private String name;
 
     @Basic
     @Column(name = "USERNAME", nullable = false, length = 255)
@@ -31,42 +31,42 @@ public class TaiKhoan {
     @Column(name = "TRANGTHAI", nullable = true)
     private int trangThai;
 
-    @OneToMany(mappedBy = "taiKhoanByMaTK", cascade = CascadeType.ALL)
-    private Set<ThamGiaHoiNghi> thamGiaHoiNghiByMaTK;
+    @OneToMany(mappedBy = "accountByAccountId", cascade = CascadeType.ALL)
+    private Set<JoinTheConference> joinTheConferenceByAccountId;
 
-    enum LoaiND {
+    enum Role {
         Admin, User
     }
     @Enumerated(EnumType.STRING)
     @Column(name = "LOAIND", nullable = false)
-    private LoaiND loaiND;
+    private Role role;
 
-    public TaiKhoan() {
+    public Account() {
     }
 
-    public TaiKhoan(String ten, String username, String password, String email, int trangThai, LoaiND loaiND) {
-        Ten = ten;
+    public Account(String name, String username, String password, String email, int trangThai, Role role) {
+        this.name = name;
         this.username = username;
         this.password = password;
         this.email = email;
         this.trangThai = trangThai;
-        this.loaiND = loaiND;
+        this.role = role;
     }
 
-    public int getMaTK() {
-        return maTK;
+    public int getAccountId() {
+        return accountId;
     }
 
-    public void setMaTK(int maTK) {
-        this.maTK = maTK;
+    public void setAccountId(int accountId) {
+        this.accountId = accountId;
     }
 
-    public String getTen() {
-        return Ten;
+    public String getName() {
+        return name;
     }
 
-    public void setTen(String ten) {
-        Ten = ten;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getUsername() {
@@ -101,32 +101,33 @@ public class TaiKhoan {
         this.trangThai = trangThai;
     }
 
-    public Set<ThamGiaHoiNghi> getThamGiaHoiNghiByMaTK() {
-        return thamGiaHoiNghiByMaTK;
+    public Set<JoinTheConference> getJoinTheConferenceByAccountId() {
+        return joinTheConferenceByAccountId;
     }
 
-    public void setThamGiaHoiNghiByMaTK(Set<ThamGiaHoiNghi> thamGiaHoiNghiByMaTK) {
-        this.thamGiaHoiNghiByMaTK = thamGiaHoiNghiByMaTK;
+    public void setJoinTheConferenceByAccountId(Set<JoinTheConference> joinTheConferenceByAccountId) {
+        this.joinTheConferenceByAccountId = joinTheConferenceByAccountId;
     }
 
-    public LoaiND getLoaiND() {
-        return loaiND;
+    public Role getRole() {
+        return role;
     }
 
-    public void setLoaiND(LoaiND loaiND) {
-        this.loaiND = loaiND;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     @Override
     public String toString() {
-        return "TaiKhoan = {" +
-                "maTK=" + maTK +
-                ", Ten='" + Ten + '\'' +
+        return "Account{" +
+                "accountId=" + accountId +
+                ", name='" + name + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", trangThai=" + trangThai +
-                ", loaiND=" + loaiND +
+                ", joinTheConferenceByAccountId=" + joinTheConferenceByAccountId +
+                ", role=" + role +
                 '}';
     }
 }

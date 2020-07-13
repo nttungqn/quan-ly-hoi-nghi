@@ -1,9 +1,9 @@
 package Controllers;
 
-import Handlers.DiaDiemHandler;
-import Handlers.HoiNghiHandler;
-import Models.DiaDiem;
-import Models.HoiNghi;
+import Handlers.PlaceHandler;
+import Handlers.ConferenceHandler;
+import Models.Place;
+import Models.Conference;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -38,23 +38,23 @@ public class AddConference implements Initializable {
     public Button cancelBtn;
     public AnchorPane rootPane;
 
-    ObservableList<DiaDiem> observableList = FXCollections.observableList(DiaDiemHandler.loadList());
+    ObservableList<Place> observableList = FXCollections.observableList(PlaceHandler.loadList());
 
     public AddConference() {
     }
 
     @FXML
     public void save(ActionEvent actionEvent) {
-        HoiNghi hoiNghi = new HoiNghi();
-        hoiNghi.setTenHN(topic.getText());
-        hoiNghi.setDiaDiem(DiaDiemHandler.getDiaDiem(1));
-        hoiNghi.setNgayBD(LocalDate.parse(startDate.getValue().toString()));
-        hoiNghi.setNgayKT(LocalDate.parse(endDate.getValue().toString()));
-        hoiNghi.setMtChiTiet(detailDes.getText());
-        hoiNghi.setMtNganGon(brefDes.getText());
-        hoiNghi.setDiaDiem((DiaDiem) menuDiaDiem.getValue());
-        System.out.println(hoiNghi.toString());
-        boolean result = HoiNghiHandler.add(hoiNghi);
+        Conference conference = new Conference();
+        conference.setName(topic.getText());
+        conference.setPlace(PlaceHandler.getDiaDiem(1));
+        conference.setStartDate(LocalDate.parse(startDate.getValue().toString()));
+        conference.setEndDate(LocalDate.parse(endDate.getValue().toString()));
+        conference.setDetailDesc(detailDes.getText());
+        conference.setShortDesc(brefDes.getText());
+        conference.setPlace((Place) menuDiaDiem.getValue());
+        System.out.println(conference.toString());
+        boolean result = ConferenceHandler.add(conference);
         if(result){
             System.out.println("Add conference successfully!!");
         } else {

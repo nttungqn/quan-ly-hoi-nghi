@@ -1,7 +1,6 @@
 package Controllers;
 
-import Models.HoiNghi;
-import Models.ThamGiaHoiNghi;
+import Models.JoinTheConference;
 import Utils.HibernateAnnotationUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -11,12 +10,12 @@ import org.hibernate.query.Query;
 import java.util.List;
 
 public class ThamGiaHoiNghiController {
-    public boolean add(ThamGiaHoiNghi thamGiaHoiNghi) {
+    public boolean add(JoinTheConference joinTheConference) {
         try {
 
             Session session= HibernateAnnotationUtil.getSessionFactory().getCurrentSession();
             Transaction transacsion=session.beginTransaction();
-            session.save(thamGiaHoiNghi);
+            session.save(joinTheConference);
             transacsion.commit();
             return  true;
         } catch (Exception e) {
@@ -25,11 +24,11 @@ public class ThamGiaHoiNghiController {
     }
 
 
-    public boolean update(ThamGiaHoiNghi thamGiaHoiNghi) {
+    public boolean update(JoinTheConference joinTheConference) {
         try {
             Session session = HibernateAnnotationUtil.getSessionFactory().getCurrentSession();
             Transaction transaction =session.beginTransaction();
-            session.update(thamGiaHoiNghi);
+            session.update(joinTheConference);
             transaction.commit();
             return true;
         } catch (HibernateException e) {
@@ -38,12 +37,12 @@ public class ThamGiaHoiNghiController {
     }
 
 
-    public boolean delete(ThamGiaHoiNghi thamGiaHoiNghi) {
+    public boolean delete(JoinTheConference joinTheConference) {
         try {
 
             Session session =HibernateAnnotationUtil.getSessionFactory().getCurrentSession();
             Transaction transacsion=session.beginTransaction();
-            session.delete(thamGiaHoiNghi);
+            session.delete(joinTheConference);
             transacsion.commit();
             return true;
         } catch (HibernateException e) {
@@ -51,24 +50,24 @@ public class ThamGiaHoiNghiController {
         }
     }
 
-    public ThamGiaHoiNghi load(ThamGiaHoiNghi thamGiaHoiNghi)
+    public JoinTheConference load(JoinTheConference joinTheConference)
     {
         Session session=HibernateAnnotationUtil.getSessionFactory().getCurrentSession();
         Transaction transaction=session.beginTransaction();
-        ThamGiaHoiNghi bd =(ThamGiaHoiNghi) session.get(Models.ThamGiaHoiNghi.class, thamGiaHoiNghi);
+        JoinTheConference bd =(JoinTheConference) session.get(JoinTheConference.class, joinTheConference);
         transaction.commit();
         return bd;
     }
 
 
-    public List<ThamGiaHoiNghi> loadList()
+    public List<JoinTheConference> loadList()
     {
         Session session =HibernateAnnotationUtil.getSessionFactory().getCurrentSession();
         Transaction transacsion=session.beginTransaction();
         // lenh hql
-        String hql="from DiaDiem ";
+        String hql="from Place ";
         Query query=session.createQuery(hql);
-        List<ThamGiaHoiNghi > list =query.list();
+        List<JoinTheConference> list =query.list();
         transacsion.commit();
         return list;
     }

@@ -35,7 +35,7 @@ public class Main extends Application{
     }
 
     public static void main(final String[] args) throws Exception {
-
+            launch(args);
 
 
 //        DiaDiem diaDiem = new DiaDiem("Hoi truong A", "HCMUS", 150);
@@ -43,7 +43,10 @@ public class Main extends Application{
 //        try {
 //            session = HibernateAnnotationUtil.getSessionFactory().openSession();
 //            Transaction transaction=session.beginTransaction();
-//            session.save(diaDiem);
+//            List<DiaDiem> list  = DiaDiemHandler.loadList();
+//            list.forEach(diaDiem -> {
+//                System.out.println(diaDiem.toString());
+//            });
 //            transaction.commit();
 //            System.out.println("Success");
 //        } catch (Exception e) {

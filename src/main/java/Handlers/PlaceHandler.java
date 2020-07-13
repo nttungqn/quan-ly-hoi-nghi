@@ -1,8 +1,7 @@
 package Handlers;
 
-import Models.DiaDiem;
+import Models.Place;
 import Utils.HibernateAnnotationUtil;
-import com.sun.media.sound.ModelSource;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -10,13 +9,13 @@ import org.hibernate.query.Query;
 
 import java.util.List;
 
-public class DiaDiemHandler {
-    public static boolean add(DiaDiem diaDiem) {
+public class PlaceHandler {
+    public static boolean add(Place place) {
         Session session = null;
         try {
             session= HibernateAnnotationUtil.getSessionFactory().openSession();
             Transaction transacsion=session.beginTransaction();
-            session.save(diaDiem);
+            session.save(place);
             transacsion.commit();
             return true;
         } catch (Exception e) {
@@ -26,11 +25,11 @@ public class DiaDiemHandler {
     }
 
 
-    public boolean update(DiaDiem diaDiem) {
+    public boolean update(Place place) {
         try {
             Session session = HibernateAnnotationUtil.getSessionFactory().openSession();
             Transaction transaction =session.beginTransaction();
-            session.update(diaDiem);
+            session.update(place);
             transaction.commit();
             return true;
         } catch (HibernateException e) {
@@ -39,12 +38,12 @@ public class DiaDiemHandler {
     }
 
 
-    public boolean delete(DiaDiem diaDiem) {
+    public boolean delete(Place place) {
         try {
 
             Session session =HibernateAnnotationUtil.getSessionFactory().openSession();
             Transaction transacsion=session.beginTransaction();
-            session.delete(diaDiem);
+            session.delete(place);
             transacsion.commit();
             return true;
         } catch (HibernateException e) {
@@ -52,35 +51,35 @@ public class DiaDiemHandler {
         }
     }
 
-    public DiaDiem load(DiaDiem maDD)
+    public Place load(Place maDD)
     {
         Session session=HibernateAnnotationUtil.getSessionFactory().openSession();
         Transaction transaction=session.beginTransaction();
-        DiaDiem bd =(DiaDiem) session.get(Models.DiaDiem.class, maDD);
+        Place bd =(Place) session.get(Place.class, maDD);
         transaction.commit();
         return bd;
     }
 
 
-    public static List<DiaDiem> loadList()
+    public static List<Place> loadList()
     {
         Session session =HibernateAnnotationUtil.getSessionFactory().openSession();
         Transaction transacsion=session.beginTransaction();
         // lenh hql
-        String hql="from Models.DiaDiem";
+        String hql="from Models.Place";
         Query query=session.createQuery(hql);
-        List<DiaDiem> list =query.list();
+        List<Place> list =query.list();
         transacsion.commit();
         return list;
     }
 
-    public static DiaDiem getDiaDiem(int id){
+    public static Place getDiaDiem(int id){
         try {
             Session session = HibernateAnnotationUtil.getSessionFactory().openSession();
             Transaction transaction = session.beginTransaction();
-            DiaDiem diaDiem = session.get(DiaDiem.class, new Integer(id));
+            Place place = session.get(Place.class, new Integer(id));
             transaction.commit();
-            return diaDiem;
+            return place;
         }catch (Exception err){
             System.out.println(err);
             return null;

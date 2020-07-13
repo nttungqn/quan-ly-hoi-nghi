@@ -1,6 +1,6 @@
 package Controllers;
 
-import Models.HoiNghi;
+import Models.Conference;
 import Utils.HibernateAnnotationUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -10,12 +10,12 @@ import org.hibernate.query.Query;
 import java.util.List;
 
 public class HoiNghiController {
-    public boolean add(HoiNghi hoiNghi) {
+    public boolean add(Conference conference) {
         try {
 
             Session session= HibernateAnnotationUtil.getSessionFactory().getCurrentSession();
             Transaction transacsion=session.beginTransaction();
-            session.save(hoiNghi);
+            session.save(conference);
             transacsion.commit();
             return  true;
         } catch (Exception e) {
@@ -24,11 +24,11 @@ public class HoiNghiController {
     }
 
 
-    public boolean update(HoiNghi hoiNghi) {
+    public boolean update(Conference conference) {
         try {
             Session session = HibernateAnnotationUtil.getSessionFactory().getCurrentSession();
             Transaction transaction =session.beginTransaction();
-            session.update(hoiNghi);
+            session.update(conference);
             transaction.commit();
             return true;
         } catch (HibernateException e) {
@@ -37,12 +37,12 @@ public class HoiNghiController {
     }
 
 
-    public boolean delete(HoiNghi hoiNghi) {
+    public boolean delete(Conference conference) {
         try {
 
             Session session =HibernateAnnotationUtil.getSessionFactory().getCurrentSession();
             Transaction transacsion=session.beginTransaction();
-            session.delete(hoiNghi);
+            session.delete(conference);
             transacsion.commit();
             return true;
         } catch (HibernateException e) {
@@ -50,24 +50,24 @@ public class HoiNghiController {
         }
     }
 
-    public HoiNghi load(HoiNghi maHN)
+    public Conference load(Conference maHN)
     {
         Session session=HibernateAnnotationUtil.getSessionFactory().getCurrentSession();
         Transaction transaction=session.beginTransaction();
-        HoiNghi bd =(HoiNghi) session.get(Models.HoiNghi.class, maHN);
+        Conference bd =(Conference) session.get(Conference.class, maHN);
         transaction.commit();
         return bd;
     }
 
 
-    public List<HoiNghi> loadList()
+    public List<Conference> loadList()
     {
         Session session =HibernateAnnotationUtil.getSessionFactory().getCurrentSession();
         Transaction transacsion=session.beginTransaction();
         // lenh hql
-        String hql="from DiaDiem ";
+        String hql="from Place ";
         Query query=session.createQuery(hql);
-        List<HoiNghi > list =query.list();
+        List<Conference> list =query.list();
         transacsion.commit();
         return list;
     }

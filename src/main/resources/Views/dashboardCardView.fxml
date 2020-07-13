@@ -270,7 +270,7 @@
                 </HBox>
             <BorderPane prefHeight="232.0" prefWidth="775.0">
                <center>
-                  <ScrollPane minViewportHeight="500.0" prefHeight="400.0" prefWidth="1026.0" BorderPane.alignment="CENTER">
+                  <ScrollPane fx:id="mainView" minViewportHeight="500.0" prefHeight="400.0" prefWidth="1026.0" BorderPane.alignment="CENTER">
                      <content>
                         <FlowPane prefWidth="1003.0">
                            <children>
