@@ -1,19 +1,12 @@
-import Controllers.AddConference;
-import Controllers.DiaDiemController;
 import Handlers.DatabaseHandler;
-import Handlers.DiaDiemHandler;
-import Models.DiaDiem;
 import Utils.HibernateAnnotationUtil;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import org.hibernate.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.util.List;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 public class Main extends Application{
 
@@ -34,7 +27,7 @@ public class Main extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/Views/mainView.fxml.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Views/dashboard.fxml"));
         primaryStage.setTitle("Add conference");
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
@@ -43,7 +36,7 @@ public class Main extends Application{
 
     public static void main(final String[] args) throws Exception {
 
-        launch(args);
+
 
 //        DiaDiem diaDiem = new DiaDiem("Hoi truong A", "HCMUS", 150);
 //        Session session = null;

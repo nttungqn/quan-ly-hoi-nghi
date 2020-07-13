@@ -32,7 +32,7 @@ public class HoiNghiHandler {
 
     public boolean update(HoiNghi hoiNghi) {
         try {
-            Session session = HibernateAnnotationUtil.getSessionFactory().getCurrentSession();
+            Session session = HibernateAnnotationUtil.getSessionFactory().openSession();
             Transaction transaction =session.beginTransaction();
             session.update(hoiNghi);
             transaction.commit();
@@ -46,7 +46,7 @@ public class HoiNghiHandler {
     public boolean delete(HoiNghi hoiNghi) {
         try {
 
-            Session session =HibernateAnnotationUtil.getSessionFactory().getCurrentSession();
+            Session session =HibernateAnnotationUtil.getSessionFactory().openSession();
             Transaction transacsion=session.beginTransaction();
             session.delete(hoiNghi);
             transacsion.commit();
@@ -58,7 +58,7 @@ public class HoiNghiHandler {
 
     public HoiNghi load(HoiNghi maHN)
     {
-        Session session=HibernateAnnotationUtil.getSessionFactory().getCurrentSession();
+        Session session=HibernateAnnotationUtil.getSessionFactory().openSession();
         Transaction transaction=session.beginTransaction();
         HoiNghi bd =(HoiNghi) session.get(Models.HoiNghi.class, maHN);
         transaction.commit();
@@ -68,7 +68,7 @@ public class HoiNghiHandler {
 
     public List<HoiNghi> loadList()
     {
-        Session session =HibernateAnnotationUtil.getSessionFactory().getCurrentSession();
+        Session session =HibernateAnnotationUtil.getSessionFactory().openSession();
         Transaction transacsion=session.beginTransaction();
         // lenh hql
         String hql="from DiaDiem ";
@@ -78,22 +78,4 @@ public class HoiNghiHandler {
         return list;
     }
 
-    private static final SessionFactory sessionFactory;
-
-    static {
-        try {
-            // Create the SessionFactory from standard (hibernate.cfg.xml)
-            // config file.
-            sessionFactory = HibernateAnnotationUtil.buildSessionFactory();
-        } catch (Throwable ex) {
-            // Log the exception.
-            System.err.println("Initial SessionFactory creation failed." + ex);
-            throw new ExceptionInInitializerError(ex);
-        }
-    }
-
-
-    public static SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
 }

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+  <children>
+    <TableView prefHeight="419.0" prefWidth="938.0">
+      <columns>
+        <TableColumn prefWidth="50.0" text="STT" />
+        <TableColumn prefWidth="234.0" text="Name" />
+        <TableColumn minWidth="0.0" prefWidth="131.0" text="Description" />
+        <TableColumn minWidth="0.0" prefWidth="166.0" text="Start Date" />
+        <TableColumn minWidth="0.0" prefWidth="257.0" text="Place" />
+        <TableColumn minWidth="0.0" prefWidth="118.0" text="Participants" />
+      </columns>
+    </TableView>
+  </children>
+</VBox>

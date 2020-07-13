@@ -78,7 +78,7 @@ public class DiaDiemHandler {
         try {
             Session session = HibernateAnnotationUtil.getSessionFactory().openSession();
             Transaction transaction = session.beginTransaction();
-            DiaDiem diaDiem = session.get(DiaDiem.class, new Integer(1));
+            DiaDiem diaDiem = session.get(DiaDiem.class, new Integer(id));
             transaction.commit();
             return diaDiem;
         }catch (Exception err){
