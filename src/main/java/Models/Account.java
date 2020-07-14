@@ -4,15 +4,15 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "TAIKHOAN", schema = "qlhoinghi")
+@Table(name = "ACCOUNT", schema = "qlhoinghi")
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "MATK", nullable = false)
+    @Column(name = "ACCOUNTID", nullable = false)
     private int accountId;
 
     @Basic
-    @Column(name = "TEN", nullable = false, length = 255)
+    @Column(name = "NAME", nullable = false, length = 255)
     private String name;
 
     @Basic
@@ -28,8 +28,8 @@ public class Account {
     private String email;
 
     @Basic
-    @Column(name = "TRANGTHAI", nullable = true)
-    private int trangThai;
+    @Column(name = "STATUS", nullable = true)
+    private int status;
 
     @OneToMany(mappedBy = "accountByAccountId", cascade = CascadeType.ALL)
     private Set<JoinTheConference> joinTheConferenceByAccountId;
@@ -38,18 +38,18 @@ public class Account {
         Admin, User
     }
     @Enumerated(EnumType.STRING)
-    @Column(name = "LOAIND", nullable = false)
+    @Column(name = "ROLE", nullable = false)
     private Role role;
 
     public Account() {
     }
 
-    public Account(String name, String username, String password, String email, int trangThai, Role role) {
+    public Account(String name, String username, String password, String email, int status, Role role) {
         this.name = name;
         this.username = username;
         this.password = password;
         this.email = email;
-        this.trangThai = trangThai;
+        this.status = status;
         this.role = role;
     }
 
@@ -93,12 +93,12 @@ public class Account {
         this.email = email;
     }
 
-    public int getTrangThai() {
-        return trangThai;
+    public int getStatus() {
+        return status;
     }
 
-    public void setTrangThai(int trangThai) {
-        this.trangThai = trangThai;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public Set<JoinTheConference> getJoinTheConferenceByAccountId() {
@@ -125,7 +125,7 @@ public class Account {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
-                ", trangThai=" + trangThai +
+                ", trangThai=" + status +
                 ", joinTheConferenceByAccountId=" + joinTheConferenceByAccountId +
                 ", role=" + role +
                 '}';

@@ -6,43 +6,43 @@ import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
-@Table(name = "HOINGHI", schema = "qlhoinghi")
+@Table(name = "CONFERENCE", schema = "qlhoinghi")
 public class Conference implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "MAHN", nullable = false)
+    @Column(name = "CONFID", nullable = false)
     private int confId;
 
     @Basic
-    @Column(name = "TENHN", nullable = true, length = 255)
+    @Column(name = "NAME", nullable = true, length = 255)
     private String name;
 
     @Basic
-    @Column(name = "MOTANGANGON", nullable = true, length = 255)
+    @Column(name = "SHORTDESC", nullable = true, length = 255)
     private String shortDesc;
 
     @Basic
-    @Column(name = "MOTACHITIET", nullable = true, length = 255)
+    @Column(name = "DETAILDESC", nullable = true, length = 255)
     private String detailDesc;
 
     @Basic
-    @Column(name = "ANH", nullable = true, length = 255)
+    @Column(name = "IMAGE", nullable = true, length = 255)
     private String image;
 
     @Basic
-    @Column(name = "NGAYBD", nullable = true)
+    @Column(name = "STARTDATE", nullable = true)
     private LocalDate startDate;
 
     @Basic
-    @Column(name = "NGAYKT", nullable = true)
+    @Column(name = "ENDDATE", nullable = true)
     private LocalDate endDate;
 
     @Basic
-    @Column(name = "SLNGTHAMDU", nullable = false)
+    @Column(name = "PARTICIPANTS", nullable = false)
     private int participants;
 
     @ManyToOne(targetEntity = Place.class)
-    @JoinColumn(name = "DIADIEM", referencedColumnName = "MADD", nullable = false)
+    @JoinColumn(name = "PLACE", referencedColumnName = "PLACEID", nullable = false)
     private Place place;
 
     @OneToMany(mappedBy = "conferenceByIdConfId", cascade = CascadeType.ALL)

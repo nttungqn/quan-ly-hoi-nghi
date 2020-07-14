@@ -4,19 +4,22 @@ import Models.Place;
 import Utils.HibernateAnnotationUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.util.List;
 
 public class PlaceHandler {
+    private static SessionFactory sessionFactory;
+
     public static boolean add(Place place) {
         Session session = null;
         try {
             session= HibernateAnnotationUtil.getSessionFactory().openSession();
-            Transaction transacsion=session.beginTransaction();
+            Transaction transaction=session.beginTransaction();
             session.save(place);
-            transacsion.commit();
+            transaction.commit();
             return true;
         } catch (Exception e) {
             System.out.println(e);
@@ -63,7 +66,8 @@ public class PlaceHandler {
 
     public static List<Place> loadList()
     {
-        Session session =HibernateAnnotationUtil.getSessionFactory().openSession();
+        sessionFactory =HibernateAnnotationUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
         Transaction transacsion=session.beginTransaction();
         // lenh hql
         String hql="from Models.Place";

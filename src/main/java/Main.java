@@ -1,4 +1,8 @@
+import Handlers.ConferenceHandler;
 import Handlers.DatabaseHandler;
+import Handlers.PlaceHandler;
+import Models.Conference;
+import Models.Place;
 import Utils.HibernateAnnotationUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import java.util.List;
 
 public class Main extends Application{
 
@@ -35,8 +41,17 @@ public class Main extends Application{
     }
 
     public static void main(final String[] args) throws Exception {
-            launch(args);
+//            launch(args);
 
+        List<Place> placeList =  PlaceHandler.loadList();
+        placeList.forEach(place -> {
+            System.out.println(place.toString());
+        });
+
+         List<Conference> conferenceList = ConferenceHandler.loadList();
+         conferenceList.forEach(conference -> {
+             System.out.println(conference.toString());
+         });
 
 //        DiaDiem diaDiem = new DiaDiem("Hoi truong A", "HCMUS", 150);
 //        Session session = null;

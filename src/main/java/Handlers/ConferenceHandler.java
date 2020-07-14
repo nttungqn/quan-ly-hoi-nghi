@@ -4,6 +4,7 @@ import Models.Conference;
 import Utils.HibernateAnnotationUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
@@ -11,10 +12,13 @@ import org.hibernate.query.Query;
 import java.util.List;
 
 public class ConferenceHandler {
+    private static SessionFactory sessionFactory;
+
     public static boolean add(Conference conference) {
         Session session = null;
         try {
-            session = HibernateAnnotationUtil.getSessionFactory().openSession();
+            sessionFactory = HibernateAnnotationUtil.getSessionFactory();
+            session = sessionFactory.getCurrentSession();
             Transaction transaction=session.beginTransaction();
             session.save(conference);
             transaction.commit();
@@ -29,7 +33,7 @@ public class ConferenceHandler {
 
     public boolean update(Conference conference) {
         try {
-            Session session = HibernateAnnotationUtil.getSessionFactory().openSession();
+            Session session = HibernateAnnotationUtil.getSessionFactory().getCurrentSession();
             Transaction transaction =session.beginTransaction();
             session.update(conference);
             transaction.commit();
@@ -43,7 +47,7 @@ public class ConferenceHandler {
     public boolean delete(Conference conference) {
         try {
 
-            Session session =HibernateAnnotationUtil.getSessionFactory().openSession();
+            Session session =HibernateAnnotationUtil.getSessionFactory().getCurrentSession();
             Transaction transacsion=session.beginTransaction();
             session.delete(conference);
             transacsion.commit();
@@ -63,12 +67,12 @@ public class ConferenceHandler {
     }
 
 
-    public List<Conference> loadList()
+    public static List<Conference> loadList()
     {
         Session session =HibernateAnnotationUtil.getSessionFactory().openSession();
         Transaction transacsion=session.beginTransaction();
         // lenh hql
-        String hql="from Place ";
+        String hql="from Models.Conference ";
         Query query=session.createQuery(hql);
         List<Conference> list =query.list();
         transacsion.commit();

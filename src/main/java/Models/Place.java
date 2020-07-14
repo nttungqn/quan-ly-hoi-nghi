@@ -5,23 +5,23 @@ import java.io.Serializable;
 import java.util.Set;
 
 @Entity
-@Table(name = "DIADIEM", schema = "qlhoinghi")
+@Table(name = "PLACE", schema = "qlhoinghi")
 public class Place implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "MADD", nullable = false)
+    @Column(name = "PLACEID", nullable = false)
     private int placeId;
 
     @Basic
-    @Column(name = "TENDD", nullable = true, length = 255)
+    @Column(name = "NAME", nullable = true, length = 255)
     private String name;
 
     @Basic
-    @Column(name = "DIACHI", nullable = true, length = 255)
+    @Column(name = "ADDRESS", nullable = true, length = 255)
     private String address;
 
     @Basic
-    @Column(name = "SOLUONG", nullable = true)
+    @Column(name = "AMOUNT", nullable = true)
     private Integer amount;
 
     @OneToMany(mappedBy = "place", cascade = CascadeType.ALL)
@@ -79,5 +79,15 @@ public class Place implements Serializable {
     @Override
     public String toString() {
         return this.name + ", " + this.address;
+    }
+
+    public String allToString() {
+        return "Place{" +
+                "placeId=" + placeId +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", amount=" + amount +
+                ", conferenceList=" + conferenceList +
+                '}';
     }
 }

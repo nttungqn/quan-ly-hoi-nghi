@@ -4,53 +4,50 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "THAMGIAHOINGHI", schema = "qlhoinghi")
+@Table(name = "JOINTHECONFERENCE", schema = "qlhoinghi")
 //@IdClass(ThamgiahoinghiEntityPK.class)
 public class JoinTheConference implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "MAHN", nullable = false)
+    @Column(name = "CONFID", nullable = false)
     private int confId;
 
     @Id
-    @Column(name = "MATK", nullable = false)
+    @Column(name = "ACCOUNTID", nullable = false)
     private int accountId;
 
     @Basic
-    @Column(name = "TTXETDUYET", nullable = true)
+    @Column(name = "APPROVAL", nullable = true)
     private int status;
 
     @ManyToOne(targetEntity = Conference.class)
-    @JoinColumn(name = "MAHN", referencedColumnName = "MAHN", nullable = false)
+    @JoinColumn(name = "CONFID", referencedColumnName = "CONFID", nullable = false)
     private Conference conferenceByIdConfId;
 
     @ManyToOne(targetEntity = Account.class)
-    @JoinColumn(name = "MATK", referencedColumnName = "MATK", nullable = false)
+    @JoinColumn(name = "ACCOUNTID", referencedColumnName = "ACCOUNTID", nullable = false)
     private Account accountByAccountId;
+
+    public JoinTheConference(int confId, int accountId, int status) {
+        this.confId = confId;
+        this.accountId = accountId;
+        this.status = status;
+    }
 
     public int getConfId() {
         return confId;
     }
 
-    public void setConfId(int maHN) {
-        this.confId = maHN;
+    public void setConfId(int confId) {
+        this.confId = confId;
     }
 
     public int getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(int maTK) {
-        this.accountId = maTK;
-    }
-
-    public JoinTheConference() {
-    }
-
-    public JoinTheConference(int confId, int accountId, int status) {
-        this.confId = confId;
+    public void setAccountId(int accountId) {
         this.accountId = accountId;
-        this.status = status;
     }
 
     public int getStatus() {
@@ -79,10 +76,12 @@ public class JoinTheConference implements Serializable {
 
     @Override
     public String toString() {
-        return "ThamGiaHoiNghi = {" +
-                "maHN=" + confId +
-                ", maTK=" + accountId +
-                ", ttXetDuyet=" + status +
+        return "JoinTheConference{" +
+                "confId=" + confId +
+                ", accountId=" + accountId +
+                ", status=" + status +
+                ", conferenceByIdConfId=" + conferenceByIdConfId +
+                ", accountByAccountId=" + accountByAccountId +
                 '}';
     }
 }
