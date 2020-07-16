@@ -1,6 +1,7 @@
 package Controllers;
 
 import Models.Conference;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -26,6 +27,16 @@ public class CardItem extends VBox  {
 
     @FXML
     private Text name;
+
+    @FXML
+    void handlerDetail(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handlerSignIn(ActionEvent event) {
+
+    }
 
 
     public CardItem(String name, String startDate, String endDate, String imgUrl) {

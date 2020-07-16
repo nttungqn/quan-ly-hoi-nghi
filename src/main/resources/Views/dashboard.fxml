@@ -190,7 +190,7 @@
             </HBox>
             <BorderPane fx:id="mainView" prefHeight="435.0" prefWidth="994.0">
                <center>
-                  <fx:include source="listview.fxml" BorderPane.alignment="CENTER" />
+                  <fx:include source="cardview.fxml" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
          </children>
