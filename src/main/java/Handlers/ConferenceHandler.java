@@ -15,11 +15,9 @@ public class ConferenceHandler {
     private static SessionFactory sessionFactory;
 
     public static boolean add(Conference conference) {
-        Session session = null;
         try {
-            sessionFactory = HibernateAnnotationUtil.getSessionFactory();
-            session = sessionFactory.getCurrentSession();
-            Transaction transaction=session.beginTransaction();
+            Session session = HibernateAnnotationUtil.getSessionFactory().openSession();
+            Transaction transaction =session.beginTransaction();
             session.save(conference);
             transaction.commit();
             System.out.println("Success");
@@ -33,7 +31,7 @@ public class ConferenceHandler {
 
     public boolean update(Conference conference) {
         try {
-            Session session = HibernateAnnotationUtil.getSessionFactory().getCurrentSession();
+            Session session = HibernateAnnotationUtil.getSessionFactory().openSession();
             Transaction transaction =session.beginTransaction();
             session.update(conference);
             transaction.commit();
@@ -47,7 +45,7 @@ public class ConferenceHandler {
     public boolean delete(Conference conference) {
         try {
 
-            Session session =HibernateAnnotationUtil.getSessionFactory().getCurrentSession();
+            Session session =HibernateAnnotationUtil.getSessionFactory().openSession();
             Transaction transacsion=session.beginTransaction();
             session.delete(conference);
             transacsion.commit();

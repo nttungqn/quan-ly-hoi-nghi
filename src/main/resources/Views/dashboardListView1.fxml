@@ -237,12 +237,12 @@
                         </Text>
                         <HBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
                             <children>
-                                <Button mnemonicParsing="false" onAction="#handleCardView" style="-fx-background-color: white; -fx-border-radius: 0px;">
+                                <Button mnemonicParsing="false" style="-fx-background-color: white; -fx-border-radius: 0px;">
                                     <graphic>
                                         <FontAwesomeIcon fill="#485460" iconName="TH_LARGE" size="1.3em" />
                                     </graphic>
                                 </Button>
-                                <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleListView" style="-fx-background-color: white; -fx-border-radius: 0px;">
+                                <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: white; -fx-border-radius: 0px;">
                                     <graphic>
                                         <FontAwesomeIcon fill="#485460" iconName="TH_LIST" size="1.3em" />
                                     </graphic>
@@ -268,22 +268,26 @@
                         </HBox>
                     </children>
                 </HBox>
-                <BorderPane fx:id="mainView" prefHeight="200.0" prefWidth="200.0">
+                <BorderPane fx:id="mainView" prefHeight="400.0" prefWidth="957.0">
                     <center>
-                        <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                        <VBox prefHeight="449.0" prefWidth="957.0" BorderPane.alignment="CENTER">
                             <children>
-                                <TableView prefHeight="419.0" prefWidth="938.0">
+                                <TableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="350.0" prefWidth="917.0" VBox.vgrow="ALWAYS">
                                     <columns>
                                         <TableColumn prefWidth="50.0" text="STT" />
-                                        <TableColumn prefWidth="187.0" text="Name" />
-                                        <TableColumn minWidth="0.0" prefWidth="178.0" text="Description" />
-                                        <TableColumn minWidth="0.0" prefWidth="144.0" text="Start Date" />
-                                        <TableColumn minWidth="0.0" prefWidth="121.0" text="Place" />
-                                        <TableColumn minWidth="0.0" prefWidth="276.0" text="Participants" />
+                                        <TableColumn prefWidth="119.0" text="Name" />
+                                        <TableColumn minWidth="0.0" prefWidth="134.0" text="Description" />
+                                        <TableColumn minWidth="0.0" prefWidth="149.0" text="Start Date" />
+                                        <TableColumn minWidth="0.0" prefWidth="207.0" text="Place" />
+                                        <TableColumn minWidth="0.0" prefWidth="147.0" text="Participants" />
+                              <TableColumn prefWidth="110.0" text="Detail" />
                                     </columns>
                            <VBox.margin>
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                            </VBox.margin>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
                                 </TableView>
                             </children>
                         </VBox>

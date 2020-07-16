@@ -1,11 +1,11 @@
 package Models;
 
 import javax.persistence.*;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "JOINTHECONFERENCE", schema = "qlhoinghi")
-//@IdClass(ThamgiahoinghiEntityPK.class)
 public class JoinTheConference implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +27,9 @@ public class JoinTheConference implements Serializable {
     @ManyToOne(targetEntity = Account.class)
     @JoinColumn(name = "ACCOUNTID", referencedColumnName = "ACCOUNTID", nullable = false)
     private Account accountByAccountId;
+
+    public JoinTheConference() {
+    }
 
     public JoinTheConference(int confId, int accountId, int status) {
         this.confId = confId;
@@ -80,8 +83,8 @@ public class JoinTheConference implements Serializable {
                 "confId=" + confId +
                 ", accountId=" + accountId +
                 ", status=" + status +
-                ", conferenceByIdConfId=" + conferenceByIdConfId +
-                ", accountByAccountId=" + accountByAccountId +
+//                ", conferenceByIdConfId=" + conferenceByIdConfId +
+//                ", accountByAccountId=" + accountByAccountId +
                 '}';
     }
 }

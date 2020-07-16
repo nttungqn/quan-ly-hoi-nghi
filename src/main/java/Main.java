@@ -1,13 +1,15 @@
-import Handlers.ConferenceHandler;
-import Handlers.DatabaseHandler;
-import Handlers.PlaceHandler;
+import Controllers.CardItem;
+import Handlers.*;
+import Models.Account;
 import Models.Conference;
+import Models.JoinTheConference;
 import Models.Place;
 import Utils.HibernateAnnotationUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -34,63 +36,38 @@ public class Main extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/Views/dashboard.fxml"));
-        primaryStage.setTitle("Add conference");
+        primaryStage.setTitle("Dashboard");
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
+
+//        FlowPane root = new FlowPane();
+//        root.getChildren().addAll(new CardItem("1234", "1234", "2345", "345"));
+//        primaryStage.setScene(new Scene(root));
+//        primaryStage.show();
     }
 
     public static void main(final String[] args) throws Exception {
-//            launch(args);
+             launch(args);
 
-        List<Place> placeList =  PlaceHandler.loadList();
-        placeList.forEach(place -> {
-            System.out.println(place.toString());
-        });
-
-         List<Conference> conferenceList = ConferenceHandler.loadList();
-         conferenceList.forEach(conference -> {
-             System.out.println(conference.toString());
-         });
-
-//        DiaDiem diaDiem = new DiaDiem("Hoi truong A", "HCMUS", 150);
-//        Session session = null;
-//        try {
-//            session = HibernateAnnotationUtil.getSessionFactory().openSession();
-//            Transaction transaction=session.beginTransaction();
-//            List<DiaDiem> list  = DiaDiemHandler.loadList();
-//            list.forEach(diaDiem -> {
-//                System.out.println(diaDiem.toString());
-//            });
-//            transaction.commit();
-//            System.out.println("Success");
-//        } catch (Exception e) {
-//            System.out.println(e);
-//        }
-//        session.close();
-
-//        transaction = session.beginTransaction();
+//        List<Place> placeList =  PlaceHandler.loadList();
+//        placeList.forEach(place -> {
+//            System.out.println(place.toString());
+//        });
 //
-//        String hql;
-//        Query query;
-//        // sql
+//        List<JoinTheConference> joinTheConferenceList = JoinTheConferenceHandler.loadList();
+//        joinTheConferenceList.forEach(joinTheConference -> {
+//            System.out.println(joinTheConference.toString());
+//        });
 //
-//        hql = "delete from DiaDiem ";
-//        query = session.createQuery(hql);
-//        query.executeUpdate();
-//        // error: Transaction not successfully started
-////        transaction.commit();
+//         List<Conference> conferenceList = ConferenceHandler.loadList();
+//         conferenceList.forEach(conference -> {
+//             System.out.println(conference.toString());
+//         });
 //
-        
-//        session.save(diaDiem);
-//        hql = "from DiaDiem";
-//        query = session.createQuery(hql);
-//        List<DiaDiem> list = query.list();
-//        for(DiaDiem dd : list)
-//            System.out.println(dd.toString());
-//        transaction.commit();
-//
-//        session.close();
-
+//         List<Account> accountList = AccountHandler.loadList();
+//         accountList.forEach(account -> {
+//             System.out.println(account.toString());
+//         });
     }
 }

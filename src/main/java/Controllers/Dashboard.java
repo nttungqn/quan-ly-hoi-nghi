@@ -1,42 +1,112 @@
 package Controllers;
 
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableView;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
+import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class Dashboard {
+public class Dashboard implements Initializable {
+
+
     @FXML
     private BorderPane mainView;
 
     @FXML
-    public void handleCardView(ActionEvent actionEvent) {
+    private Text text;
+
+    @FXML
+    private Button login;
+
+    @FXML
+    private Button signup;
+
+    @FXML
+    private ImageView avatar;
+
+    @FXML
+    private Text name;
+
+    @FXML
+    private FontAwesomeIcon dropIcon;
+
+    private String typeView;
+
+    private boolean isLogin = false;
+
+
+    @FXML
+    void handlerAddConference(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/cardview.fxml"));
-//            loader.setController(this);
-
-            mainView.setCenter(loader.load());
-
+            FXMLLoader screen = new FXMLLoader(getClass().getResource("/Views/addConference.fxml"));
+            Parent parent = screen.load();
+            Stage stage = new Stage();
+            stage.setTitle("Add conference");
+            stage.setScene(new Scene(parent));
+            stage.show();
         }
         catch (IOException e) {
             e.printStackTrace();
         }
+
+
     }
 
     @FXML
-    public void handleListView(ActionEvent actionEvent) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/listview.fxml"));
-//            loader.setController(this);
+    void handlerRefreshView(ActionEvent event) {
 
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/" + typeView + ".fxml"));
             mainView.setCenter(loader.load());
         }
         catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
+    public void handleChangeView(ActionEvent actionEvent) {
+        try {
+            String view = ((Button) actionEvent.getSource()).getId();
+            typeView = view;
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/" + view + ".fxml"));
+            mainView.setCenter(loader.load());
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void checkButtonOnScreen(){
+        if(!isLogin){
+            avatar.setVisible(false);
+            login.setVisible(false);
+            login.managedProperty().bind(login.visibleProperty());
+            dropIcon.managedProperty().bind(dropIcon.visibleProperty());
+//            avatar.managedProperty().bind(avatar.visibleProperty());
+        }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
+
+
 }

@@ -12,21 +12,20 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="1176.0" style="-fx-background-color: #e5e5e5;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Dashboard">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1235.0" style="-fx-background-color: #e5e5e5;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Dashboard">
    <top>
       <HBox BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" maxWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: -fx-info;">
+            <HBox alignment="CENTER" maxWidth="-Infinity" prefHeight="72.0" prefWidth="202.0" style="-fx-background-color: -fx-info;">
                <children>
-                  <FontAwesomeIcon fill="WHITE" iconName="LASTFM" size="2.4em" />
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: white;" text="Thanh Tung">
+                  <Text fill="WHITE" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: white;" text="CONFERENCE MANAGEMENT" wrappingWidth="138.03125">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
                   </Text>
                </children>
                <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                  <Insets bottom="20.0" top="20.0" />
                </padding>
             </HBox>
             <HBox alignment="CENTER_LEFT" style="-fx-background-color: #fff;" HBox.hgrow="ALWAYS">
@@ -43,8 +42,17 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                      <children>
-                        <FontAwesomeIcon iconName="BELL_O" size="1.3em" />
-                        <ImageView fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                        <Button fx:id="login" layoutX="570.0" layoutY="33.0" mnemonicParsing="false" onAction="#handlerRefreshView" style="-fx-background-color: #5c9afd; -fx-text-fill: white;" text="Log in">
+                           <HBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="signup" mnemonicParsing="false" onAction="#handlerRefreshView" style="-fx-background-color: #5c9afd; -fx-text-fill: white;" text="Sign up">
+                           <HBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <ImageView fx:id="avatar" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/user.png" />
                            </image>
@@ -52,12 +60,12 @@
                               <Insets left="20.0" right="20.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Thanh Tung">
+                        <Text fx:id="name" strokeType="OUTSIDE" strokeWidth="0.0" text="Thanh Tung">
                            <HBox.margin>
                               <Insets right="10.0" />
                            </HBox.margin>
                         </Text>
-                        <FontAwesomeIcon iconName="ANGLE_DOWN" size="1.5em">
+                        <FontAwesomeIcon fx:id="dropIcon" iconName="ANGLE_DOWN" size="1.5em">
                            <HBox.margin>
                               <Insets right="10.0" />
                            </HBox.margin></FontAwesomeIcon>
@@ -69,156 +77,66 @@
       </HBox>
    </top>
    <left>
-      <VBox maxWidth="-Infinity" prefHeight="528.0" prefWidth="179.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+      <VBox maxWidth="-Infinity" prefHeight="528.0" prefWidth="201.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER_LEFT" styleClass="hover-border">
+            <HBox alignment="CENTER_LEFT">
                <children>
-                  <FontAwesomeIcon iconName="CIRCLE_ALT_NOTCH" size="1.5em" text="">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </FontAwesomeIcon>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dashboard">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </Text>
+                  <Button mnemonicParsing="false" onAction="#handlerAddConference" prefHeight="31.0" prefWidth="190.0" style="-fx-background-color: white;" styleClass="hover-border" text="Add the conference">
+                     <graphic>
+                        <FontAwesomeIcon iconName="CALENDAR_ALT" size="1.5em" styleClass="hover-border" text="" wrappingWidth="30.10714340209961" />
+                     </graphic>
+                  </Button>
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
                <VBox.margin>
-                  <Insets top="40.0" />
+                  <Insets top="20.0" />
                </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="50.0" styleClass="hover-border">
-               <children>
-                  <FontAwesomeIcon iconName="CALENDAR_ALT" size="1.5em">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </FontAwesomeIcon>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Projects">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </Text>
-               </children>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" styleClass="hover-border">
-               <children>
-                  <FontAwesomeIcon iconName="LIST_UL" size="1.5em">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </FontAwesomeIcon>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tasks">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </Text>
-               </children>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" styleClass="hover-border">
-               <children>
-                  <FontAwesomeIcon iconName="FILE_TEXT_ALT" size="1.5em">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </FontAwesomeIcon>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Invoice">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </Text>
-               </children>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" styleClass="hover-border">
-               <children>
-                  <FontAwesomeIcon iconName="ENVELOPE_ALT" size="1.5em">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </FontAwesomeIcon>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Messages">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </Text>
-               </children>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" styleClass="hover-border">
-               <children>
-                  <FontAwesomeIcon iconName="NEWSPAPER_ALT" size="1.5em">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </FontAwesomeIcon>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reports">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </Text>
-               </children>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </HBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <HBox alignment="CENTER_LEFT" styleClass="hover-border">
-                     <children>
-                        <FontAwesomeIcon iconName="COG" size="1.5em">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </FontAwesomeIcon>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Settings">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Text>
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" styleClass="hover-border">
-                     <children>
-                        <FontAwesomeIcon iconName="USER" size="1.5em">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </FontAwesomeIcon>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Contact support">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Text>
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </HBox>
-               </children>
-            </VBox>
+<!--            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">-->
+<!--               <children>-->
+<!--                  <HBox alignment="CENTER_LEFT" styleClass="hover-border">-->
+<!--                     <children>-->
+<!--                        <FontAwesomeIcon iconName="COG" size="1.5em">-->
+<!--                           <HBox.margin>-->
+<!--                              <Insets />-->
+<!--                           </HBox.margin>-->
+<!--                        </FontAwesomeIcon>-->
+<!--                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Settings">-->
+<!--                           <HBox.margin>-->
+<!--                              <Insets left="10.0" />-->
+<!--                           </HBox.margin>-->
+<!--                        </Text>-->
+<!--                     </children>-->
+<!--                     <padding>-->
+<!--                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />-->
+<!--                     </padding>-->
+<!--                  </HBox>-->
+<!--                  <HBox alignment="CENTER_LEFT" styleClass="hover-border">-->
+<!--                     <children>-->
+<!--                        <FontAwesomeIcon iconName="USER" size="1.5em">-->
+<!--                           <HBox.margin>-->
+<!--                              <Insets />-->
+<!--                           </HBox.margin>-->
+<!--                        </FontAwesomeIcon>-->
+<!--                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Contact support">-->
+<!--                           <HBox.margin>-->
+<!--                              <Insets left="10.0" />-->
+<!--                           </HBox.margin>-->
+<!--                        </Text>-->
+<!--                     </children>-->
+<!--                     <padding>-->
+<!--                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />-->
+<!--                     </padding>-->
+<!--                  </HBox>-->
+<!--               </children>-->
+<!--            </VBox>-->
          </children>
       </VBox>
    </left>
    <center>
-      <VBox prefHeight="450.0" prefWidth="981.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="528.0" prefWidth="1021.0" BorderPane.alignment="CENTER">
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
@@ -235,12 +153,17 @@
                   </Text>
                   <HBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#handleCardView" style="-fx-background-color: white; -fx-border-radius: 0px;">
+                        <Button mnemonicParsing="false" onAction="#handlerRefreshView" style="-fx-background-color: #5c9afd; -fx-text-fill: white;" text="Refresh">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="cardview" mnemonicParsing="false" onAction="#handleChangeView" style="-fx-background-color: white; -fx-border-radius: 0px;">
                            <graphic>
                               <FontAwesomeIcon fill="#485460" iconName="TH_LARGE" size="1.3em" />
                            </graphic>
                         </Button>
-                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleListView" style="-fx-background-color: white; -fx-border-radius: 0px;">
+                        <Button fx:id="listview" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleChangeView" style="-fx-background-color: white; -fx-border-radius: 0px;">
                            <graphic>
                               <FontAwesomeIcon fill="#485460" iconName="TH_LIST" size="1.3em" />
                            </graphic>
@@ -258,7 +181,6 @@
                               <Insets right="10.0" />
                            </HBox.margin>
                         </HBox>
-                        <Button mnemonicParsing="false" style="-fx-background-color: #5c9afd; -fx-text-fill: white;" text="Create new project" />
                      </children>
                      <padding>
                         <Insets right="5.0" />
@@ -266,9 +188,9 @@
                   </HBox>
                </children>
             </HBox>
-            <BorderPane fx:id="mainView" prefHeight="200.0" prefWidth="200.0">
+            <BorderPane fx:id="mainView" prefHeight="435.0" prefWidth="994.0">
                <center>
-                  <fx:include source="listview.fxml" />
+                  <fx:include source="listview.fxml" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
          </children>

@@ -87,7 +87,7 @@ public class Place implements Serializable {
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 ", amount=" + amount +
-                ", conferenceList=" + conferenceList +
+//                ", conferenceList=" + conferenceList +
                 '}';
     }
 }

@@ -53,6 +53,7 @@ public class AddConference implements Initializable {
         conference.setDetailDesc(detailDes.getText());
         conference.setShortDesc(brefDes.getText());
         conference.setPlace((Place) menuDiaDiem.getValue());
+        conference.setParticipants(Integer.parseInt(countParticipant.getText()));
         System.out.println(conference.toString());
         boolean result = ConferenceHandler.add(conference);
         if(result){
@@ -60,6 +61,9 @@ public class AddConference implements Initializable {
         } else {
             System.out.println("Failed");
         }
+
+        Stage stage = (Stage) rootPane.getScene().getWindow();
+        stage.close();
     }
     @FXML
     private void cancel(ActionEvent event) {
@@ -73,6 +77,8 @@ public class AddConference implements Initializable {
         menuDiaDiem.setItems(observableList);
         menuDiaDiem.setValue(observableList.get(0));
     }
+
+
 
 
 }

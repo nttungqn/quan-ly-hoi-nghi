@@ -38,11 +38,11 @@ public class Conference implements Serializable {
     private LocalDate endDate;
 
     @Basic
-    @Column(name = "PARTICIPANTS", nullable = false)
+    @Column(name = "PARTICIPANTS", nullable = true)
     private int participants;
 
     @ManyToOne(targetEntity = Place.class)
-    @JoinColumn(name = "PLACE", referencedColumnName = "PLACEID", nullable = false)
+    @JoinColumn(name = "PLACE", referencedColumnName = "PLACEID", nullable = true)
     private Place place;
 
     @OneToMany(mappedBy = "conferenceByIdConfId", cascade = CascadeType.ALL)
@@ -51,78 +51,68 @@ public class Conference implements Serializable {
     public Conference() {
     }
 
-    public Conference(String name, String shortDesc, String detailDesc, String image, LocalDate startDate, LocalDate endDate, int participants) {
-        this.name = name;
-        this.shortDesc = shortDesc;
-        this.detailDesc = detailDesc;
-        this.image = image;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.participants = participants;
-    }
-
     public int getConfId() {
         return confId;
     }
 
-    public void setConfId(int maHN) {
-        this.confId = maHN;
+    public void setConfId(int confId) {
+        this.confId = confId;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String tenHN) {
-        this.name = tenHN;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getShortDesc() {
         return shortDesc;
     }
 
-    public void setShortDesc(String mtNganGon) {
-        this.shortDesc = mtNganGon;
+    public void setShortDesc(String shortDesc) {
+        this.shortDesc = shortDesc;
     }
 
     public String getDetailDesc() {
         return detailDesc;
     }
 
-    public void setDetailDesc(String mtChiTiet) {
-        this.detailDesc = mtChiTiet;
+    public void setDetailDesc(String detailDesc) {
+        this.detailDesc = detailDesc;
     }
 
     public String getImage() {
         return image;
     }
 
-    public void setImage(String anh) {
-        this.image = anh;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDate ngayBD) {
-        this.startDate = ngayBD;
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
     }
 
     public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDate ngayKT) {
-        this.endDate = ngayKT;
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 
     public int getParticipants() {
         return participants;
     }
 
-    public void setParticipants(int slngThamDu) {
-        this.participants = slngThamDu;
+    public void setParticipants(int participants) {
+        this.participants = participants;
     }
 
     public Place getPlace() {
@@ -152,8 +142,8 @@ public class Conference implements Serializable {
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
                 ", participants=" + participants +
-                ", place=" + place +
-                ", joinTheConference=" + joinTheConference +
+//                ", place=" + place +
+//                ", joinTheConference=" + joinTheConference +
                 '}';
     }
 }

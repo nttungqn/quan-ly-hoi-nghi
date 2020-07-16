@@ -125,8 +125,8 @@ public class Account {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
-                ", trangThai=" + status +
-                ", joinTheConferenceByAccountId=" + joinTheConferenceByAccountId +
+                ", status=" + status +
+//                ", joinTheConferenceByAccountId=" + joinTheConferenceByAccountId +
                 ", role=" + role +
                 '}';
     }
