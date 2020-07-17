@@ -82,15 +82,15 @@ public class Dashboard implements Initializable {
 
 
     public void handleChangeView(ActionEvent actionEvent) {
-        try {
-            String view = ((Button) actionEvent.getSource()).getId();
-            typeView = view;
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/" + view + ".fxml"));
-            mainView.setCenter(loader.load());
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+        String view = ((Button) actionEvent.getSource()).getId();
+        changeChildView(view);
+    }
+
+    @FXML
+    void handlerApproval(ActionEvent actionEvent) {
+        String view = ((Button) actionEvent.getSource()).getId();
+//        System.out.println(view);
+        changeChildView(view);
     }
 
     public void checkButtonOnScreen(){
@@ -108,5 +108,14 @@ public class Dashboard implements Initializable {
 
     }
 
+    public void changeChildView(String view){
+        try {
+            typeView = view;
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/" + view + ".fxml"));
+            mainView.setCenter(loader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

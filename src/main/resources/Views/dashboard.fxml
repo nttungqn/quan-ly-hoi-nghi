@@ -88,9 +88,9 @@
                               <FontAwesomeIcon iconName="CALENDAR" size="1.5em" styleClass="hover-border" text="" wrappingWidth="30.10714340209961" />
                            </graphic>
                         </Button>
-                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handlerAddConference" prefHeight="31.0" prefWidth="190.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-font-family: Quicksand;" styleClass="hover-border" text="Add the conference">
+                        <Button fx:id="approval" alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handlerApproval" prefHeight="31.0" prefWidth="190.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-font-family: Quicksand;" styleClass="hover-border" text="Approval">
                            <graphic>
-                              <FontAwesomeIcon iconName="CHECK" size="1.5em" styleClass="hover-border" text="" wrappingWidth="30.10714340209961" />
+                              <FontAwesomeIcon iconName="CHECK" size="1.5em" strokeType="OUTSIDE" styleClass="hover-border" text="" wrappingWidth="31.10714340209961" />
                            </graphic>
                            <VBox.margin>
                               <Insets top="20.0" />

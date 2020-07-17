@@ -66,5 +66,8 @@
     -fx-cursor: hand;
 }
 
+.table-column {
+    -fx-alignment: center;
+}
 
 

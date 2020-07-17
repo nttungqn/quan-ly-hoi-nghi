@@ -69,7 +69,7 @@ public class ListViewController implements Initializable {
                             setText(null);
                         } else {
                             btn.setOnAction(event -> {
-                                        Conference conference = getTableView().getItems().get(getIndex());
+                                Conference conference = getTableView().getItems().get(getIndex());
                                 try {
                                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/detailConference.fxml"));
                                     Parent parent = loader.load();
