@@ -33,7 +33,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Chủ đề">
+                  <Label text="Name">
                      <GridPane.margin>
                         <Insets left="10.0" right="10.0" top="20.0" />
                      </GridPane.margin>
@@ -42,7 +42,7 @@
                      <GridPane.margin>
                         <Insets left="10.0" right="10.0" top="20.0" />
                      </GridPane.margin></TextField>
-                  <Label text="Thời gian bắt đầu" GridPane.rowIndex="1">
+                  <Label text="Start date" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="10.0" right="10.0" top="20.0" />
                      </GridPane.margin></Label>
@@ -50,7 +50,7 @@
                      <GridPane.margin>
                         <Insets left="10.0" right="10.0" top="20.0" />
                      </GridPane.margin></DatePicker>
-                  <Label text="Thời gian kết thúc" GridPane.rowIndex="2">
+                  <Label text="End date" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="10.0" right="10.0" top="20.0" />
                      </GridPane.margin></Label>
@@ -58,7 +58,7 @@
                      <GridPane.margin>
                         <Insets left="10.0" right="10.0" top="20.0" />
                      </GridPane.margin></DatePicker>
-                  <Label text="Số lượng người" GridPane.rowIndex="3">
+                  <Label text="Participants" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="10.0" right="10.0" top="20.0" />
                      </GridPane.margin></Label>
@@ -66,7 +66,7 @@
                      <GridPane.margin>
                         <Insets left="10.0" right="10.0" top="20.0" />
                      </GridPane.margin></TextField>
-                  <Label text="Địa điểm" GridPane.rowIndex="4">
+                  <Label text="Place" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="10.0" right="10.0" top="20.0" />
                      </GridPane.margin></Label>
@@ -78,7 +78,7 @@
                         <Insets left="10.0" right="10.0" top="20.0" />
                      </GridPane.margin>
                   </ChoiceBox>
-                  <Label text="Mô tả ngắn gọn" GridPane.rowIndex="5">
+                  <Label text="Brief description" GridPane.rowIndex="5">
                      <GridPane.margin>
                         <Insets left="10.0" right="10.0" top="20.0" />
                      </GridPane.margin>
@@ -93,7 +93,7 @@
                   <Insets />
                </VBox.margin>
             </GridPane>
-            <TextArea fx:id="detailDes" prefHeight="106.0" prefWidth="374.0" promptText="Mô tả chi tiết">
+            <TextArea fx:id="detailDes" prefHeight="106.0" prefWidth="374.0" promptText="Detail description">
                <VBox.margin>
                   <Insets left="10.0" right="10.0" top="20.0" />
                </VBox.margin>

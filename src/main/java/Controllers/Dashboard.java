@@ -57,7 +57,7 @@ public class Dashboard implements Initializable {
             FXMLLoader screen = new FXMLLoader(getClass().getResource("/Views/addConference.fxml"));
             Parent parent = screen.load();
             Stage stage = new Stage();
-            stage.setTitle("Add conference");
+            stage.setTitle("Add new conference");
             stage.setScene(new Scene(parent));
             stage.show();
         }

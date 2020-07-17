@@ -30,14 +30,8 @@ public class CardViewController extends Pane implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         List<Conference> conferenceList = ConferenceHandler.loadList();
-//        CardItem cardItem = new CardItem("1", "2", "3", "4");
-//        flowPane.getChildren().add(cardItem);
         conferenceList.forEach(conference -> {
-            String url = "1.png";
-            CardItem cardItem = new CardItem(conference.getName().toString(), conference.getStartDate().toString(), conference.getEndDate().toString(), url);
-
-//             flowPane.getChildren().add(new CardViewItemController("1", "2", "3", "4"));
-//             flowPane.getChildren().add(new Button("1"));
+            CardItem cardItem = new CardItem(conference);
             flowPane.getChildren().add(cardItem);
         });
 

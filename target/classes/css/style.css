@@ -26,9 +26,19 @@
 
 }
 
-.button:hover, .button:focused{
+.button {
+    -fx-background-color: -fx-info;
+    -fx-text-fill: white;
+}
+
+.button:hover{
     -fx-background-color: #00606d;
 }
+
+/*.button:hover, .button:focused{*/
+/*    -fx-background-color: #00606d;*/
+/*}*/
+
 
 .text-field
 {

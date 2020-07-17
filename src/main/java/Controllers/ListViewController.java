@@ -1,46 +1,30 @@
 package Controllers;
 
 import Handlers.ConferenceHandler;
-import Handlers.PlaceHandler;
 import Models.Conference;
-import Models.Place;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import java.io.IOException;
 import java.net.URL;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 public class ListViewController implements Initializable {
     public TableColumn buttonDetail;
     @FXML
     private TableView<Conference> tableView;
-
-//    @FXML
-//    private TableColumn<Conference, Integer> id;
-//
-//    @FXML
-//    private TableColumn<Conference, String> name;
-//
-//    @FXML
-//    private TableColumn<Conference, String> description;
-//
-//    @FXML
-//    private TableColumn<Conference, String> startDate;
-//
-//    @FXML
-//    private TableColumn<Conference, String> place;
-//
-//    @FXML
-//    private TableColumn<Conference, Integer> participants;
 
 
     public ListViewController() {
@@ -51,28 +35,31 @@ public class ListViewController implements Initializable {
         ObservableList<Conference> conferenceObservableList = FXCollections.observableList(ConferenceHandler.loadList());
 
 
-        TableColumn id = new TableColumn("First Name");
+        TableColumn<Conference, Integer> id = new TableColumn<>("ID");
         id.setCellValueFactory(new PropertyValueFactory<Conference, Integer>("confId"));
-        TableColumn name = new TableColumn("First Name");
+        TableColumn<Conference, String> name = new TableColumn<Conference, String>("Name");
         name.setCellValueFactory(new PropertyValueFactory<Conference, String>("name"));
-        TableColumn description = new TableColumn("First Name");
+        TableColumn<Conference, String> description = new TableColumn<>("Short description");
         description.setCellValueFactory(new PropertyValueFactory<Conference, String>("shortDesc"));
-        TableColumn startDate = new TableColumn("First Name");
+        TableColumn<Conference, String> startDate = new TableColumn<Conference, String>("Start date");
         startDate.setCellValueFactory(new PropertyValueFactory<Conference, String>("startDate"));
-        TableColumn place = new TableColumn("First Name");
+        TableColumn<Conference, String> place = new TableColumn<Conference, String>("Place");
         place.setCellValueFactory(new PropertyValueFactory<Conference, String>("place"));
-        TableColumn participants = new TableColumn("First Name");
+        TableColumn<Conference, Integer> participants = new TableColumn<>("Participant");
         participants.setCellValueFactory(new PropertyValueFactory<Conference, Integer>("participants"));
 
-        TableColumn actionCol = new TableColumn("Action");
-        actionCol.setCellValueFactory(new PropertyValueFactory<>("DUMMY"));
+        TableColumn detailColumn = new TableColumn("Detail conference");
+        detailColumn.setCellValueFactory(new PropertyValueFactory<>("detail"));
 
-        Callback<TableColumn<Conference, String>, TableCell<Conference, String>> cellFactory = new Callback<TableColumn<Conference, String>, TableCell<Conference, String>>() {
+        TableColumn siginColumn = new TableColumn("Sig in");
+        detailColumn.setCellValueFactory(new PropertyValueFactory<>("singin"));
+
+        Callback<TableColumn<Conference, String>, TableCell<Conference, String>> detailFactory = new Callback<TableColumn<Conference, String>, TableCell<Conference, String>>() {
             @Override
             public TableCell call(final TableColumn<Conference, String> param) {
-                final TableCell<Conference, String> cell = new TableCell<Conference, String>() {
+                return new TableCell<Conference, String>() {
 
-                    final Button btn = new Button("Just Do It");
+                    Button btn = new Button("Detail");
 
                     @Override
                     public void updateItem(String item, boolean empty) {
@@ -82,23 +69,81 @@ public class ListViewController implements Initializable {
                             setText(null);
                         } else {
                             btn.setOnAction(event -> {
-//                                        Conference person = getTableView().getItems().get(getIndex());
-//                                        System.out.println(person.getFirstName()
-//                                                + "   " + person.getLastName());
+                                        Conference conference = getTableView().getItems().get(getIndex());
+                                try {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/detailConference.fxml"));
+                                    Parent parent = loader.load();
+
+                                    DetailConferenceController detailConferenceController = loader.getController();
+                                    detailConferenceController.setConference(conference);
+
+                                    Stage stage = new Stage();
+                                    stage.setTitle("Detail conference");
+                                    stage.setScene(new Scene(parent));
+                                    stage.show();
+                                }
+                                catch (IOException e) {
+                                    e.printStackTrace();
+                                }
                             });
                             setGraphic(btn);
                             setText(null);
                         }
                     }
                 };
-                return cell;
             }
         };
 
-        actionCol.setCellFactory(cellFactory);
-        System.out.println(conferenceObservableList.size());
+
+//        Button button = new Button("Sign in");
+//        button.setStyle("-fx-background-color: -fx-success; -fx-text-fill: white;");
+
+        Callback<TableColumn<Conference, String>, TableCell<Conference, String>> signinFactory = new Callback<TableColumn<Conference, String>, TableCell<Conference, String>>() {
+            @Override
+            public TableCell call(final TableColumn<Conference, String> param) {
+                final TableCell<Conference, String> tableCell = new TableCell<Conference, String>() {
+
+                    final Button btn = new Button("Sign in");
+
+
+                    @Override
+                    public void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                            setText(null);
+                        } else {
+                            btn.setOnAction(event -> {
+                                Conference conference = getTableView().getItems().get(getIndex());
+//                                try {
+//                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/detailConference.fxml"));
+//                                    Parent parent = loader.load();
+//
+//                                    DetailConferenceController detailConferenceController = loader.getController();
+//                                    detailConferenceController.setConference(conference);
+//
+//                                    Stage stage = new Stage();
+//                                    stage.setTitle("Detail conference");
+//                                    stage.setScene(new Scene(parent));
+//                                    stage.show();
+//                                }
+//                                catch (IOException e) {
+//                                    e.printStackTrace();
+//                                }
+                            });
+                            setGraphic(btn);
+                            setText(null);
+                        }
+                    }
+                };
+                return tableCell;
+            }
+        };
+
+        detailColumn.setCellFactory(detailFactory);
+        siginColumn.setCellFactory(signinFactory);
         tableView.setItems(conferenceObservableList);
-        tableView.getColumns().addAll(id, name, description,startDate,place,participants,actionCol);
+        tableView.getColumns().addAll(id, name, description,startDate,place,participants,detailColumn, siginColumn);
 
     }
 

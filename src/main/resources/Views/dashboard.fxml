@@ -81,11 +81,23 @@
          <children>
             <HBox alignment="CENTER_LEFT">
                <children>
-                  <Button mnemonicParsing="false" onAction="#handlerAddConference" prefHeight="31.0" prefWidth="190.0" style="-fx-background-color: white;" styleClass="hover-border" text="Add the conference">
-                     <graphic>
-                        <FontAwesomeIcon iconName="CALENDAR_ALT" size="1.5em" styleClass="hover-border" text="" wrappingWidth="30.10714340209961" />
-                     </graphic>
-                  </Button>
+                  <VBox>
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#handlerAddConference" prefHeight="31.0" prefWidth="190.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-font-family: Quicksand;" styleClass="hover-border" text="Add the conference">
+                           <graphic>
+                              <FontAwesomeIcon iconName="CALENDAR" size="1.5em" styleClass="hover-border" text="" wrappingWidth="30.10714340209961" />
+                           </graphic>
+                        </Button>
+                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handlerAddConference" prefHeight="31.0" prefWidth="190.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-font-family: Quicksand;" styleClass="hover-border" text="Add the conference">
+                           <graphic>
+                              <FontAwesomeIcon iconName="CHECK" size="1.5em" styleClass="hover-border" text="" wrappingWidth="30.10714340209961" />
+                           </graphic>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
