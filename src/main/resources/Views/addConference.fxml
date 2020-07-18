@@ -24,7 +24,7 @@
          <children>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <ImageView fx:id="imageConference" fitHeight="150.0" fitWidth="200.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" style="-fx-image: #000;" styleClass="border-image">
+                  <ImageView fx:id="imageConference" fitHeight="150.0" fitWidth="200.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" styleClass="border-image">
                      <image>
                         <Image url="@../../../../../../../Pictures/icon/5.png" />
                      </image>

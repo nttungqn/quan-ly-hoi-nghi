@@ -42,15 +42,17 @@ public class ListViewController implements Initializable {
         description.setCellValueFactory(new PropertyValueFactory<Conference, String>("shortDesc"));
         TableColumn<Conference, String> startDate = new TableColumn<Conference, String>("Start date");
         startDate.setCellValueFactory(new PropertyValueFactory<Conference, String>("startDate"));
+        TableColumn<Conference, String> endDate = new TableColumn<Conference, String>("End date");
+        endDate.setCellValueFactory(new PropertyValueFactory<Conference, String>("endDate"));
         TableColumn<Conference, String> place = new TableColumn<Conference, String>("Place");
         place.setCellValueFactory(new PropertyValueFactory<Conference, String>("place"));
         TableColumn<Conference, Integer> participants = new TableColumn<>("Participant");
         participants.setCellValueFactory(new PropertyValueFactory<Conference, Integer>("participants"));
 
-        TableColumn detailColumn = new TableColumn("Detail conference");
+        TableColumn detailColumn = new TableColumn("Action");
         detailColumn.setCellValueFactory(new PropertyValueFactory<>("detail"));
 
-        TableColumn siginColumn = new TableColumn("Sig in");
+        TableColumn siginColumn = new TableColumn("Action");
         detailColumn.setCellValueFactory(new PropertyValueFactory<>("singin"));
 
         Callback<TableColumn<Conference, String>, TableCell<Conference, String>> detailFactory = new Callback<TableColumn<Conference, String>, TableCell<Conference, String>>() {
@@ -142,7 +144,7 @@ public class ListViewController implements Initializable {
         detailColumn.setCellFactory(detailFactory);
         siginColumn.setCellFactory(signinFactory);
         tableView.setItems(conferenceObservableList);
-        tableView.getColumns().addAll(id, name, description,startDate,place,participants,detailColumn, siginColumn);
+        tableView.getColumns().addAll(id, name, description,startDate,endDate,place,participants,detailColumn, siginColumn);
 
     }
 

@@ -18,6 +18,7 @@
          <children>
             <HBox alignment="CENTER" maxWidth="-Infinity" prefHeight="72.0" prefWidth="202.0" style="-fx-background-color: -fx-info;">
                <children>
+                  <FontAwesomeIcon fill="#e1e3e8" fontSmoothingType="LCD" iconName="STACK_OVERFLOW" size="2em" wrappingWidth="11.142857551574707" />
                   <Text fill="WHITE" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: white;" text="CONFERENCE MANAGEMENT" wrappingWidth="138.03125">
                      <HBox.margin>
                         <Insets left="20.0" />
@@ -83,34 +84,42 @@
                <children>
                   <VBox>
                      <children>
-                        <Button mnemonicParsing="false" onAction="#handlerAddConference" prefHeight="31.0" prefWidth="190.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-font-family: Quicksand;" styleClass="hover-border" text="Add the conference">
+                        <Button fx:id="dashboard" alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handlerDashboard" prefHeight="31.0" prefWidth="190.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-font-family: Quicksand;" styleClass="hover-border" text="Dashboard">
                            <graphic>
-                              <FontAwesomeIcon iconName="CALENDAR" size="1.5em" styleClass="hover-border" text="" wrappingWidth="30.10714340209961" />
+                              <FontAwesomeIcon iconName="SERVER" size="1.5em" wrappingWidth="25.0" />
                            </graphic>
+                        </Button>
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handlerAddConference" prefHeight="31.0" prefWidth="190.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-font-family: Quicksand;" styleClass="hover-border" text="Add the conference">
+                           <graphic>
+                              <FontAwesomeIcon iconName="PLUS" size="1.5em" wrappingWidth="25.0" />
+                           </graphic>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
                         </Button>
                         <Button fx:id="approval" alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handlerApproval" prefHeight="31.0" prefWidth="190.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-font-family: Quicksand;" styleClass="hover-border" text="Approval">
-                           <graphic>
-                              <FontAwesomeIcon iconName="CHECK" size="1.5em" strokeType="OUTSIDE" styleClass="hover-border" text="" wrappingWidth="31.10714340209961" />
-                           </graphic>
                            <VBox.margin>
                               <Insets top="20.0" />
                            </VBox.margin>
+                           <graphic>
+                              <FontAwesomeIcon iconName="CHECK_SQUARE_ALT" size="1.5em" wrappingWidth="25.0" />
+                           </graphic>
                         </Button>
                         <Button fx:id="editConference" alignment="TOP_LEFT" layoutX="10.0" layoutY="61.0" mnemonicParsing="false" onAction="#handlerEditConference" prefHeight="31.0" prefWidth="190.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-font-family: Quicksand;" styleClass="hover-border" text="Edit conference">
-                           <graphic>
-                              <FontAwesomeIcon iconName="BED" size="1.5em" strokeType="OUTSIDE" styleClass="hover-border" text="" wrappingWidth="31.10714340209961" />
-                           </graphic>
                            <VBox.margin>
                               <Insets top="20.0" />
                            </VBox.margin>
+                           <graphic>
+                              <FontAwesomeIcon iconName="EDIT" size="1.5em" wrappingWidth="25.0" />
+                           </graphic>
                         </Button>
                         <Button fx:id="userManagement" alignment="TOP_LEFT" layoutX="10.0" layoutY="92.0" mnemonicParsing="false" onAction="#handlerUserManagement" prefHeight="31.0" prefWidth="190.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-font-family: Quicksand;" styleClass="hover-border" text="User management">
-                           <graphic>
-                              <FontAwesomeIcon iconName="CHECK" size="1.5em" strokeType="OUTSIDE" styleClass="hover-border" text="" wrappingWidth="31.10714340209961" />
-                           </graphic>
                            <VBox.margin>
                               <Insets top="20.0" />
                            </VBox.margin>
+                           <graphic>
+                              <FontAwesomeIcon iconName="USERS" size="1.5em" wrappingWidth="25.0" />
+                           </graphic>
                         </Button>
                      </children>
                   </VBox>
@@ -122,44 +131,44 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </HBox>
-<!--            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">-->
-<!--               <children>-->
-<!--                  <HBox alignment="CENTER_LEFT" styleClass="hover-border">-->
-<!--                     <children>-->
-<!--                        <FontAwesomeIcon iconName="COG" size="1.5em">-->
-<!--                           <HBox.margin>-->
-<!--                              <Insets />-->
-<!--                           </HBox.margin>-->
-<!--                        </FontAwesomeIcon>-->
-<!--                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Settings">-->
-<!--                           <HBox.margin>-->
-<!--                              <Insets left="10.0" />-->
-<!--                           </HBox.margin>-->
-<!--                        </Text>-->
-<!--                     </children>-->
-<!--                     <padding>-->
-<!--                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />-->
-<!--                     </padding>-->
-<!--                  </HBox>-->
-<!--                  <HBox alignment="CENTER_LEFT" styleClass="hover-border">-->
-<!--                     <children>-->
-<!--                        <FontAwesomeIcon iconName="USER" size="1.5em">-->
-<!--                           <HBox.margin>-->
-<!--                              <Insets />-->
-<!--                           </HBox.margin>-->
-<!--                        </FontAwesomeIcon>-->
-<!--                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Contact support">-->
-<!--                           <HBox.margin>-->
-<!--                              <Insets left="10.0" />-->
-<!--                           </HBox.margin>-->
-<!--                        </Text>-->
-<!--                     </children>-->
-<!--                     <padding>-->
-<!--                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />-->
-<!--                     </padding>-->
-<!--                  </HBox>-->
-<!--               </children>-->
-<!--            </VBox>-->
+            <!--            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">-->
+            <!--               <children>-->
+            <!--                  <HBox alignment="CENTER_LEFT" styleClass="hover-border">-->
+            <!--                     <children>-->
+            <!--                        <FontAwesomeIcon iconName="COG" size="1.5em">-->
+            <!--                           <HBox.margin>-->
+            <!--                              <Insets />-->
+            <!--                           </HBox.margin>-->
+            <!--                        </FontAwesomeIcon>-->
+            <!--                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Settings">-->
+            <!--                           <HBox.margin>-->
+            <!--                              <Insets left="10.0" />-->
+            <!--                           </HBox.margin>-->
+            <!--                        </Text>-->
+            <!--                     </children>-->
+            <!--                     <padding>-->
+            <!--                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />-->
+            <!--                     </padding>-->
+            <!--                  </HBox>-->
+            <!--                  <HBox alignment="CENTER_LEFT" styleClass="hover-border">-->
+            <!--                     <children>-->
+            <!--                        <FontAwesomeIcon iconName="USER" size="1.5em">-->
+            <!--                           <HBox.margin>-->
+            <!--                              <Insets />-->
+            <!--                           </HBox.margin>-->
+            <!--                        </FontAwesomeIcon>-->
+            <!--                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Contact support">-->
+            <!--                           <HBox.margin>-->
+            <!--                              <Insets left="10.0" />-->
+            <!--                           </HBox.margin>-->
+            <!--                        </Text>-->
+            <!--                     </children>-->
+            <!--                     <padding>-->
+            <!--                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />-->
+            <!--                     </padding>-->
+            <!--                  </HBox>-->
+            <!--               </children>-->
+            <!--            </VBox>-->
          </children>
       </VBox>
    </left>
@@ -185,6 +194,9 @@
                            <HBox.margin>
                               <Insets right="20.0" />
                            </HBox.margin>
+                           <graphic>
+                              <FontAwesomeIcon fill="#eee4e4" iconName="REFRESH" size="1.5em" wrappingWidth="25.0" />
+                           </graphic>
                         </Button>
                         <Button fx:id="cardview" mnemonicParsing="false" onAction="#handleChangeView" style="-fx-background-color: white; -fx-border-radius: 0px;">
                            <graphic>

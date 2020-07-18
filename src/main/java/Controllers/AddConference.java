@@ -134,7 +134,7 @@ public class AddConference implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         menuPlace.setItems(observableList);
-        menuPlace.setValue(observableList.get(1));
+        menuPlace.setValue(observableList.get(0));
     }
 
 

@@ -52,6 +52,11 @@ public class Dashboard implements Initializable {
 
 
     @FXML
+    void handlerDashboard(ActionEvent event) {
+        changeChildView("listview");
+    }
+
+    @FXML
     void handlerAddConference(ActionEvent event) {
         try {
             FXMLLoader screen = new FXMLLoader(getClass().getResource("/Views/addConference.fxml"));

@@ -39,10 +39,10 @@ public class ApprovalController implements Initializable {
         TableColumn<JoinTheConference, Integer> accountId = new TableColumn<>("Account ID");
         accountId.setCellValueFactory(new PropertyValueFactory<>("accountId"));
 
-        TableColumn acceptColumn = new TableColumn("");
+        TableColumn acceptColumn = new TableColumn("Action");
         acceptColumn.setCellValueFactory(new PropertyValueFactory<>("accept"));
 
-        TableColumn declineColumn = new TableColumn("");
+        TableColumn declineColumn = new TableColumn("Action");
         declineColumn.setCellValueFactory(new PropertyValueFactory<>("decline"));
 
         Callback<TableColumn<JoinTheConference, String>, TableCell<JoinTheConference, String>> acceptFactory = new Callback<TableColumn<JoinTheConference, String>, TableCell<JoinTheConference, String>>() {

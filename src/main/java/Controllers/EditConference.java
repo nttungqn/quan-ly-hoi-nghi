@@ -32,7 +32,7 @@ public class EditConference implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<Conference> conferenceObservableList = FXCollections.observableList(ConferenceHandler.loadList());
+        ObservableList<Conference> conferenceObservableList = FXCollections.observableList(ConferenceHandler.loadListNotYetTakenPlace());
 
 
         TableColumn<Conference, Integer> id = new TableColumn<>("ID");
@@ -43,6 +43,8 @@ public class EditConference implements Initializable {
         description.setCellValueFactory(new PropertyValueFactory<Conference, String>("shortDesc"));
         TableColumn<Conference, String> startDate = new TableColumn<Conference, String>("Start date");
         startDate.setCellValueFactory(new PropertyValueFactory<Conference, String>("startDate"));
+        TableColumn<Conference, String> endDate = new TableColumn<Conference, String>("End date");
+        endDate.setCellValueFactory(new PropertyValueFactory<Conference, String>("endDate"));
         TableColumn<Conference, String> place = new TableColumn<Conference, String>("Place");
         place.setCellValueFactory(new PropertyValueFactory<Conference, String>("place"));
         TableColumn<Conference, Integer> participants = new TableColumn<>("Participant");
@@ -96,7 +98,7 @@ public class EditConference implements Initializable {
 
         editColumn.setCellFactory(editFactory);
         tableView.setItems(conferenceObservableList);
-        tableView.getColumns().addAll(id, name, description,startDate,place,participants,editColumn);
+        tableView.getColumns().addAll(id, name, description,startDate,endDate,place,participants,editColumn);
 
     }
 

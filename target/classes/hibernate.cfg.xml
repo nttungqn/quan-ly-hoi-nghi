@@ -8,14 +8,12 @@
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="connection.username">root</property>
         <property name="connection.password">8888</property>
-<!--        <mapping resource="DiadiemEntity.hbm.xml"/>-->
+
         <mapping class="Models.Place"/>
         <mapping class="Models.Conference"/>
-<!--        <mapping resource="HoinghiEntity.hbm.xml"/>-->
         <mapping class="Models.Account"/>
-<!--        <mapping resource="TaikhoanEntity.hbm.xml"/>-->
         <mapping class="Models.JoinTheConference"/>
-<!--        <mapping resource="ThamgiahoinghiEntity.hbm.xml"/>-->
+
 
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->

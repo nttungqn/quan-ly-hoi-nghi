@@ -9,6 +9,8 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class ConferenceHandler {
@@ -77,4 +79,17 @@ public class ConferenceHandler {
         return list;
     }
 
+    public static List<Conference> loadListNotYetTakenPlace()
+    {
+        Session session =HibernateAnnotationUtil.getSessionFactory().openSession();
+        Transaction transacsion=session.beginTransaction();
+        // lenh hql
+        LocalDate localDate = LocalDate.now();
+        String hql="from Models.Conference as i where i.startDate > :localDate";
+        Query query=session.createQuery(hql);
+        query.setParameter("localDate", localDate);
+        List<Conference> list =query.list();
+        transacsion.commit();
+        return list;
+    }
 }
