@@ -26,7 +26,7 @@
                <children>
                   <ImageView fx:id="imageConference" fitHeight="150.0" fitWidth="200.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" styleClass="border-image">
                      <image>
-                        <Image url="@../../../../../../../Pictures/icon/5.png" />
+                        <Image url="@../images/1.png" />
                      </image>
                   </ImageView>
                   <Button mnemonicParsing="false" onAction="#handlerChooseImage" text="Choose image">

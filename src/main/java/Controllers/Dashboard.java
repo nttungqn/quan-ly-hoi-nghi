@@ -52,6 +52,37 @@ public class Dashboard implements Initializable {
 
 
     @FXML
+    void handlerLogin(ActionEvent event) {
+        try {
+            FXMLLoader screen = new FXMLLoader(getClass().getResource("/Views/login.fxml"));
+            Parent parent = screen.load();
+            Stage stage = new Stage();
+            stage.setTitle("Login");
+            stage.setScene(new Scene(parent));
+            stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void handlerSignUp(ActionEvent event) {
+        try {
+            FXMLLoader screen = new FXMLLoader(getClass().getResource("/Views/signup.fxml"));
+            Parent parent = screen.load();
+            Stage stage = new Stage();
+            stage.setTitle("Sign up");
+            stage.setScene(new Scene(parent));
+            stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @FXML
     void handlerDashboard(ActionEvent event) {
         changeChildView("listview");
     }
