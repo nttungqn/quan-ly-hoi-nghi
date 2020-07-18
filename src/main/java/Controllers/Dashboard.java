@@ -93,6 +93,13 @@ public class Dashboard implements Initializable {
         changeChildView(view);
     }
 
+    @FXML
+    void handlerEditConference(ActionEvent actionEvent) {
+        String view = ((Button) actionEvent.getSource()).getId();
+//        System.out.println(view);
+        changeChildView(view);
+    }
+
     public void checkButtonOnScreen(){
         if(!isLogin){
             avatar.setVisible(false);

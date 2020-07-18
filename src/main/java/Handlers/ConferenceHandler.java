@@ -29,7 +29,7 @@ public class ConferenceHandler {
     }
 
 
-    public boolean update(Conference conference) {
+    public static boolean update(Conference conference) {
         try {
             Session session = HibernateAnnotationUtil.getSessionFactory().openSession();
             Transaction transaction =session.beginTransaction();

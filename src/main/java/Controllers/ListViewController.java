@@ -22,7 +22,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ListViewController implements Initializable {
-    public TableColumn buttonDetail;
     @FXML
     private TableView<Conference> tableView;
 
