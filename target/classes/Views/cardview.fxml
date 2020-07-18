@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+
+<ScrollPane prefHeight="431.0" prefWidth="1000.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CardViewController">
+    <content>
+        <FlowPane fx:id="flowPane" prefHeight="512.0" prefWidth="971.0" />
+    </content>
+</ScrollPane>

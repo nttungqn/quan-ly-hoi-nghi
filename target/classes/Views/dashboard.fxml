@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1235.0" style="-fx-background-color: #e5e5e5;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Dashboard">
+   <top>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" maxWidth="-Infinity" prefHeight="72.0" prefWidth="202.0" style="-fx-background-color: -fx-info;">
+               <children>
+                  <Text fill="WHITE" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: white;" text="CONFERENCE MANAGEMENT" wrappingWidth="138.03125">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" top="20.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" style="-fx-background-color: #fff;" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <TextField promptText="Search" style="-fx-background-color: #eeeeee;">
+                           <HBox.margin>
+                              <Insets left="5.0" right="10.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <FontAwesomeIcon iconName="SEARCH" size="1.5em" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Button fx:id="login" layoutX="570.0" layoutY="33.0" mnemonicParsing="false" onAction="#handlerRefreshView" style="-fx-background-color: #5c9afd; -fx-text-fill: white;" text="Log in">
+                           <HBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="signup" mnemonicParsing="false" onAction="#handlerRefreshView" style="-fx-background-color: #5c9afd; -fx-text-fill: white;" text="Sign up">
+                           <HBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <ImageView fx:id="avatar" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/user.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Text fx:id="name" strokeType="OUTSIDE" strokeWidth="0.0" text="Thanh Tung">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <FontAwesomeIcon fx:id="dropIcon" iconName="ANGLE_DOWN" size="1.5em">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin></FontAwesomeIcon>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+   </top>
+   <left>
+      <VBox maxWidth="-Infinity" prefHeight="528.0" prefWidth="201.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                  <VBox>
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#handlerAddConference" prefHeight="31.0" prefWidth="190.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-font-family: Quicksand;" styleClass="hover-border" text="Add the conference">
+                           <graphic>
+                              <FontAwesomeIcon iconName="CALENDAR" size="1.5em" styleClass="hover-border" text="" wrappingWidth="30.10714340209961" />
+                           </graphic>
+                        </Button>
+                        <Button fx:id="approval" alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handlerApproval" prefHeight="31.0" prefWidth="190.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-font-family: Quicksand;" styleClass="hover-border" text="Approval">
+                           <graphic>
+                              <FontAwesomeIcon iconName="CHECK" size="1.5em" strokeType="OUTSIDE" styleClass="hover-border" text="" wrappingWidth="31.10714340209961" />
+                           </graphic>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="approval1" alignment="TOP_LEFT" layoutX="10.0" layoutY="61.0" mnemonicParsing="false" onAction="#handlerApproval" prefHeight="31.0" prefWidth="190.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-font-family: Quicksand;" styleClass="hover-border" text="Edit conference">
+                           <graphic>
+                              <FontAwesomeIcon iconName="BED" size="1.5em" strokeType="OUTSIDE" styleClass="hover-border" text="" wrappingWidth="31.10714340209961" />
+                           </graphic>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="approval11" alignment="TOP_LEFT" layoutX="10.0" layoutY="92.0" mnemonicParsing="false" onAction="#handlerApproval" prefHeight="31.0" prefWidth="190.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-font-family: Quicksand;" styleClass="hover-border" text="User management">
+                           <graphic>
+                              <FontAwesomeIcon iconName="CHECK" size="1.5em" strokeType="OUTSIDE" styleClass="hover-border" text="" wrappingWidth="31.10714340209961" />
+                           </graphic>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </HBox>
+<!--            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">-->
+<!--               <children>-->
+<!--                  <HBox alignment="CENTER_LEFT" styleClass="hover-border">-->
+<!--                     <children>-->
+<!--                        <FontAwesomeIcon iconName="COG" size="1.5em">-->
+<!--                           <HBox.margin>-->
+<!--                              <Insets />-->
+<!--                           </HBox.margin>-->
+<!--                        </FontAwesomeIcon>-->
+<!--                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Settings">-->
+<!--                           <HBox.margin>-->
+<!--                              <Insets left="10.0" />-->
+<!--                           </HBox.margin>-->
+<!--                        </Text>-->
+<!--                     </children>-->
+<!--                     <padding>-->
+<!--                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />-->
+<!--                     </padding>-->
+<!--                  </HBox>-->
+<!--                  <HBox alignment="CENTER_LEFT" styleClass="hover-border">-->
+<!--                     <children>-->
+<!--                        <FontAwesomeIcon iconName="USER" size="1.5em">-->
+<!--                           <HBox.margin>-->
+<!--                              <Insets />-->
+<!--                           </HBox.margin>-->
+<!--                        </FontAwesomeIcon>-->
+<!--                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Contact support">-->
+<!--                           <HBox.margin>-->
+<!--                              <Insets left="10.0" />-->
+<!--                           </HBox.margin>-->
+<!--                        </Text>-->
+<!--                     </children>-->
+<!--                     <padding>-->
+<!--                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />-->
+<!--                     </padding>-->
+<!--                  </HBox>-->
+<!--               </children>-->
+<!--            </VBox>-->
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <VBox prefHeight="528.0" prefWidth="1021.0" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+         <children>
+            <HBox prefWidth="781.0">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em; -fx-font-weight: bolder; -fx-font-family: Quicksand; -fx-fill: #485460;" text="Project List">
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </Text>
+                  <HBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#handlerRefreshView" style="-fx-background-color: #5c9afd; -fx-text-fill: white;" text="Refresh">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="cardview" mnemonicParsing="false" onAction="#handleChangeView" style="-fx-background-color: white; -fx-border-radius: 0px;">
+                           <graphic>
+                              <FontAwesomeIcon fill="#485460" iconName="TH_LARGE" size="1.3em" />
+                           </graphic>
+                        </Button>
+                        <Button fx:id="listview" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleChangeView" style="-fx-background-color: white; -fx-border-radius: 0px;">
+                           <graphic>
+                              <FontAwesomeIcon fill="#485460" iconName="TH_LIST" size="1.3em" />
+                           </graphic>
+                        </Button>
+                        <HBox alignment="CENTER">
+                           <children>
+                              <TextField promptText="Search project" style="-fx-background-color: #eeeeee;">
+                                 <HBox.margin>
+                                    <Insets left="5.0" right="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <FontAwesomeIcon iconName="SEARCH" size="1.5em" />
+                           </children>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets right="5.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </HBox>
+            <BorderPane fx:id="mainView" prefHeight="435.0" prefWidth="994.0">
+               <center>
+                  <fx:include source="listview.fxml" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+         </children>
+         <effect>
+            <DropShadow color="#e8caca" height="10.0" radius="4.5" width="10.0" />
+         </effect>
+      </VBox>
+   </center>
+</BorderPane>

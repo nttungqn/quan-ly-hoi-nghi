@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="518.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DetailConferenceController">
+   <children>
+      <HBox>
+         <children>
+            <ImageView fx:id="imgUrl" fitHeight="157.0" fitWidth="208.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="40.0" />
+               </HBox.margin>
+               <image>
+                  <Image url="@../images/ui.png" />
+               </image>
+            </ImageView>
+            <VBox alignment="CENTER_RIGHT" prefHeight="519.0" prefWidth="498.0">
+               <children>
+                  <GridPane alignment="CENTER" prefHeight="429.0" prefWidth="458.0" style="-fx-border-color: black;">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="141.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="226.0" minWidth="10.0" prefWidth="206.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label alignment="BOTTOM_CENTER" style="-fx-font-weight: bold;" text="Conference ID" />
+                        <Text fx:id="name" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label layoutX="10.0" layoutY="19.0" style="-fx-font-weight: bold;" text="Name" GridPane.rowIndex="1" />
+                        <Text fx:id="conferenceId" layoutX="10.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" />
+                        <Label layoutX="10.0" layoutY="32.0" style="-fx-font-weight: bold;" text="Place" GridPane.rowIndex="2" />
+                        <Text fx:id="place" layoutX="207.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label style="-fx-font-weight: bold;" text="Start date" GridPane.rowIndex="3" />
+                        <Text fx:id="startDate" layoutX="10.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label style="-fx-font-weight: bold;" text="End Date" GridPane.rowIndex="4" />
+                        <Text fx:id="endDate" layoutX="10.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label style="-fx-font-weight: bold;" text="Participants" GridPane.rowIndex="5" />
+                        <Text fx:id="participants" layoutX="10.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label layoutX="10.0" layoutY="53.0" style="-fx-font-weight: bold;" text="Short Description" GridPane.rowIndex="6" />
+                        <Text fx:id="shortDesc" layoutX="207.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label layoutX="43.0" layoutY="279.0" style="-fx-font-weight: bold;" text="Detail Description" GridPane.rowIndex="7" />
+                        <TextArea fx:id="detailDesc" editable="false" prefHeight="93.0" prefWidth="226.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="20.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </GridPane>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
