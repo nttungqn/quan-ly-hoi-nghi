@@ -49,7 +49,13 @@ public class DetailConferenceController {
         this.conference = conference;
 
         System.out.println(conference.toString());
-        this.imgUrl.setImage(new Image("/images/" + conference.getImage()));
+        try {
+            this.imgUrl.setImage(new Image("/images/" + conference.getImage()));
+        }catch (Exception ex){
+            ex.printStackTrace();
+            this.imgUrl.setImage(new Image("/images/1.png"));
+        }
+
         this.conferenceId.setText(String.valueOf(this.conference.getConfId()));
         this.place.setText(this.conference.getPlace().toString());
         this.startDate.setText(this.conference.getStartDate().toString());
