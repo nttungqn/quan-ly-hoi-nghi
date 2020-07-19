@@ -50,8 +50,8 @@ public class EditConference implements Initializable {
         TableColumn<Conference, Integer> participants = new TableColumn<>("Participant");
         participants.setCellValueFactory(new PropertyValueFactory<Conference, Integer>("participants"));
 
-        TableColumn editColumn = new TableColumn("Edit Column");
-        editColumn.setCellValueFactory(new PropertyValueFactory<>("detail"));
+        TableColumn editColumn = new TableColumn("Action");
+        editColumn.setCellValueFactory(new PropertyValueFactory<>("edit"));
 
 
         Callback<TableColumn<Conference, String>, TableCell<Conference, String>> editFactory = new Callback<TableColumn<Conference, String>, TableCell<Conference, String>>() {

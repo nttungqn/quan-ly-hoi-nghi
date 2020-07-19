@@ -150,15 +150,15 @@ public class EditItemConference implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         menuPlace.setItems(observableList);
         menuPlace.setValue(observableList.get(0));
     }
 
     public void setConference(Conference conference) {
+
         this.conference = conference;
 
-        System.out.println(conference.toString());
+//        System.out.println(conference.toString() + conference.getPlace().toString());
 
         this.confId = this.conference.getConfId();
         this.topic.setText(this.conference.getName());
