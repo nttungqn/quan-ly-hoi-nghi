@@ -4,11 +4,16 @@ import Handlers.AccountHandler;
 import Models.Account;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class SignUpController {
     @FXML
@@ -30,6 +35,18 @@ public class SignUpController {
     void cancel(ActionEvent event) {
         Stage stage = (Stage) rootPane.getScene().getWindow();
         stage.close();
+
+        try {
+            FXMLLoader screen = new FXMLLoader(getClass().getResource("/Views/dashboardNotLogin.fxml"));
+            Parent parent = screen.load();
+            stage = new Stage();
+            stage.setTitle("Dash board");
+            stage.setScene(new Scene(parent));
+            stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -45,6 +62,18 @@ public class SignUpController {
 
         Stage stage = (Stage) rootPane.getScene().getWindow();
         stage.close();
+
+        try {
+            FXMLLoader screen = new FXMLLoader(getClass().getResource("/Views/login.fxml"));
+            Parent parent = screen.load();
+            stage = new Stage();
+            stage.setTitle("Sign up");
+            stage.setScene(new Scene(parent));
+            stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
