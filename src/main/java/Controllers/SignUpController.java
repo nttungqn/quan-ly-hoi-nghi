@@ -39,6 +39,7 @@ public class SignUpController {
         account.setUsername(username.getText());
         account.setPassword(password.getText());
         account.setEmail(email.getText());
+        account.setRole("User");
 
         AccountHandler.add(account);
 

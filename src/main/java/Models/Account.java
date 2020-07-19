@@ -1,11 +1,12 @@
 package Models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
 @Table(name = "ACCOUNT", schema = "qlhoinghi")
-public class Account {
+public class Account implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ACCOUNTID", nullable = false)
@@ -34,7 +35,7 @@ public class Account {
     @OneToMany(mappedBy = "accountByAccountId", cascade = CascadeType.ALL)
     private Set<JoinTheConference> joinTheConferenceByAccountId;
 
-    enum Role {
+    public enum Role {
         Admin, User
     }
     @Enumerated(EnumType.STRING)
@@ -113,8 +114,8 @@ public class Account {
         return role;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setRole(String role) {
+        this.role = Role.valueOf(role);
     }
 
     @Override
