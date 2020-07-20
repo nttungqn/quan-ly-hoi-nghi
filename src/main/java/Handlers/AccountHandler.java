@@ -69,9 +69,12 @@ public class AccountHandler {
             Query query=session.createQuery(hql);
             query.setParameter("username", username);
             List<Account> list =query.list();
-            Account account = list.get(0);
-            transaction.commit();
-            return account;
+            if(list.size() > 0) {
+                Account account = list.get(0);
+                transaction.commit();
+                return account;
+            }
+            return null;
         }catch (HibernateException e){
             return null;
         }

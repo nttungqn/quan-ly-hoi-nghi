@@ -2,6 +2,7 @@ package Controllers;
 
 import Handlers.AccountHandler;
 import Models.Account;
+import Utils.AlertDialog;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,24 +28,18 @@ public class LoginController {
     private Account account = null;
 
     public void handlerLogin(ActionEvent actionEvent) {
-        while (true) {
-            account = AccountHandler.loadUser(username.getText());
-            if (account == null) {
-                System.out.println("Account does not exit");
+        account = AccountHandler.loadUser(username.getText());
+        if (account == null) {
+            AlertDialog.showAlertWithoutHeaderText("Alert Login", "Failed! Account does not exist","failed");
+        } else {
+            if (password.getText().compareTo(account.getPassword()) == 0) {
+                Stage stage = (Stage) rootPane.getScene().getWindow();
+                stage.close();
+                forwardToView(account);
             } else {
-                System.out.println(account.getPassword() + " " + password.getText());
-                if (password.getText().compareTo(account.getPassword()) == 0) {
-                    System.out.println("Loggin successfully");
-                    break;
-                } else {
-                    System.out.println("Failed!");
-                }
+                AlertDialog.showAlertWithoutHeaderText("Alert Login", "Failed! Incorrect password","failed");
             }
         }
-
-        Stage stage = (Stage) rootPane.getScene().getWindow();
-        stage.close();
-        forwardToView(account);
     }
 
     public void handlerCancel(ActionEvent actionEvent) {
@@ -82,8 +77,12 @@ public class LoginController {
     public void forwardToView(Account account){
         if(String.valueOf(account.getRole()).compareTo("Admin") == 0){
             try {
-                FXMLLoader screen = new FXMLLoader(getClass().getResource("/Views/dashboardAdmin.fxml"));
-                Parent parent = screen.load();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/dashboardAdmin.fxml"));
+                Parent parent = loader.load();
+
+                DashboardAdminController admin = loader.getController();
+                admin.setAccount(account);
+
                 Stage stage = new Stage();
                 stage.setTitle("Admin's Dashboard ");
                 stage.setScene(new Scene(parent));
