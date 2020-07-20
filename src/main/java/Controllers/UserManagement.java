@@ -4,6 +4,7 @@ import Handlers.AccountHandler;
 import Handlers.ConferenceHandler;
 import Models.Account;
 import Models.Account;
+import Utils.AlertDialog;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -64,7 +65,11 @@ public class UserManagement implements Initializable {
                             btn.setOnAction(event -> {
                                 Account account = getTableView().getItems().get(getIndex());
                                 account.setStatus(1);
-                                System.out.println(AccountHandler.update(account));
+                                if(AccountHandler.update(account)){
+                                    AlertDialog.showAlertWithoutHeaderText("Alert", "Successfully", "success");
+                                }else {
+                                    AlertDialog.showAlertWithoutHeaderText("Alert", "Failed! Some thing went wrong", "failed");
+                                }
 
                             });
                             setGraphic(btn);
@@ -95,8 +100,11 @@ public class UserManagement implements Initializable {
                             btn.setOnAction(event -> {
                                 Account account = getTableView().getItems().get(getIndex());
                                 account.setStatus(0);
-                                System.out.println(AccountHandler.update(account));
-
+                                if(AccountHandler.update(account)){
+                                    AlertDialog.showAlertWithoutHeaderText("Alert", "Successfully", "success");
+                                }else {
+                                    AlertDialog.showAlertWithoutHeaderText("Alert", "Failed! Some thing went wrong", "failed");
+                                }
                             });
                             setGraphic(btn);
                             btn.setStyle("-fx-background-color: #e8003f;-fx-text-fill: white");

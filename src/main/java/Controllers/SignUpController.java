@@ -2,6 +2,7 @@ package Controllers;
 
 import Handlers.AccountHandler;
 import Models.Account;
+import Utils.AlertDialog;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -58,7 +59,11 @@ public class SignUpController {
         account.setEmail(email.getText());
         account.setRole("User");
 
-        AccountHandler.add(account);
+        if(AccountHandler.add(account)){
+            AlertDialog.showAlertWithoutHeaderText("Alert", "Successfully", "success");
+        }else {
+            AlertDialog.showAlertWithoutHeaderText("Alert", "Failed! Some thing went wrong", "failed");
+        }
 
         Stage stage = (Stage) rootPane.getScene().getWindow();
         stage.close();

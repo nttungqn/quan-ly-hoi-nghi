@@ -37,13 +37,13 @@ public class AccountHandler {
 
     public static boolean update(Account account) {
         try {
-            Session session = HibernateAnnotationUtil.getSessionFactory().openSession();
+            Session session = (Session) HibernateAnnotationUtil.getSessionFactory().openSession();
             Transaction transaction =session.beginTransaction();
-            System.out.println(account.toString());
             session.update(account);
             transaction.commit();
             return true;
         } catch (HibernateException e) {
+            e.printStackTrace();
             return false;
         }
     }

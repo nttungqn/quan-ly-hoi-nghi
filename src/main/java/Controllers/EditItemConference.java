@@ -1,9 +1,11 @@
 package Controllers;
 
+import Handlers.AccountHandler;
 import Handlers.ConferenceHandler;
 import Handlers.PlaceHandler;
 import Models.Conference;
 import Models.Place;
+import Utils.AlertDialog;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -134,9 +136,9 @@ public class EditItemConference implements Initializable {
         System.out.println(tmp.toString());
         boolean result = ConferenceHandler.update(tmp);
         if(result){
-            System.out.println("Add conference successfully!!");
-        } else {
-            System.out.println("Failed");
+            AlertDialog.showAlertWithoutHeaderText("Alert", "Successfully", "success");
+        }else {
+            AlertDialog.showAlertWithoutHeaderText("Alert", "Failed! Some thing went wrong", "failed");
         }
 
         Stage stage = (Stage) rootPane.getScene().getWindow();

@@ -27,7 +27,7 @@ public class DashboardNotLogin implements Initializable {
     @FXML
     private Button signup;
 
-    private String typeView;
+    private String typeView = "listview";
 
     private boolean isLogin = false;
 
@@ -96,7 +96,6 @@ public class DashboardNotLogin implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
     }
 
     public void changeChildView(String view){

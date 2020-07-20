@@ -25,7 +25,7 @@ public class DashboardAdminController implements Initializable {
 
     private Account account;
 
-    private String typeView;
+    private String typeView = "listview";
 
     @FXML
     void handlerDashboard(ActionEvent event) {
@@ -90,12 +90,39 @@ public class DashboardAdminController implements Initializable {
 
     @FXML
     void handlerProfile(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/profile.fxml"));
+            Parent parent = loader.load();
 
+            EditProfileController editProfileController = loader.getController();
+            editProfileController.setProfile(this.account);
+
+            Stage stage = new Stage();
+            stage.setTitle("Profile");
+            stage.setScene(new Scene(parent));
+            stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void handlerLogout(ActionEvent event) {
+        Stage stage = (Stage) name.getScene().getWindow();
+        stage.close();
 
+        try {
+            FXMLLoader screen = new FXMLLoader(getClass().getResource("/Views/dashboardNotLogin.fxml"));
+            Parent parent = screen.load();
+            stage = new Stage();
+            stage.setTitle("Login");
+            stage.setScene(new Scene(parent));
+            stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

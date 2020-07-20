@@ -3,6 +3,7 @@ package Controllers;
 import Handlers.JoinTheConferenceHandler;
 import Models.Conference;
 import Models.JoinTheConference;
+import Utils.AlertDialog;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -62,7 +63,11 @@ public class ApprovalController implements Initializable {
                             btn.setOnAction(event -> {
                                 JoinTheConference joinTheConference = getTableView().getItems().get(getIndex());
                                 joinTheConference.setStatus(1);
-                                JoinTheConferenceHandler.update(joinTheConference);
+                                if(JoinTheConferenceHandler.update(joinTheConference)){
+                                    AlertDialog.showAlertWithoutHeaderText("Alert", "Approval successfully", "success");
+                                }else {
+                                    AlertDialog.showAlertWithoutHeaderText("Alert", "Approval fail", "failed");
+                                }
                             });
                             setGraphic(btn);
                             btn.setStyle("-fx-background-color: #00b73e;-fx-text-fill: white");
@@ -91,7 +96,11 @@ public class ApprovalController implements Initializable {
                         } else {
                             btn.setOnAction(event -> {
                                 JoinTheConference joinTheConference = getTableView().getItems().get(getIndex());
-                                JoinTheConferenceHandler.delete(joinTheConference);
+                                if(JoinTheConferenceHandler.delete(joinTheConference)){
+                                    AlertDialog.showAlertWithoutHeaderText("Alert", "Decline successfully", "success");
+                                }else {
+                                    AlertDialog.showAlertWithoutHeaderText("Alert", "Decline fail", "failed");
+                                }
                             });
                             setGraphic(btn);
                             btn.setStyle("-fx-background-color: #e8003f;-fx-text-fill: white");

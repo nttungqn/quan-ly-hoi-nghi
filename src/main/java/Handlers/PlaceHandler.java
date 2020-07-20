@@ -43,7 +43,6 @@ public class PlaceHandler {
 
     public boolean delete(Place place) {
         try {
-
             Session session =HibernateAnnotationUtil.getSessionFactory().openSession();
             Transaction transacsion=session.beginTransaction();
             session.delete(place);

@@ -4,6 +4,7 @@ import Handlers.PlaceHandler;
 import Handlers.ConferenceHandler;
 import Models.Place;
 import Models.Conference;
+import Utils.AlertDialog;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -77,8 +78,6 @@ public class AddConference implements Initializable{
             imageConference.setImage(image);
 //            file:/home/nttung/Pictures/ly-ca-phe-thien-chi.png
             this.pathToImage = file.toPath().toString();
-//            BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, false);
-//            BackgroundImage backgroundImage = new BackgroundImage(image1, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
         }
     }
 
@@ -117,9 +116,9 @@ public class AddConference implements Initializable{
         System.out.println(conference.toString());
         boolean result = ConferenceHandler.add(conference);
         if(result){
-            System.out.println("Add conference successfully!!");
+            AlertDialog.showAlertWithoutHeaderText("Alert", "Successfully! Please refresh your page", "success");
         } else {
-            System.out.println("Failed");
+            AlertDialog.showAlertWithoutHeaderText("Alert", "Failed! Some thing went wrong", "failed");
         }
 
         Stage stage = (Stage) rootPane.getScene().getWindow();

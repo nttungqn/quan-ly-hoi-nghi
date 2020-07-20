@@ -33,7 +33,7 @@ public class ConferenceHandler {
 
     public static boolean update(Conference conference) {
         try {
-            Session session = HibernateAnnotationUtil.getSessionFactory().openSession();
+            Session session = (Session) HibernateAnnotationUtil.getSessionFactory().getCurrentSession().merge(conference);
             Transaction transaction =session.beginTransaction();
             session.update(conference);
             transaction.commit();
@@ -92,4 +92,5 @@ public class ConferenceHandler {
         transacsion.commit();
         return list;
     }
+
 }
