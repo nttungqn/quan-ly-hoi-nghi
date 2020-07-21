@@ -1,12 +1,14 @@
 package Controllers;
 
 import Models.Conference;
+import Utils.AlertDialog;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -18,7 +20,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-public class CardItem extends VBox  {
+public class CardItem extends VBox implements Initializable {
 
     @FXML
     private Text startDate;
@@ -31,6 +33,9 @@ public class CardItem extends VBox  {
 
     @FXML
     private Text name;
+
+    @FXML
+    private Button signin;
 
     public Conference conference;
 
@@ -55,7 +60,7 @@ public class CardItem extends VBox  {
 
     @FXML
     void handlerSignIn(ActionEvent event) {
-
+        AlertDialog.showConfirmation();
     }
 
 
@@ -87,6 +92,17 @@ public class CardItem extends VBox  {
                 ex.printStackTrace();
             }
 
+            if(LocalDate.now().compareTo(conference.getStartDate()) >= 0){
+                signin.setText("Completed");
+                signin.setStyle("-fx-background-color: #039903");
+                signin.setDisable(true);
+            }else if(conference.getParticipants() == conference.getJoinTheConference().size()) {
+                signin.setText("Enough");
+                signin.setStyle("-fx-background-color: #d57000");
+                signin.setDisable(true);
+            }
+
+
 
         }catch (Exception ex){
             ex.printStackTrace();
@@ -108,4 +124,9 @@ public class CardItem extends VBox  {
     public Conference getConference() {
         return conference;
     }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+    }
+
 }

@@ -35,8 +35,6 @@ public class CardViewController extends Pane implements Initializable{
             flowPane.getChildren().add(cardItem);
         });
 
-
-
     }
 
 

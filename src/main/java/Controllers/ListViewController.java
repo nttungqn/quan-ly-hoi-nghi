@@ -2,6 +2,7 @@ package Controllers;
 
 import Handlers.ConferenceHandler;
 import Models.Conference;
+import Utils.AlertDialog;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -19,6 +20,7 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class ListViewController implements Initializable {
@@ -96,9 +98,6 @@ public class ListViewController implements Initializable {
         };
 
 
-//        Button button = new Button("Sign in");
-//        button.setStyle("-fx-background-color: -fx-success; -fx-text-fill: white;");
-
         Callback<TableColumn<Conference, String>, TableCell<Conference, String>> signinFactory = new Callback<TableColumn<Conference, String>, TableCell<Conference, String>>() {
             @Override
             public TableCell call(final TableColumn<Conference, String> param) {
@@ -114,23 +113,19 @@ public class ListViewController implements Initializable {
                             setGraphic(null);
                             setText(null);
                         } else {
+                            Conference conference = getTableView().getItems().get(getIndex());
+                            if(LocalDate.now().compareTo(conference.getStartDate()) >= 0){
+                                btn.setText("Completed");
+                                btn.setStyle("-fx-background-color: #039903");
+                                btn.setDisable(true);
+                            }else if(conference.getParticipants() == conference.getJoinTheConference().size()) {
+                                btn.setText("Enough");
+                                btn.setStyle("-fx-background-color: #d57000");
+                                btn.setDisable(true);
+                            }
+
                             btn.setOnAction(event -> {
-                                Conference conference = getTableView().getItems().get(getIndex());
-//                                try {
-//                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/detailConference.fxml"));
-//                                    Parent parent = loader.load();
-//
-//                                    DetailConferenceController detailConferenceController = loader.getController();
-//                                    detailConferenceController.setConference(conference);
-//
-//                                    Stage stage = new Stage();
-//                                    stage.setTitle("Detail conference");
-//                                    stage.setScene(new Scene(parent));
-//                                    stage.show();
-//                                }
-//                                catch (IOException e) {
-//                                    e.printStackTrace();
-//                                }
+                                AlertDialog.showConfirmation();
                             });
                             setGraphic(btn);
                             setText(null);
@@ -144,7 +139,7 @@ public class ListViewController implements Initializable {
         detailColumn.setCellFactory(detailFactory);
         siginColumn.setCellFactory(signinFactory);
         tableView.setItems(conferenceObservableList);
-        tableView.getColumns().addAll(id, name, description,startDate,endDate,place,participants,detailColumn, siginColumn);
+        tableView.getColumns().addAll(id, name, startDate,endDate,place,participants,detailColumn, siginColumn);
 
     }
 

@@ -34,8 +34,8 @@ public class UserManagement implements Initializable {
         id.setCellValueFactory(new PropertyValueFactory<Account, Integer>("accountId"));
         TableColumn<Account, String> name = new TableColumn<Account, String>("Name");
         name.setCellValueFactory(new PropertyValueFactory<Account, String>("name"));
-        TableColumn<Account, String> username= new TableColumn<>("Username");
-        username.setCellValueFactory(new PropertyValueFactory<Account, String>("username"));
+        TableColumn<Account, String> username= new TableColumn<>("Email");
+        username.setCellValueFactory(new PropertyValueFactory<Account, String>("email"));
         TableColumn<Account, String> status = new TableColumn<Account, String>("Status");
         status.setCellValueFactory(new PropertyValueFactory<Account, String>("status"));
         TableColumn<Account, String> role = new TableColumn<Account, String>("Role");
