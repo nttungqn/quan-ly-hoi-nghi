@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="518.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DetailConferenceController">
+<AnchorPane prefHeight="771.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DetailConferenceController">
    <children>
       <HBox>
          <children>
@@ -71,5 +72,11 @@
             </VBox>
          </children>
       </HBox>
+      <Label layoutX="24.0" layoutY="519.0" style="-fx-font-weight: bold; -fx-underline: true;" text="User list to register" />
+      <TableView fx:id="tableView" layoutX="21.0" layoutY="557.0" prefHeight="200.0" prefWidth="658.0">
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
    </children>
 </AnchorPane>
