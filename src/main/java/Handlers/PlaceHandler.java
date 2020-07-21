@@ -11,39 +11,42 @@ import org.hibernate.query.Query;
 import java.util.List;
 
 public class PlaceHandler {
-    private static SessionFactory sessionFactory;
 
     public static boolean add(Place place) {
-        Session session = null;
+        Session session= HibernateAnnotationUtil.getSessionFactory().openSession();
         try {
-            session= HibernateAnnotationUtil.getSessionFactory().openSession();
             Transaction transaction=session.beginTransaction();
             session.save(place);
             transaction.commit();
+            session.close();
             return true;
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
+            session.close();
             return false;
         }
     }
 
 
     public boolean update(Place place) {
+        Session session = HibernateAnnotationUtil.getSessionFactory().openSession();
         try {
-            Session session = HibernateAnnotationUtil.getSessionFactory().openSession();
             Transaction transaction =session.beginTransaction();
             session.update(place);
             transaction.commit();
+            session.close();
             return true;
         } catch (HibernateException e) {
+            e.printStackTrace();
+            session.close();
             return false;
         }
     }
 
 
     public boolean delete(Place place) {
+        Session session =HibernateAnnotationUtil.getSessionFactory().openSession();
         try {
-            Session session =HibernateAnnotationUtil.getSessionFactory().openSession();
             Transaction transacsion=session.beginTransaction();
             session.delete(place);
             transacsion.commit();
@@ -59,32 +62,35 @@ public class PlaceHandler {
         Transaction transaction=session.beginTransaction();
         Place bd =(Place) session.get(Place.class, maDD);
         transaction.commit();
+        session.close();
         return bd;
     }
 
 
     public static List<Place> loadList()
     {
-        sessionFactory =HibernateAnnotationUtil.getSessionFactory();
-        Session session = sessionFactory.openSession();
+        Session session =HibernateAnnotationUtil.getSessionFactory().openSession();
         Transaction transacsion=session.beginTransaction();
         // lenh hql
         String hql="from Models.Place";
         Query query=session.createQuery(hql);
         List<Place> list =query.list();
         transacsion.commit();
+        session.close();
         return list;
     }
 
     public static Place getDiaDiem(int id){
+        Session session = HibernateAnnotationUtil.getSessionFactory().openSession();
         try {
-            Session session = HibernateAnnotationUtil.getSessionFactory().openSession();
             Transaction transaction = session.beginTransaction();
             Place place = session.get(Place.class, new Integer(id));
             transaction.commit();
+            session.close();
             return place;
         }catch (Exception err){
-            System.out.println(err);
+            session.close();
+            err.printStackTrace();
             return null;
         }
 

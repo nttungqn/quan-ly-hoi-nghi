@@ -45,7 +45,7 @@ public class Conference implements Serializable {
     @JoinColumn(name = "PLACE", referencedColumnName = "PLACEID", nullable = true)
     private Place place;
 
-    @OneToMany(mappedBy = "conferenceByIdConfId", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "conferenceByIdConfId",fetch = FetchType.EAGER)
     private Set<JoinTheConference> joinTheConference;
 
     public Conference() {

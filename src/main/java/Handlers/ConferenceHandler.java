@@ -17,42 +17,47 @@ public class ConferenceHandler {
     private static SessionFactory sessionFactory;
 
     public static boolean add(Conference conference) {
+        Session session = HibernateAnnotationUtil.getSessionFactory().openSession();
         try {
-            Session session = HibernateAnnotationUtil.getSessionFactory().openSession();
             Transaction transaction =session.beginTransaction();
             session.save(conference);
             transaction.commit();
-            System.out.println("Success");
+            session.close();
             return true;
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
+            session.close();
             return false;
         }
     }
 
 
     public static boolean update(Conference conference) {
+        Session session = HibernateAnnotationUtil.getSessionFactory().openSession();
         try {
-            Session session = (Session) HibernateAnnotationUtil.getSessionFactory().getCurrentSession().merge(conference);
             Transaction transaction =session.beginTransaction();
             session.update(conference);
             transaction.commit();
+            session.close();
             return true;
         } catch (HibernateException e) {
+            session.close();
+            e.printStackTrace();
             return false;
         }
     }
 
 
     public boolean delete(Conference conference) {
+        Session session =HibernateAnnotationUtil.getSessionFactory().openSession();
         try {
-
-            Session session =HibernateAnnotationUtil.getSessionFactory().openSession();
             Transaction transacsion=session.beginTransaction();
             session.delete(conference);
             transacsion.commit();
             return true;
         } catch (HibernateException e) {
+            session.close();
+            e.printStackTrace();
             return false;
         }
     }
@@ -63,6 +68,7 @@ public class ConferenceHandler {
         Transaction transaction=session.beginTransaction();
         Conference bd =(Conference) session.get(Conference.class, conference);
         transaction.commit();
+        session.close();
         return bd;
     }
 
@@ -76,6 +82,7 @@ public class ConferenceHandler {
         Query query=session.createQuery(hql);
         List<Conference> list =query.list();
         transacsion.commit();
+        session.close();
         return list;
     }
 
@@ -90,6 +97,7 @@ public class ConferenceHandler {
         query.setParameter("localDate", localDate);
         List<Conference> list =query.list();
         transacsion.commit();
+        session.close();
         return list;
     }
 

@@ -62,6 +62,10 @@
     -fx-background-color: #f0f0f0 !important;
 }
 
+.hover-button:hover {
+    -fx-background-color: #02145a !important;
+}
+
 .cursor_hand {
     -fx-cursor: hand;
 }

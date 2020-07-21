@@ -67,7 +67,7 @@
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
                         </Text>
-                                <Button fx:id="logout" layoutX="570.0" layoutY="33.0" mnemonicParsing="false" onAction="#handlerLogout" prefHeight="31.0" prefWidth="124.0" style="-fx-background-color: #5c9afd; -fx-text-fill: white;" text="Log out">
+                                <Button fx:id="logout" layoutX="570.0" layoutY="33.0" mnemonicParsing="false" onAction="#handlerLogout" prefHeight="31.0" prefWidth="124.0" style="-fx-background-color: #5c9afd; -fx-text-fill: white;" styleClass="hover-button" text="Log out">
                                     <HBox.margin>
                                         <Insets left="20.0" right="20.0" />
                                     </HBox.margin>
@@ -168,7 +168,7 @@
                         </Text>
                         <HBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
                             <children>
-                                <Button mnemonicParsing="false" onAction="#handlerRefreshView" style="-fx-background-color: #5c9afd; -fx-text-fill: white;" text="Refresh">
+                                <Button mnemonicParsing="false" onAction="#handlerRefreshView" style="-fx-background-color: #5c9afd; -fx-text-fill: white;" styleClass="hover-button" text="Refresh">
                                     <HBox.margin>
                                         <Insets right="20.0" />
                                     </HBox.margin>

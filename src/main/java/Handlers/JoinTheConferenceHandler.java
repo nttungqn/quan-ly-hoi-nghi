@@ -21,6 +21,7 @@ public class JoinTheConferenceHandler {
         Query query=session.createQuery(hql);
         List<JoinTheConference> list =query.list();
         transaction.commit();
+        session.close();
         return list;
     }
 
@@ -33,6 +34,7 @@ public class JoinTheConferenceHandler {
             Query query=session.createQuery(hql);
             List<JoinTheConference> list =query.list();
             transaction.commit();
+            session.close();
             return list;
         }
     }
@@ -43,20 +45,23 @@ public class JoinTheConferenceHandler {
             Transaction transaction =session.beginTransaction();
             session.update(joinTheConference);
             transaction.commit();
+            session.close();
             return true;
         } catch (HibernateException e) {
             return false;
         }
     }
     public static boolean delete(JoinTheConference joinTheConference) {
+        Session session =HibernateAnnotationUtil.getSessionFactory().openSession();
         try {
-
-            Session session =HibernateAnnotationUtil.getSessionFactory().openSession();
             Transaction transaction=session.beginTransaction();
             session.delete(joinTheConference);
             transaction.commit();
+            session.close();
             return true;
         } catch (HibernateException e) {
+            session.close();
+            e.printStackTrace();
             return false;
         }
     }

@@ -32,7 +32,7 @@ public class Account implements Serializable {
     @Column(name = "STATUS", nullable = true)
     private int status;
 
-    @OneToMany(mappedBy = "accountByAccountId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "accountByAccountId")
     private Set<JoinTheConference> joinTheConferenceByAccountId;
 
     public enum Role {
