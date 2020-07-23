@@ -48,7 +48,10 @@ public class Main extends Application{
     }
 
     public static void main(final String[] args) throws Exception {
-             launch(args);
+            launch(args);
+//        JoinTheConference joinTheConference = new JoinTheConference(4,2,0);
+//        System.out.println(JoinTheConferenceHandler.add(joinTheConference));
+
 
 //        List<Place> placeList =  PlaceHandler.loadList();
 //        placeList.forEach(place -> {

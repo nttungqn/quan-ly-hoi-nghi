@@ -1,7 +1,11 @@
 package Models;
 
+import Utils.HashCode;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Set;
 
 @Entity
@@ -48,7 +52,7 @@ public class Account implements Serializable {
     public Account(String name, String username, String password, String email, int status, Role role) {
         this.name = name;
         this.username = username;
-        this.password = password;
+        this.password = HashCode.getSecurePassword(password);
         this.email = email;
         this.status = status;
         this.role = role;
@@ -83,7 +87,7 @@ public class Account implements Serializable {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = HashCode.getSecurePassword(password);
     }
 
     public String getEmail() {
@@ -131,4 +135,5 @@ public class Account implements Serializable {
                 ", role=" + role +
                 '}';
     }
+
 }

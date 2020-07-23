@@ -1,5 +1,6 @@
 package Controllers;
 
+import Models.Account;
 import Models.Conference;
 import Utils.AlertDialog;
 import javafx.event.ActionEvent;
@@ -38,6 +39,8 @@ public class CardItem extends VBox implements Initializable {
     private Button signin;
 
     public Conference conference;
+
+    private Account account;
 
     @FXML
     void handlerDetail(ActionEvent event) {
@@ -129,4 +132,7 @@ public class CardItem extends VBox implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
     }
 
+    public void setAccount(Account account){
+        this.account = account;
+    }
 }

@@ -1,7 +1,10 @@
 package Controllers;
 
 import Handlers.ConferenceHandler;
+import Handlers.JoinTheConferenceHandler;
+import Models.Account;
 import Models.Conference;
+import Models.JoinTheConference;
 import Utils.AlertDialog;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,6 +30,7 @@ public class ListViewController implements Initializable {
     @FXML
     private TableView<Conference> tableView;
 
+    private Account account = null;
 
     public ListViewController() {
     }
@@ -98,51 +102,70 @@ public class ListViewController implements Initializable {
         };
 
 
-        Callback<TableColumn<Conference, String>, TableCell<Conference, String>> signinFactory = new Callback<TableColumn<Conference, String>, TableCell<Conference, String>>() {
-            @Override
-            public TableCell call(final TableColumn<Conference, String> param) {
-                final TableCell<Conference, String> tableCell = new TableCell<Conference, String>() {
-
-                    final Button btn = new Button("Sign in");
-
-
-                    @Override
-                    public void updateItem(String item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty) {
-                            setGraphic(null);
-                            setText(null);
-                        } else {
-                            Conference conference = getTableView().getItems().get(getIndex());
-                            if(LocalDate.now().compareTo(conference.getStartDate()) >= 0){
-                                btn.setText("Completed");
-                                btn.setStyle("-fx-background-color: #039903");
-                                btn.setDisable(true);
-                            }else if(conference.getParticipants() == conference.getJoinTheConference().size()) {
-                                btn.setText("Enough");
-                                btn.setStyle("-fx-background-color: #d57000");
-                                btn.setDisable(true);
-                            }
-
-                            btn.setOnAction(event -> {
-                                AlertDialog.showConfirmation();
-                            });
-                            setGraphic(btn);
-                            setText(null);
-                        }
-                    }
-                };
-                return tableCell;
-            }
-        };
+//        Callback<TableColumn<Conference, String>, TableCell<Conference, String>> signinFactory = new Callback<TableColumn<Conference, String>, TableCell<Conference, String>>() {
+//            @Override
+//            public TableCell call(final TableColumn<Conference, String> param) {
+//                final TableCell<Conference, String> tableCell = new TableCell<Conference, String>() {
+//
+//                    final Button btn = new Button("Sign in");
+//
+//
+//                    @Override
+//                    public void updateItem(String item, boolean empty) {
+//                        super.updateItem(item, empty);
+//                        if (empty) {
+//                            setGraphic(null);
+//                            setText(null);
+//                        } else {
+//                            Conference conference = getTableView().getItems().get(getIndex());
+//                            if(LocalDate.now().compareTo(conference.getStartDate()) >= 0){
+//                                btn.setText("Completed");
+//                                btn.setStyle("-fx-background-color: #039903");
+//                                btn.setDisable(true);
+//                            }else if(conference.getParticipants() == conference.getJoinTheConference().size()) {
+//                                btn.setText("Enough");
+//                                btn.setStyle("-fx-background-color: #d57000");
+//                                btn.setDisable(true);
+//                            }
+//
+//                            if(account != null) {
+//                                conference.getJoinTheConference().forEach(joinTheConference -> {
+//                                    if (joinTheConference.getAccountId() == account.getAccountId())
+//                                        btn.setDisable(true);
+//                                });
+//                            }
+//
+//                            btn.setOnAction(event -> {
+//                                if(account == null) {
+//                                    AlertDialog.showConfirmation();
+//                                }else {
+//                                    JoinTheConference joinTheConference = new JoinTheConference(account.getAccountId(), conference.getConfId(), 0);
+//                                    if(JoinTheConferenceHandler.add(joinTheConference)){
+//                                        AlertDialog.showAlertWithoutHeaderText("Alert", "Successfully", "success");
+//                                    }else {
+//                                        AlertDialog.showAlertWithoutHeaderText("Alert", "Failed something went wrong", "failed");
+//                                    }
+//                                }
+//                            });
+//                            setGraphic(btn);
+//                            setText(null);
+//                        }
+//                    }
+//                };
+//                return tableCell;
+//            }
+//        };
 
         detailColumn.setCellFactory(detailFactory);
-        siginColumn.setCellFactory(signinFactory);
         tableView.setItems(conferenceObservableList);
-        tableView.getColumns().addAll(id, name, startDate,endDate,place,participants,detailColumn, siginColumn);
+        tableView.getColumns().addAll(id, name, startDate,endDate,place,participants,detailColumn);
 
     }
 
+    public void setAccount(Account account){
+        this.account = account;
+        System.out.println(this.account.toString());
+    }
 
 
 }

@@ -7,27 +7,31 @@ import java.io.Serializable;
 @Table(name = "JOINTHECONFERENCE", schema = "qlhoinghi")
 public class JoinTheConference implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CONFID", nullable = false)
+    @Column(name = "CONFID")
     private int confId;
 
     @Id
-    @Column(name = "ACCOUNTID", nullable = false)
+    @Column(name = "ACCOUNTID")
     private int accountId;
 
     @Basic
-    @Column(name = "APPROVAL", nullable = true)
+    @Column(name = "APPROVAL")
     private int status;
 
     @ManyToOne(targetEntity = Conference.class)
-    @JoinColumn(name = "CONFID", referencedColumnName = "CONFID", nullable = false)
+    @JoinColumn(name = "CONFID", referencedColumnName = "CONFID", nullable = true)
     private Conference conferenceByIdConfId;
 
     @ManyToOne(targetEntity = Account.class)
-    @JoinColumn(name = "ACCOUNTID", referencedColumnName = "ACCOUNTID", nullable = false)
+    @JoinColumn(name = "ACCOUNTID", referencedColumnName = "ACCOUNTID", nullable = true)
     private Account accountByAccountId;
 
     public JoinTheConference() {
+    }
+
+    public JoinTheConference(Conference conference, Account account){
+        this.conferenceByIdConfId = conference;
+        this.accountByAccountId = account;
     }
 
     public JoinTheConference(int confId, int accountId, int status) {

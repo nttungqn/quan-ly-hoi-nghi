@@ -37,7 +37,7 @@ public class AlertDialog {
 
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Select");
-        alert.setHeaderText("Choose the sport you like:");
+        alert.setHeaderText("Do you have an account?");
 
         ButtonType login = new ButtonType("Log in");
         ButtonType signup = new ButtonType("Sign up");

@@ -16,37 +16,33 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class DashboardAdminController implements Initializable {
+public class DashboardUserController implements Initializable {
+
     @FXML
     private Text name;
 
     @FXML
+    private Button logout;
+
+    @FXML
+    private Button dashboard;
+
+    @FXML
+    private Button cardview;
+
+    @FXML
+    private Button listview;
+
+    @FXML
     private BorderPane mainView;
 
-    public static Account account;
-
     private String typeView = "listview";
+
+    public static Account account = null;
 
     @FXML
     void handlerDashboard(ActionEvent event) {
         changeChildView("listview");
-    }
-
-    @FXML
-    void handlerAddConference(ActionEvent event) {
-        try {
-            FXMLLoader screen = new FXMLLoader(getClass().getResource("/Views/addConference.fxml"));
-            Parent parent = screen.load();
-            Stage stage = new Stage();
-            stage.setTitle("Add new conference");
-            stage.setScene(new Scene(parent));
-            stage.show();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
     }
 
     @FXML
@@ -67,26 +63,6 @@ public class DashboardAdminController implements Initializable {
         changeChildView(view);
     }
 
-    @FXML
-    void handlerApproval(ActionEvent actionEvent) {
-        String view = ((Button) actionEvent.getSource()).getId();
-//        System.out.println(view);
-        changeChildView(view);
-    }
-
-    @FXML
-    void handlerEditConference(ActionEvent actionEvent) {
-        String view = ((Button) actionEvent.getSource()).getId();
-//        System.out.println(view);
-        changeChildView(view);
-    }
-
-    @FXML
-    void handlerUserManagement(ActionEvent actionEvent) {
-        String view = ((Button) actionEvent.getSource()).getId();
-//        System.out.println(view);
-        changeChildView(view);
-    }
 
     @FXML
     void handlerProfile(ActionEvent event) {
@@ -125,15 +101,23 @@ public class DashboardAdminController implements Initializable {
         }
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
 
     public void changeChildView(String view){
         try {
             typeView = view;
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/" + view + ".fxml"));
+//            if (typeView.compareTo("listview") == 0) {
+//                ListViewController listViewController = loader.getController();
+//                if(account != null) {
+//                    listViewController.setAccount(account);
+//                }
+//            }else if(typeView.compareTo("cardview")== 0){
+//                CardItem cardItem = loader.getController();
+//                if(account != null) {
+//                    cardItem.setAccount(account);
+//                }
+//            }
+//            System.out.println(account.toString() + typeView);
             mainView.setCenter(loader.load());
         } catch (IOException e) {
             e.printStackTrace();
@@ -145,4 +129,7 @@ public class DashboardAdminController implements Initializable {
         this.name.setText(account.getName());
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+    }
 }

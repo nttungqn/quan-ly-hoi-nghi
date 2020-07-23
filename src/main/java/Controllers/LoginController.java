@@ -3,6 +3,7 @@ package Controllers;
 import Handlers.AccountHandler;
 import Models.Account;
 import Utils.AlertDialog;
+import Utils.HashCode;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,7 +33,7 @@ public class LoginController {
         if (account == null) {
             AlertDialog.showAlertWithoutHeaderText("Alert Login", "Failed! Account does not exist","failed");
         } else {
-            if (password.getText().compareTo(account.getPassword()) == 0) {
+            if (HashCode.getSecurePassword(password.getText()).compareTo(account.getPassword()) == 0) {
                 Stage stage = (Stage) rootPane.getScene().getWindow();
                 stage.close();
                 forwardToView(account);
@@ -93,10 +94,14 @@ public class LoginController {
             }
         }else {
             try {
-                FXMLLoader screen = new FXMLLoader(getClass().getResource("/Views/signup.fxml"));
-                Parent parent = screen.load();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/dashboardUser.fxml"));
+                Parent parent = loader.load();
                 Stage stage = new Stage();
                 stage.setTitle("User's Dashboard");
+
+                DashboardUserController user = loader.getController();
+                user.setAccount(account);
+
                 stage.setScene(new Scene(parent));
                 stage.show();
             }
