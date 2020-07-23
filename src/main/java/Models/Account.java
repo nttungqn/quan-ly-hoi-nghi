@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
+import java.util.Base64;
 import java.util.Set;
 
 @Entity
@@ -57,7 +58,14 @@ public class Account implements Serializable {
     public Account(String name, String username, String password, String email, int status, Role role) {
         this.name = name;
         this.username = username;
-        this.password = password;
+        try {
+            this.salt = HashCode.getSalt();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (NoSuchProviderException e) {
+            e.printStackTrace();
+        }
+        this.password = HashCode.getSecurePassword(password, getSalt());
         this.email = email;
         this.status = status;
         this.role = role;
@@ -102,7 +110,7 @@ public class Account implements Serializable {
     public void setPassword(String password) {
         try {
             this.salt = HashCode.getSalt();
-            System.out.println(this.salt);
+            System.out.println(Base64.getEncoder().encodeToString(this.salt));
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (NoSuchProviderException e) {

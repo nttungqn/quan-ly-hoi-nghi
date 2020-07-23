@@ -3,6 +3,7 @@ package Controllers;
 import Handlers.AccountHandler;
 import Models.Account;
 import Utils.AlertDialog;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -52,22 +53,25 @@ public class SignUpController {
 
     @FXML
     void save(ActionEvent event) {
-        Account account = new Account();
-        account.setName(name.getText());
-        account.setUsername(username.getText());
-        account.setPassword(password.getText());
-        account.setEmail(email.getText());
-        account.setRole("User");
+        if(AccountHandler.loadUser(username.getText()) != null){
+            AlertDialog.showAlertWithoutHeaderText("Alert", "Failed! The user exist in datatbase", "failed");
+        }else{
+            Account account = new Account();
+            account.setName(name.getText());
+            account.setUsername(username.getText());
+            account.setPassword(password.getText());
+            account.setEmail(email.getText());
+            account.setRole("User");
 
-        if(AccountHandler.add(account)){
-            AlertDialog.showAlertWithoutHeaderText("Alert", "Successfully", "success");
-        }else {
-            AlertDialog.showAlertWithoutHeaderText("Alert", "Failed! Some thing went wrong", "failed");
+            if (AccountHandler.add(account)) {
+                AlertDialog.showAlertWithoutHeaderText("Alert", "Successfully", "success");
+            } else {
+                AlertDialog.showAlertWithoutHeaderText("Alert", "Failed! Some thing went wrong", "failed");
+            }
         }
 
         Stage stage = (Stage) rootPane.getScene().getWindow();
         stage.close();
-
         try {
             FXMLLoader screen = new FXMLLoader(getClass().getResource("/Views/login.fxml"));
             Parent parent = screen.load();

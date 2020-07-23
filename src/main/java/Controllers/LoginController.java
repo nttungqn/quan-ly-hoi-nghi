@@ -4,6 +4,7 @@ import Handlers.AccountHandler;
 import Models.Account;
 import Utils.AlertDialog;
 import Utils.HashCode;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Base64;
 
 public class LoginController {
     @FXML
@@ -29,13 +31,16 @@ public class LoginController {
     private Account account = null;
 
     public void handlerLogin(ActionEvent actionEvent) {
-        account = AccountHandler.loadUser(username.getText());
-        if (account == null) {
+        this.account = AccountHandler.loadUser(username.getText());
+        if (this.account == null) {
             AlertDialog.showAlertWithoutHeaderText("Alert Login", "Failed! Account does not exist","failed");
         } else {
-            byte[] salt = account.getSalt();
-            String passwordLogin = HashCode.getSecurePassword(password.getText(), salt);
-            if (passwordLogin.compareTo(account.getPassword()) == 0) {
+            System.out.println(account.toString());
+            byte[] salt = this.account.getSalt();
+            String passwordLogin = HashCode.getSecurePassword(this.password.getText(), salt);
+            System.out.println(Base64.getEncoder().encodeToString(salt));
+            System.out.println(passwordLogin);
+            if (passwordLogin.compareTo(this.account.getPassword()) == 0) {
                 Stage stage = (Stage) rootPane.getScene().getWindow();
                 stage.close();
                 forwardToView(account);

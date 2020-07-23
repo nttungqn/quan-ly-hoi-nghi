@@ -20,6 +20,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -116,7 +117,7 @@ public class DetailConferenceController {
         tableView.getColumns().addAll(accountId, name, email);
 
         if(LocalDate.now().compareTo(conference.getStartDate()) >= 0){
-            register.setText("Completed");
+            register.setText("Joined");
             register.setStyle("-fx-background-color: #039903");
             register.setDisable(true);
         }else if(conference.getParticipants() == conference.getJoinTheConference().size()) {
@@ -139,9 +140,12 @@ public class DetailConferenceController {
                 System.out.println(joinTheConference.toString());
                 if (JoinTheConferenceHandler.add(joinTheConference)) {
                     AlertDialog.showAlertWithoutHeaderText("Alert", "Successfully", "success");
+
                 } else {
                     AlertDialog.showAlertWithoutHeaderText("Alert", "Failed something went wrong", "failed");
                 }
+                Stage stage = (Stage) imgUrl.getScene().getWindow();
+                stage.close();
             }else if(DashboardAdminController.account != null){
 
             }else {
