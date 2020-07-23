@@ -12,6 +12,21 @@ import org.hibernate.query.Query;
 import java.util.List;
 
 public class JoinTheConferenceHandler {
+    public static boolean add(JoinTheConference joinTheConference) {
+        Session session = HibernateAnnotationUtil.getSessionFactory().openSession();
+        try {
+            Transaction transaction =session.beginTransaction();
+            session.save(joinTheConference);
+            transaction.commit();
+            session.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            session.close();
+            return false;
+        }
+    }
+
     public static List<JoinTheConference> loadList()
     {
         Session session = HibernateAnnotationUtil.getSessionFactory().openSession();
@@ -66,18 +81,5 @@ public class JoinTheConferenceHandler {
         }
     }
 
-    public static boolean add(JoinTheConference joinTheConference) {
-        Session session = HibernateAnnotationUtil.getSessionFactory().openSession();
-        try {
-            Transaction transaction =session.beginTransaction();
-            session.save(joinTheConference);
-            transaction.commit();
-            session.close();
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            session.close();
-            return false;
-        }
-    }
+
 }

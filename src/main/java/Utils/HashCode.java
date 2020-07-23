@@ -7,17 +7,9 @@ import java.security.SecureRandom;
 
 public class HashCode {
 
-    public static String getSecurePassword(String passwordToHash)
+    public static String getSecurePassword(String passwordToHash, byte[] salt)
     {
         String generatedPassword = null;
-        byte[] salt = new byte[0];
-        try {
-            salt = getSalt();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (NoSuchProviderException e) {
-            e.printStackTrace();
-        }
         try {
             // Create MessageDigest instance for MD5
             MessageDigest md = MessageDigest.getInstance("MD5");
@@ -42,7 +34,7 @@ public class HashCode {
     }
 
     //Add salt
-    private static byte[] getSalt() throws NoSuchAlgorithmException, NoSuchProviderException {
+    public static byte[] getSalt() throws NoSuchAlgorithmException, NoSuchProviderException {
         //Always use a SecureRandom generator
         SecureRandom sr = SecureRandom.getInstance("SHA1PRNG", "SUN");
         //Create array for salt

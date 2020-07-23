@@ -33,7 +33,9 @@ public class LoginController {
         if (account == null) {
             AlertDialog.showAlertWithoutHeaderText("Alert Login", "Failed! Account does not exist","failed");
         } else {
-            if (HashCode.getSecurePassword(password.getText()).compareTo(account.getPassword()) == 0) {
+            byte[] salt = account.getSalt();
+            String passwordLogin = HashCode.getSecurePassword(password.getText(), salt);
+            if (passwordLogin.compareTo(account.getPassword()) == 0) {
                 Stage stage = (Stage) rootPane.getScene().getWindow();
                 stage.close();
                 forwardToView(account);

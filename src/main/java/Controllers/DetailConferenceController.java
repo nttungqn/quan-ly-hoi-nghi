@@ -99,7 +99,7 @@ public class DetailConferenceController {
         Set<JoinTheConference> set = this.conference.getJoinTheConference();
         System.out.println(set.size());
         set.forEach(joinTheConference -> {
-            Account account = AccountHandler.getAccount(joinTheConference.getAccountId());
+            Account account = AccountHandler.getAccount(joinTheConference.getAccountByAccountId().getAccountId());
             accountList.add(account);
         });
 

@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.util.Set;
 
 @Entity
@@ -36,6 +37,10 @@ public class Account implements Serializable {
     @Column(name = "STATUS", nullable = true)
     private int status;
 
+    @Basic
+    @Column(name = "SALT", nullable = true)
+    private byte[] salt;
+
     @OneToMany(mappedBy = "accountByAccountId")
     private Set<JoinTheConference> joinTheConferenceByAccountId;
 
@@ -52,9 +57,17 @@ public class Account implements Serializable {
     public Account(String name, String username, String password, String email, int status, Role role) {
         this.name = name;
         this.username = username;
-        this.password = HashCode.getSecurePassword(password);
+        this.password = password;
         this.email = email;
         this.status = status;
+        this.role = role;
+    }
+
+    public byte[] getSalt() {
+        return salt;
+    }
+
+    public void setRole(Role role) {
         this.role = role;
     }
 
@@ -87,7 +100,16 @@ public class Account implements Serializable {
     }
 
     public void setPassword(String password) {
-        this.password = HashCode.getSecurePassword(password);
+        try {
+            this.salt = HashCode.getSalt();
+            System.out.println(this.salt);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (NoSuchProviderException e) {
+            e.printStackTrace();
+        }
+        this.password = HashCode.getSecurePassword(password, this.salt);
+        System.out.println(this.password);
     }
 
     public String getEmail() {

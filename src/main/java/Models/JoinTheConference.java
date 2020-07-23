@@ -7,12 +7,9 @@ import java.io.Serializable;
 @Table(name = "JOINTHECONFERENCE", schema = "qlhoinghi")
 public class JoinTheConference implements Serializable {
     @Id
-    @Column(name = "CONFID")
-    private int confId;
-
-    @Id
-    @Column(name = "ACCOUNTID")
-    private int accountId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "JOINID", nullable = false)
+    private int joinId;
 
     @Basic
     @Column(name = "APPROVAL")
@@ -22,7 +19,7 @@ public class JoinTheConference implements Serializable {
     @JoinColumn(name = "CONFID", referencedColumnName = "CONFID", nullable = true)
     private Conference conferenceByIdConfId;
 
-    @ManyToOne(targetEntity = Account.class)
+    @ManyToOne(targetEntity = Account.class, optional = false)
     @JoinColumn(name = "ACCOUNTID", referencedColumnName = "ACCOUNTID", nullable = true)
     private Account accountByAccountId;
 
@@ -34,27 +31,14 @@ public class JoinTheConference implements Serializable {
         this.accountByAccountId = account;
     }
 
-    public JoinTheConference(int confId, int accountId, int status) {
-        this.confId = confId;
-        this.accountId = accountId;
-        this.status = status;
+    public int getJoinId() {
+        return joinId;
     }
 
-    public int getConfId() {
-        return confId;
+    public void setJoinId(int joinId) {
+        this.joinId = joinId;
     }
 
-    public void setConfId(int confId) {
-        this.confId = confId;
-    }
-
-    public int getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(int accountId) {
-        this.accountId = accountId;
-    }
 
     public int getStatus() {
         return status;
@@ -83,8 +67,8 @@ public class JoinTheConference implements Serializable {
     @Override
     public String toString() {
         return "JoinTheConference{" +
-                "confId=" + confId +
-                ", accountId=" + accountId +
+                "confId=" + conferenceByIdConfId.getConfId() +
+                ", accountId=" + accountByAccountId.getAccountId() +
                 ", status=" + status +
 //                ", conferenceByIdConfId=" + conferenceByIdConfId +
 //                ", accountByAccountId=" + accountByAccountId +
