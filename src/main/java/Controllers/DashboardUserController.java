@@ -31,6 +31,9 @@ public class DashboardUserController implements Initializable {
     private Button cardview;
 
     @FXML
+    private Text contentName;
+
+    @FXML
     private Button listview;
 
     @FXML
@@ -41,7 +44,9 @@ public class DashboardUserController implements Initializable {
     public static Account account = null;
 
     @FXML
-    void handlerDashboard(ActionEvent event) {
+    void handlerDashboard(ActionEvent event)
+    {
+        contentName.setText("Conference List");
         changeChildView("listview");
     }
 
@@ -106,18 +111,6 @@ public class DashboardUserController implements Initializable {
         try {
             typeView = view;
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/" + view + ".fxml"));
-//            if (typeView.compareTo("listview") == 0) {
-//                ListViewController listViewController = loader.getController();
-//                if(account != null) {
-//                    listViewController.setAccount(account);
-//                }
-//            }else if(typeView.compareTo("cardview")== 0){
-//                CardItem cardItem = loader.getController();
-//                if(account != null) {
-//                    cardItem.setAccount(account);
-//                }
-//            }
-//            System.out.println(account.toString() + typeView);
             mainView.setCenter(loader.load());
         } catch (IOException e) {
             e.printStackTrace();
@@ -127,6 +120,18 @@ public class DashboardUserController implements Initializable {
     public void setAccount(Account account){
         this.account = account;
         this.name.setText(account.getName());
+    }
+
+    @FXML
+    void handlerHistory(ActionEvent event) {
+        contentName.setText("History");
+
+    }
+
+    @FXML
+    void handlerJoin(ActionEvent event) {
+        contentName.setText("Registeration List");
+        changeChildView("registerationList");
     }
 
     @Override

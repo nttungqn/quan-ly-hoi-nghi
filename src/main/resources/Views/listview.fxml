@@ -9,15 +9,6 @@
 <VBox prefHeight="449.0" prefWidth="0.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ListViewController">
   <children>
     <TableView fx:id="tableView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="350.0" prefWidth="0.0" VBox.vgrow="ALWAYS">
-<!--      <columns>-->
-<!--        <TableColumn prefWidth="50.0" text="STT" />-->
-<!--        <TableColumn prefWidth="119.0" text="Name" />-->
-<!--        <TableColumn minWidth="0.0" prefWidth="134.0" text="Description" />-->
-<!--        <TableColumn minWidth="0.0" prefWidth="149.0" text="Start Date" />-->
-<!--        <TableColumn minWidth="0.0" prefWidth="207.0" text="Place" />-->
-<!--        <TableColumn minWidth="0.0" prefWidth="147.0" text="Participants" />-->
-<!--        <TableColumn prefWidth="110.0" text="Detail" />-->
-<!--      </columns>-->
       <VBox.margin>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
       </VBox.margin>

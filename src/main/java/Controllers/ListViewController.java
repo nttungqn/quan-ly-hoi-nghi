@@ -102,59 +102,7 @@ public class ListViewController implements Initializable {
         };
 
 
-//        Callback<TableColumn<Conference, String>, TableCell<Conference, String>> signinFactory = new Callback<TableColumn<Conference, String>, TableCell<Conference, String>>() {
-//            @Override
-//            public TableCell call(final TableColumn<Conference, String> param) {
-//                final TableCell<Conference, String> tableCell = new TableCell<Conference, String>() {
-//
-//                    final Button btn = new Button("Sign in");
-//
-//
-//                    @Override
-//                    public void updateItem(String item, boolean empty) {
-//                        super.updateItem(item, empty);
-//                        if (empty) {
-//                            setGraphic(null);
-//                            setText(null);
-//                        } else {
-//                            Conference conference = getTableView().getItems().get(getIndex());
-//                            if(LocalDate.now().compareTo(conference.getStartDate()) >= 0){
-//                                btn.setText("Completed");
-//                                btn.setStyle("-fx-background-color: #039903");
-//                                btn.setDisable(true);
-//                            }else if(conference.getParticipants() == conference.getJoinTheConference().size()) {
-//                                btn.setText("Enough");
-//                                btn.setStyle("-fx-background-color: #d57000");
-//                                btn.setDisable(true);
-//                            }
-//
-//                            if(account != null) {
-//                                conference.getJoinTheConference().forEach(joinTheConference -> {
-//                                    if (joinTheConference.getAccountId() == account.getAccountId())
-//                                        btn.setDisable(true);
-//                                });
-//                            }
-//
-//                            btn.setOnAction(event -> {
-//                                if(account == null) {
-//                                    AlertDialog.showConfirmation();
-//                                }else {
-//                                    JoinTheConference joinTheConference = new JoinTheConference(account.getAccountId(), conference.getConfId(), 0);
-//                                    if(JoinTheConferenceHandler.add(joinTheConference)){
-//                                        AlertDialog.showAlertWithoutHeaderText("Alert", "Successfully", "success");
-//                                    }else {
-//                                        AlertDialog.showAlertWithoutHeaderText("Alert", "Failed something went wrong", "failed");
-//                                    }
-//                                }
-//                            });
-//                            setGraphic(btn);
-//                            setText(null);
-//                        }
-//                    }
-//                };
-//                return tableCell;
-//            }
-//        };
+
 
         detailColumn.setCellFactory(detailFactory);
         tableView.setItems(conferenceObservableList);

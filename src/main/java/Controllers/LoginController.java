@@ -38,8 +38,8 @@ public class LoginController {
             System.out.println(account.toString());
             byte[] salt = this.account.getSalt();
             String passwordLogin = HashCode.getSecurePassword(this.password.getText(), salt);
-            System.out.println(Base64.getEncoder().encodeToString(salt));
-            System.out.println(passwordLogin);
+//            System.out.println(Base64.getEncoder().encodeToString(salt));
+//            System.out.println(passwordLogin);
             if (passwordLogin.compareTo(this.account.getPassword()) == 0) {
                 Stage stage = (Stage) rootPane.getScene().getWindow();
                 stage.close();

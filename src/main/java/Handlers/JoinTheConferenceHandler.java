@@ -1,14 +1,14 @@
 package Handlers;
 
-import Models.Conference;
+import Models.Join;
 import Models.JoinTheConference;
-import Models.Place;
 import Utils.HibernateAnnotationUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class JoinTheConferenceHandler {
@@ -81,5 +81,39 @@ public class JoinTheConferenceHandler {
         }
     }
 
+    public static boolean delete(int id) {
+        Session session =HibernateAnnotationUtil.getSessionFactory().openSession();
+        try {
+            Transaction transaction=session.beginTransaction();
+            String hql = "delete from Models.JoinTheConference as i where i.joinId = :id";
+            Query query = session.createQuery(hql);
+            query.setParameter("id", id);
+            int count = query.executeUpdate();
+            System.out.println(count + " Record(s) Deleted.");
+            transaction.commit();
+            session.close();
+            return true;
+        } catch (HibernateException e) {
+            session.close();
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static List<Join> loadUserJoinConference(int accountID){
+        Session session = HibernateAnnotationUtil.getSessionFactory().openSession();
+        Transaction transaction=session.beginTransaction();
+        // lenh hql
+        String hql="select new  Models.Join(i.id , i.conferenceByIdConfId.name,i.conferenceByIdConfId.place, i.conferenceByIdConfId.startDate, i.conferenceByIdConfId.endDate)"
+                + "from Models.JoinTheConference as i where i.accountByAccountId.id = :accountID and i.conferenceByIdConfId.startDate > :localDate";
+        LocalDate localDate = LocalDate.now();
+        Query query=session.createQuery(hql);
+        query.setParameter("accountID", accountID);
+        query.setParameter("localDate", localDate);
+        List<Join> result = query.list();
+        transaction.commit();
+        session.close();
+        return result;
+    }
 
 }
