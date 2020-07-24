@@ -123,9 +123,9 @@ public class DashboardUserController implements Initializable {
     }
 
     @FXML
-    void handlerHistory(ActionEvent event) {
+    void handlerParticipationHistory(ActionEvent event) {
         contentName.setText("History");
-
+        changeChildView("participationHistory");
     }
 
     @FXML

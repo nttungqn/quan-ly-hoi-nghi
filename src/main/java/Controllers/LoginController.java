@@ -34,7 +34,9 @@ public class LoginController {
         this.account = AccountHandler.loadUser(username.getText());
         if (this.account == null) {
             AlertDialog.showAlertWithoutHeaderText("Alert Login", "Failed! Account does not exist","failed");
-        } else {
+        }else if(this.account.getStatus() == 0){
+            AlertDialog.showAlertWithoutHeaderText("Alert Login", "Failed! Account has been blocked. Please contact to admin to unlock","failed");
+        } else{
             System.out.println(account.toString());
             byte[] salt = this.account.getSalt();
             String passwordLogin = HashCode.getSecurePassword(this.password.getText(), salt);

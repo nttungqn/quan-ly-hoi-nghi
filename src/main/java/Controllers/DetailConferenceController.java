@@ -117,7 +117,7 @@ public class DetailConferenceController {
         tableView.getColumns().addAll(accountId, name, email);
 
         if(LocalDate.now().compareTo(conference.getStartDate()) >= 0){
-            register.setText("Joined");
+            register.setText("Took place");
             register.setStyle("-fx-background-color: #039903");
             register.setDisable(true);
         }else if(conference.getParticipants() == conference.getJoinTheConference().size()) {

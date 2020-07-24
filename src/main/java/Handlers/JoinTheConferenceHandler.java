@@ -116,4 +116,19 @@ public class JoinTheConferenceHandler {
         return result;
     }
 
+    public static List<Join> loadHistory(int accountID){
+        Session session = HibernateAnnotationUtil.getSessionFactory().openSession();
+        Transaction transaction=session.beginTransaction();
+        // lenh hql
+        String hql="select new  Models.Join(i.id , i.conferenceByIdConfId.name,i.conferenceByIdConfId.place, i.conferenceByIdConfId.startDate, i.conferenceByIdConfId.endDate)"
+                + "from Models.JoinTheConference as i where i.accountByAccountId.id = :accountID and i.conferenceByIdConfId.startDate <= :localDate";
+        LocalDate localDate = LocalDate.now();
+        Query query=session.createQuery(hql);
+        query.setParameter("accountID", accountID);
+        query.setParameter("localDate", localDate);
+        List<Join> result = query.list();
+        transaction.commit();
+        session.close();
+        return result;
+    }
 }

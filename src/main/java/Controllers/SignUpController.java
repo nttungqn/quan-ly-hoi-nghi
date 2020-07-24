@@ -62,6 +62,7 @@ public class SignUpController {
             account.setPassword(password.getText());
             account.setEmail(email.getText());
             account.setRole("User");
+            account.setStatus(1);
 
             if (AccountHandler.add(account)) {
                 AlertDialog.showAlertWithoutHeaderText("Alert", "Successfully", "success");
