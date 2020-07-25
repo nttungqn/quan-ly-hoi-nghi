@@ -89,9 +89,11 @@ public class CardItem extends VBox implements Initializable {
             }
 
             try {
-                this.imgUrl.setImage(new Image("/images/" + this.conference.getImage()));
+                String imgURL = "/images/" + this.conference.getImage();
+                System.out.println(imgURL);
+                this.imgUrl.setImage(new Image(imgURL));
             }catch (Exception ex){
-                this.imgUrl.setImage(new Image("/images/1.png"));
+                this.imgUrl.setImage(new Image("/images/" + this.conference.getImage()));
                 ex.printStackTrace();
             }
 
