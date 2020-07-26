@@ -71,11 +71,6 @@
         </HBox>
         <HBox alignment="CENTER" prefHeight="70.0" prefWidth="350.0">
             <children>
-                <Button fx:id="signin" mnemonicParsing="false" onAction="#handlerSignIn" prefHeight="40.0" prefWidth="127.0" style="-fx-background-color: -fx-info; -fx-text-fill: white;" text="Sign in">
-                    <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="20.0" top="10.0" />
-                    </HBox.margin>
-                </Button>
                 <Button layoutX="18.0" layoutY="17.0" mnemonicParsing="false" onAction="#handlerDetail" prefHeight="40.0" prefWidth="127.0" style="-fx-background-color: -fx-info; -fx-text-fill: white;" text="Detail">
                     <HBox.margin>
                         <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
