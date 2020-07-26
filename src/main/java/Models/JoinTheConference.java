@@ -26,9 +26,10 @@ public class JoinTheConference implements Serializable {
     public JoinTheConference() {
     }
 
-    public JoinTheConference(Conference conference, Account account){
+    public JoinTheConference(Conference conference, Account account, int status){
         this.conferenceByIdConfId = conference;
         this.accountByAccountId = account;
+        this.status = status;
     }
 
     public int getJoinId() {

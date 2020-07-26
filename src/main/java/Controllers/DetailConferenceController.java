@@ -65,10 +65,6 @@ public class DetailConferenceController {
     @FXML
     private Button register;
 
-    @FXML
-    void handlerRegister(ActionEvent event) {
-
-    }
 
     ObservableList<Account> observableList = null;
 
@@ -130,13 +126,14 @@ public class DetailConferenceController {
             accountList.forEach(account -> {
                 if (account.getAccountId() == DashboardUserController.account.getAccountId()) {
                     register.setDisable(true);
+                    register.setText("Registerd");
                 }
             });
         }
 
         register.setOnAction(event -> {
             if(DashboardUserController.account != null) {
-                JoinTheConference joinTheConference = new JoinTheConference(conference, DashboardUserController.account);
+                JoinTheConference joinTheConference = new JoinTheConference(conference, DashboardUserController.account,0);
                 System.out.println(joinTheConference.toString());
                 if (JoinTheConferenceHandler.add(joinTheConference)) {
                     AlertDialog.showAlertWithoutHeaderText("Alert", "Successfully", "success");
@@ -152,12 +149,6 @@ public class DetailConferenceController {
                 AlertDialog.showConfirmation();
             }
         });
-
-
-
-
-
-
 
     }
 }

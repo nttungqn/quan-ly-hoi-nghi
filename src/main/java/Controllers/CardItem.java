@@ -35,9 +35,6 @@ public class CardItem extends VBox implements Initializable {
     @FXML
     private Text name;
 
-    @FXML
-    private Button signin;
-
     public Conference conference;
 
     private Account account;
@@ -60,12 +57,6 @@ public class CardItem extends VBox implements Initializable {
             e.printStackTrace();
         }
     }
-
-    @FXML
-    void handlerSignIn(ActionEvent event) {
-        AlertDialog.showConfirmation();
-    }
-
 
     public CardItem(Conference conference) {
         super();
@@ -90,24 +81,11 @@ public class CardItem extends VBox implements Initializable {
 
             try {
                 String imgURL = "/images/" + this.conference.getImage();
-                System.out.println(imgURL);
                 this.imgUrl.setImage(new Image(imgURL));
             }catch (Exception ex){
                 this.imgUrl.setImage(new Image("/images/" + this.conference.getImage()));
                 ex.printStackTrace();
             }
-
-            if(LocalDate.now().compareTo(conference.getStartDate()) >= 0){
-                signin.setText("Completed");
-                signin.setStyle("-fx-background-color: #039903");
-                signin.setDisable(true);
-            }else if(conference.getParticipants() == conference.getJoinTheConference().size()) {
-                signin.setText("Enough");
-                signin.setStyle("-fx-background-color: #d57000");
-                signin.setDisable(true);
-            }
-
-
 
         }catch (Exception ex){
             ex.printStackTrace();

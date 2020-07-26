@@ -41,11 +41,12 @@ public class AlertDialog {
 
         ButtonType login = new ButtonType("Log in");
         ButtonType signup = new ButtonType("Sign up");
+        ButtonType cancel = new ButtonType("Cancel");
 
         // Loại bỏ các ButtonType mặc định
         alert.getButtonTypes().clear();
 
-        alert.getButtonTypes().addAll(login,signup);
+        alert.getButtonTypes().addAll(login,signup, cancel);
 
         // option != null.
         Optional<ButtonType> option = alert.showAndWait();
@@ -64,7 +65,7 @@ public class AlertDialog {
             catch (IOException e) {
                 e.printStackTrace();
             }
-        }else {
+        }else if(option.get() == signup){
             try {
                 FXMLLoader screen = new FXMLLoader(AlertDialog.class.getResource("/Views/signup.fxml"));
                 Parent parent = screen.load();
@@ -76,6 +77,8 @@ public class AlertDialog {
             catch (IOException e) {
                 e.printStackTrace();
             }
+        }else {
+            alert.close();
         }
 
 

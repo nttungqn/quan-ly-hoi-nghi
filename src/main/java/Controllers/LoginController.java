@@ -71,10 +71,12 @@ public class LoginController {
 
     @FXML
     void handlerSignUp(ActionEvent event) {
+        Stage stage = (Stage) rootPane.getScene().getWindow();
+        stage.close();
         try {
             FXMLLoader screen = new FXMLLoader(getClass().getResource("/Views/signup.fxml"));
             Parent parent = screen.load();
-            Stage stage = new Stage();
+            stage = new Stage();
             stage.setTitle("Sign up");
             stage.setScene(new Scene(parent));
             stage.show();
@@ -85,6 +87,9 @@ public class LoginController {
     }
 
     public void forwardToView(Account account){
+        Stage stage = (Stage) rootPane.getScene().getWindow();
+        stage.close();
+
         if(String.valueOf(account.getRole()).compareTo("Admin") == 0){
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/dashboardAdmin.fxml"));
@@ -93,7 +98,7 @@ public class LoginController {
                 DashboardAdminController admin = loader.getController();
                 admin.setAccount(account);
 
-                Stage stage = new Stage();
+                stage = new Stage();
                 stage.setTitle("Admin's Dashboard ");
                 stage.setScene(new Scene(parent));
                 stage.show();
@@ -105,7 +110,7 @@ public class LoginController {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/dashboardUser.fxml"));
                 Parent parent = loader.load();
-                Stage stage = new Stage();
+                stage = new Stage();
                 stage.setTitle("User's Dashboard");
 
                 DashboardUserController user = loader.getController();
