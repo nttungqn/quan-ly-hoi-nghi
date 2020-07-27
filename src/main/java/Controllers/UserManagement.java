@@ -25,30 +25,40 @@ public class UserManagement implements Initializable {
     @FXML
     private TableView<Account> tableView;
 
+    ObservableList<Account> accountObservableList;
+
+    TableColumn<Account, Integer> id;
+    TableColumn<Account, String> name;
+    TableColumn<Account, String> username;
+    TableColumn<Account, String> status;
+    TableColumn<Account, String> role;
+    TableColumn activeCol;
+    TableColumn blockCol;
+
+    Callback<TableColumn<Account, String>, TableCell<Account, String>> activeFactory;
+    Callback<TableColumn<Account, String>, TableCell<Account, String>> blockFactory;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<Account> accountObservableList = FXCollections.observableList(AccountHandler.loadListUser());
 
-
-        TableColumn<Account, Integer> id = new TableColumn<>("Account ID");
+        id = new TableColumn<>("Account ID");
         id.setCellValueFactory(new PropertyValueFactory<Account, Integer>("accountId"));
-        TableColumn<Account, String> name = new TableColumn<Account, String>("Name");
+        name = new TableColumn<Account, String>("Name");
         name.setCellValueFactory(new PropertyValueFactory<Account, String>("name"));
-        TableColumn<Account, String> username= new TableColumn<>("Email");
+        username= new TableColumn<>("Email");
         username.setCellValueFactory(new PropertyValueFactory<Account, String>("email"));
-        TableColumn<Account, String> status = new TableColumn<Account, String>("Status");
+        status = new TableColumn<Account, String>("Status");
         status.setCellValueFactory(new PropertyValueFactory<Account, String>("status"));
-        TableColumn<Account, String> role = new TableColumn<Account, String>("Role");
+        role = new TableColumn<Account, String>("Role");
         role.setCellValueFactory(new PropertyValueFactory<Account, String>("role"));
 
-
-        TableColumn activeCol = new TableColumn("Action");
+        activeCol = new TableColumn("Action");
         activeCol.setCellValueFactory(new PropertyValueFactory<>("active"));
 
-        TableColumn blockCol = new TableColumn("Action");
+        blockCol = new TableColumn("Action");
         blockCol.setCellValueFactory(new PropertyValueFactory<>("block"));
 
-        Callback<TableColumn<Account, String>, TableCell<Account, String>> activeFactory = new Callback<TableColumn<Account, String>, TableCell<Account, String>>() {
+        activeFactory = new Callback<TableColumn<Account, String>, TableCell<Account, String>>() {
             @Override
             public TableCell call(final TableColumn<Account, String> param) {
                 return new TableCell<Account, String>() {
@@ -67,6 +77,7 @@ public class UserManagement implements Initializable {
                                 account.setStatus(1);
                                 if(AccountHandler.update(account)){
                                     AlertDialog.showAlertWithoutHeaderText("Alert", "Successfully", "success");
+                                    refreshTabe();
                                 }else {
                                     AlertDialog.showAlertWithoutHeaderText("Alert", "Failed! Some thing went wrong", "failed");
                                 }
@@ -82,7 +93,7 @@ public class UserManagement implements Initializable {
         };
 
 
-        Callback<TableColumn<Account, String>, TableCell<Account, String>> blockFactory = new Callback<TableColumn<Account, String>, TableCell<Account, String>>() {
+        blockFactory = new Callback<TableColumn<Account, String>, TableCell<Account, String>>() {
             @Override
             public TableCell call(final TableColumn<Account, String> param) {
                 final TableCell<Account, String> tableCell = new TableCell<Account, String>() {
@@ -102,6 +113,7 @@ public class UserManagement implements Initializable {
                                 account.setStatus(0);
                                 if(AccountHandler.update(account)){
                                     AlertDialog.showAlertWithoutHeaderText("Alert", "Successfully", "success");
+                                    refreshTabe();
                                 }else {
                                     AlertDialog.showAlertWithoutHeaderText("Alert", "Failed! Some thing went wrong", "failed");
                                 }
@@ -116,11 +128,19 @@ public class UserManagement implements Initializable {
             }
         };
 
+        refreshTabe();
+
+    }
+
+    public void refreshTabe(){
+        tableView.getItems().clear();
+        tableView.getColumns().clear();
+        accountObservableList = FXCollections.observableList(AccountHandler.loadListUser());
+
         activeCol.setCellFactory(activeFactory);
         blockCol.setCellFactory(blockFactory);
         tableView.setItems(accountObservableList);
         tableView.getColumns().addAll(id, name, username,role,status,activeCol, blockCol);
-
     }
 
 }

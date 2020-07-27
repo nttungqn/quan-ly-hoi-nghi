@@ -27,26 +27,35 @@ public class ApprovalController implements Initializable {
     @FXML
     private TableView<JoinTheConference> tableView;
 
+    ObservableList<JoinTheConference> observableList;
+
+    TableColumn<JoinTheConference, Integer> confId;
+    TableColumn<JoinTheConference, Integer> accountId;
+    TableColumn acceptColumn;
+    TableColumn declineColumn;
+    Callback<TableColumn<JoinTheConference, String>, TableCell<JoinTheConference, String>> acceptFactory;
+    Callback<TableColumn<JoinTheConference, String>, TableCell<JoinTheConference, String>> declineFactory;
+
+
     public ApprovalController() {
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<JoinTheConference> observableList = FXCollections.observableList(JoinTheConferenceHandler.loadUnregisterUserList());
 
-        TableColumn<JoinTheConference, Integer> confId = new TableColumn<>("Conference ID");
+        confId = new TableColumn<>("Conference ID");
         confId.setCellValueFactory(new PropertyValueFactory<>("confId"));
 
-        TableColumn<JoinTheConference, Integer> accountId = new TableColumn<>("Account ID");
+        accountId = new TableColumn<>("Account ID");
         accountId.setCellValueFactory(new PropertyValueFactory<>("accountId"));
 
-        TableColumn acceptColumn = new TableColumn("Action");
+        acceptColumn = new TableColumn("Action");
         acceptColumn.setCellValueFactory(new PropertyValueFactory<>("accept"));
 
-        TableColumn declineColumn = new TableColumn("Action");
+        declineColumn = new TableColumn("Action");
         declineColumn.setCellValueFactory(new PropertyValueFactory<>("decline"));
 
-        Callback<TableColumn<JoinTheConference, String>, TableCell<JoinTheConference, String>> acceptFactory = new Callback<TableColumn<JoinTheConference, String>, TableCell<JoinTheConference, String>>() {
+        acceptFactory = new Callback<TableColumn<JoinTheConference, String>, TableCell<JoinTheConference, String>>() {
             @Override
             public TableCell call(final TableColumn<JoinTheConference, String> param) {
                 return new TableCell<JoinTheConference, String>() {
@@ -65,6 +74,7 @@ public class ApprovalController implements Initializable {
                                 joinTheConference.setStatus(1);
                                 if(JoinTheConferenceHandler.update(joinTheConference)){
                                     AlertDialog.showAlertWithoutHeaderText("Alert", "Approval successfully", "success");
+                                    refreshTable();
                                 }else {
                                     AlertDialog.showAlertWithoutHeaderText("Alert", "Approval fail", "failed");
                                 }
@@ -80,7 +90,7 @@ public class ApprovalController implements Initializable {
         };
 
 
-        Callback<TableColumn<JoinTheConference, String>, TableCell<JoinTheConference, String>> declineFactory = new Callback<TableColumn<JoinTheConference, String>, TableCell<JoinTheConference, String>>() {
+        declineFactory = new Callback<TableColumn<JoinTheConference, String>, TableCell<JoinTheConference, String>>() {
             @Override
             public TableCell call(final TableColumn<JoinTheConference, String> param) {
                 final TableCell<JoinTheConference, String> tableCell = new TableCell<JoinTheConference, String>() {
@@ -98,6 +108,7 @@ public class ApprovalController implements Initializable {
                                 JoinTheConference joinTheConference = getTableView().getItems().get(getIndex());
                                 if(JoinTheConferenceHandler.delete(joinTheConference)){
                                     AlertDialog.showAlertWithoutHeaderText("Alert", "Decline successfully", "success");
+                                    refreshTable();
                                 }else {
                                     AlertDialog.showAlertWithoutHeaderText("Alert", "Decline fail", "failed");
                                 }
@@ -112,10 +123,19 @@ public class ApprovalController implements Initializable {
             }
         };
 
+        refreshTable();
+
+    }
+
+    public void refreshTable(){
+        tableView.getItems().clear();
+        tableView.getColumns().clear();
+
+        observableList = FXCollections.observableList(JoinTheConferenceHandler.loadUnregisterUserList());
+
         acceptColumn.setCellFactory(acceptFactory);
         declineColumn.setCellFactory(declineFactory);
         tableView.setItems(observableList);
         tableView.getColumns().addAll(confId, accountId, acceptColumn, declineColumn);
-
     }
 }

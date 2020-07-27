@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -82,6 +83,7 @@ public class DashboardUserController implements Initializable {
             stage.setTitle("Profile");
             stage.setScene(new Scene(parent));
             stage.show();
+
         }
         catch (IOException e) {
             e.printStackTrace();

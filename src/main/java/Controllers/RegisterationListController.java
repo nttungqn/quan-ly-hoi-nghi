@@ -31,29 +31,31 @@ public class RegisterationListController implements Initializable {
 
     @FXML
     private TableView<Join> tableView;
+    int accountID = DashboardUserController.account.getAccountId();
+    ObservableList<Join> joinConferenceLists = null;
+    Callback<TableColumn<Join, String>, TableCell<Join, String>> cancelFactory;
+
+    TableColumn<Join, Integer> id;
+    TableColumn<Join, String> name;
+    TableColumn<Join, String> place;
+    TableColumn<Join, LocalDate> startDate;
+    TableColumn<Join, LocalDate> endDate;
+    TableColumn cancelCol;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        int accountID = DashboardUserController.account.getAccountId();
-        List<Join> lists = JoinTheConferenceHandler.loadUserJoinConference(accountID);
-        ObservableList<Join> joinConferenceLists = FXCollections.observableList(lists);
-
-        TableColumn<Join, Integer> id = new TableColumn<>("ID");
+        id = new TableColumn<>("ID");
         id.setCellValueFactory(new PropertyValueFactory<Join, Integer>("id"));
-        TableColumn<Join, String> name = new TableColumn<>("Name");
+        name = new TableColumn<>("Name");
         name.setCellValueFactory(new PropertyValueFactory<Join, String>("name"));
-        TableColumn<Join, String> place = new TableColumn<>("Place");
+        place = new TableColumn<>("Place");
         place.setCellValueFactory(new PropertyValueFactory<Join, String>("place"));
-        TableColumn<Join, LocalDate> startDate = new TableColumn<>("Start date");
+        startDate = new TableColumn<>("Start date");
         startDate.setCellValueFactory(new PropertyValueFactory<Join, LocalDate>("startDate"));
-        TableColumn<Join, LocalDate> endDate = new TableColumn<>("End date");
+        endDate = new TableColumn<>("End date");
         endDate.setCellValueFactory(new PropertyValueFactory<Join, LocalDate>("endDate"));
 
-
-        TableColumn cancelCol = new TableColumn("Action");
-        cancelCol.setCellValueFactory(new PropertyValueFactory<>("Cancel"));
-
-        Callback<TableColumn<Join, String>, TableCell<Join, String>> cancelFactory = new Callback<TableColumn<Join, String>, TableCell<Join, String>>() {
+        cancelFactory = new Callback<TableColumn<Join, String>, TableCell<Join, String>>() {
             @Override
             public TableCell call(final TableColumn<Join, String> param) {
                 return new TableCell<Join, String>() {
@@ -72,6 +74,7 @@ public class RegisterationListController implements Initializable {
                                  int confId = joinConference.getId();
                                 if(JoinTheConferenceHandler.delete(confId)){
                                     AlertDialog.showAlertWithoutHeaderText("Alert", "Successfully", "success");
+                                    refreshTable();
                                 }else{
                                     AlertDialog.showAlertWithoutHeaderText("Alert", "Failed! Something went wrong", "failed");
                                 }
@@ -85,9 +88,21 @@ public class RegisterationListController implements Initializable {
             }
         };
 
-        cancelCol.setCellFactory(cancelFactory);
-        tableView.setItems(joinConferenceLists);
-        tableView.getColumns().addAll(id, name, place,startDate, endDate, cancelCol);
+        refreshTable();
+
     }
 
+    public void refreshTable(){
+        tableView.getItems().clear();
+        tableView.getColumns().clear();
+        
+        cancelCol = new TableColumn("Action");
+        cancelCol.setCellValueFactory(new PropertyValueFactory<>("Cancel"));
+
+        List<Join> lists = JoinTheConferenceHandler.loadUserJoinConference(accountID);
+        joinConferenceLists = FXCollections.observableList(lists);
+        tableView.setItems(joinConferenceLists);
+        cancelCol.setCellFactory(cancelFactory);
+        tableView.getColumns().addAll(id, name, place,startDate, endDate, cancelCol);
+    }
 }
