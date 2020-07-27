@@ -1,20 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TableColumn?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.geometry.Insets?>
-<VBox prefHeight="449.0" prefWidth="0.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ListViewController">
+<VBox prefHeight="449.0" prefWidth="746.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ListViewController">
   <children>
-    <TableView fx:id="tableView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="350.0" prefWidth="0.0" VBox.vgrow="ALWAYS">
+      <HBox alignment="CENTER_LEFT">
+         <children>
+            <TextField fx:id="searchConference" maxWidth="200.0" prefHeight="26.0" prefWidth="164.0" promptText="Search conference" style="-fx-background-color: #eeeeee;" />
+            <FontAwesomeIcon iconName="SEARCH" size="1.5em" textAlignment="CENTER">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </FontAwesomeIcon>
+         </children>
+         <VBox.margin>
+            <Insets left="20.0" right="20.0" />
+         </VBox.margin>
+      </HBox>
+    <TableView fx:id="tableView" fixedCellSize="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="383.0" prefWidth="350.0" VBox.vgrow="ALWAYS">
       <VBox.margin>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
       </VBox.margin>
-      <columnResizePolicy>
-        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-      </columnResizePolicy>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
     </TableView>
   </children>
 </VBox>

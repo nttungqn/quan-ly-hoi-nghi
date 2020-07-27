@@ -8,15 +8,14 @@ import Models.JoinTheConference;
 import Utils.AlertDialog;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -25,21 +24,25 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 public class ListViewController implements Initializable {
     @FXML
     private TableView<Conference> tableView;
 
+    @FXML
+    private TextField searchConference;
+
     private Account account = null;
+
+    ObservableList<Conference> conferenceObservableList = FXCollections.observableList(ConferenceHandler.loadList());
+
 
     public ListViewController() {
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<Conference> conferenceObservableList = FXCollections.observableList(ConferenceHandler.loadList());
-
-
         TableColumn<Conference, Integer> id = new TableColumn<>("ID");
         id.setCellValueFactory(new PropertyValueFactory<Conference, Integer>("confId"));
         TableColumn<Conference, String> name = new TableColumn<Conference, String>("Name");
@@ -101,12 +104,37 @@ public class ListViewController implements Initializable {
             }
         };
 
-
-
-
         detailColumn.setCellFactory(detailFactory);
         tableView.setItems(conferenceObservableList);
         tableView.getColumns().addAll(id, name, startDate,endDate,place,participants,detailColumn);
+
+        FilteredList<Conference> filteredList = new FilteredList<>(conferenceObservableList, el -> true);
+        searchConference.setOnKeyReleased(el -> {
+            searchConference.textProperty().addListener(((observable, oldValue, newValue) -> {
+                filteredList.setPredicate((Predicate<? super Conference>) conference -> {
+                    if(newValue == null || newValue.isEmpty())
+                        return true;
+                    String lowerCaseFilter = newValue.toLowerCase();
+                    // search for id, name, place and date
+                    if(String.valueOf(conference.getConfId()).contains(newValue)) {
+                        return true;
+                    }else if(conference.getName().toLowerCase().contains(lowerCaseFilter)){
+                        return true;
+                    }else if(conference.getPlace().toString().contains(lowerCaseFilter)){
+                        return true;
+                    }else if(conference.getStartDate().toString().contains(lowerCaseFilter)){
+                        return true;
+                    }else if(conference.getEndDate().toString().contains(lowerCaseFilter)){
+                        return true;
+                    }
+                    return false;
+                });
+            }));
+
+        });
+        SortedList<Conference> sortedList = new SortedList<>(filteredList);
+        sortedList.comparatorProperty().bind(tableView.comparatorProperty());
+        tableView.setItems(sortedList);
 
     }
 

@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
@@ -26,6 +27,9 @@ public class DashboardNotLogin implements Initializable {
 
     @FXML
     private Button signup;
+
+    @FXML
+    public static TextField searchConference;
 
     private String typeView = "listview";
 
