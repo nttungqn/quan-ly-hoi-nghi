@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1235.0" style="-fx-background-color: #e5e5e5;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DashboardNotLogin">
+    <top>
+        <HBox BorderPane.alignment="CENTER">
+            <children>
+                <HBox alignment="CENTER" maxWidth="-Infinity" prefHeight="72.0" prefWidth="202.0" style="-fx-background-color: -fx-info;">
+                    <children>
+                        <FontAwesomeIcon fill="#e1e3e8" fontSmoothingType="LCD" iconName="STACK_OVERFLOW" size="2em" wrappingWidth="11.142857551574707" />
+                        <Text fill="WHITE" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: white;" text="CONFERENCE MANAGEMENT" wrappingWidth="138.03125">
+                            <HBox.margin>
+                                <Insets left="20.0" />
+                            </HBox.margin>
+                        </Text>
+                    </children>
+                    <padding>
+                        <Insets bottom="20.0" top="20.0" />
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" style="-fx-background-color: #fff;" HBox.hgrow="ALWAYS">
+                    <children>
+                        <HBox alignment="CENTER" />
+                        <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Button fx:id="login" layoutX="570.0" layoutY="33.0" mnemonicParsing="false" onAction="#handlerLogin" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #5c9afd; -fx-text-fill: white;" text="Log in">
+                                    <HBox.margin>
+                                        <Insets left="20.0" right="20.0" />
+                                    </HBox.margin>
+                                    <graphic>
+                                        <FontAwesomeIcon fill="#f5efef" iconName="SIGN_IN" size="1.5em" wrappingWidth="25.0" />
+                                    </graphic>
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="signup" mnemonicParsing="false" onAction="#handlerSignUp" style="-fx-background-color: #5c9afd; -fx-text-fill: white;" text="Sign up">
+                                    <HBox.margin>
+                                        <Insets left="20.0" right="20.0" />
+                                    </HBox.margin>
+                                    <graphic>
+                                        <FontAwesomeIcon fill="#e8e3e3" iconName="EXTERNAL_LINK" size="1.5em" wrappingWidth="25.0" />
+                                    </graphic>
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                        </HBox>
+                    </children>
+                </HBox>
+            </children>
+        </HBox>
+    </top>
+    <left>
+        <VBox maxWidth="-Infinity" prefHeight="528.0" prefWidth="201.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+            <children>
+                <HBox alignment="CENTER_LEFT">
+                    <children>
+                        <VBox>
+                            <children>
+                                <Button fx:id="dashboard" alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handlerDashboard" prefHeight="31.0" prefWidth="190.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-font-family: Quicksand;" styleClass="hover-border" text="Dashboard">
+                                    <graphic>
+                                        <FontAwesomeIcon iconName="SERVER" size="1.5em" wrappingWidth="25.0" />
+                                    </graphic>
+                                </Button>
+                            </children>
+                        </VBox>
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                    <VBox.margin>
+                        <Insets top="20.0" />
+                    </VBox.margin>
+                </HBox>
+            </children>
+        </VBox>
+    </left>
+    <center>
+        <VBox prefHeight="528.0" prefWidth="1021.0" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+            <children>
+                <HBox prefWidth="781.0">
+                    <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                    </padding>
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.3em; -fx-font-weight: bolder; -fx-font-family: Quicksand; -fx-fill: #485460;" text="Conference List">
+                            <HBox.margin>
+                                <Insets top="5.0" />
+                            </HBox.margin>
+                        </Text>
+                        <HBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Button mnemonicParsing="false" onAction="#handlerRefreshView" style="-fx-background-color: #5c9afd; -fx-text-fill: white;" text="Refresh">
+                                    <HBox.margin>
+                                        <Insets right="20.0" />
+                                    </HBox.margin>
+                                    <graphic>
+                                        <FontAwesomeIcon fill="#eee4e4" iconName="REFRESH" size="1.5em" wrappingWidth="25.0" />
+                                    </graphic>
+                                </Button>
+                                <Button fx:id="cardview" mnemonicParsing="false" onAction="#handleChangeView" style="-fx-background-color: white; -fx-border-radius: 0px;">
+                                    <graphic>
+                                        <FontAwesomeIcon fill="#485460" iconName="TH_LARGE" size="1.3em" />
+                                    </graphic>
+                                </Button>
+                                <Button fx:id="listview" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleChangeView" style="-fx-background-color: white; -fx-border-radius: 0px;">
+                                    <graphic>
+                                        <FontAwesomeIcon fill="#485460" iconName="TH_LIST" size="1.3em" />
+                                    </graphic>
+                                </Button>
+                                <HBox alignment="CENTER">
+                                    <HBox.margin>
+                                        <Insets right="10.0" />
+                                    </HBox.margin>
+                                </HBox>
+                            </children>
+                            <padding>
+                                <Insets right="5.0" />
+                            </padding>
+                     <HBox.margin>
+                        <Insets right="50.0" />
+                     </HBox.margin>
+                        </HBox>
+                    </children>
+                </HBox>
+                <BorderPane fx:id="mainView" prefHeight="435.0" prefWidth="994.0">
+                    <center>
+                        <fx:include source="listview.fxml" BorderPane.alignment="CENTER" />
+                    </center>
+                </BorderPane>
+            </children>
+            <effect>
+                <DropShadow color="#e8caca" height="10.0" radius="4.5" width="10.0" />
+            </effect>
+        </VBox>
+    </center>
+</BorderPane>
