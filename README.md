@@ -46,6 +46,6 @@
 
 |  ![](readme/2020-08-21-14-25-14.png)  |
 | :----------------------------: |
-| _5. Màn hình trang chủ admin_ |
+| _5. Màn hình trang chủ user_ |
 
 
