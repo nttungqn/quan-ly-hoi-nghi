@@ -26,7 +26,6 @@
 - Các bạn tìm kiếm dependency tại [Maven respository](https://mvnrepository.com/)
 
 ## Môt số màn hình
-![alt]()
 |  ![](readme/2020-08-21-14-18-45.png)  |
 | :----------------------------: |
 | _1. Danh sách hội nghị dạng list_ |
