@@ -34,7 +34,7 @@
                 <Insets bottom="10.0" top="10.0" />
             </VBox.margin>
         </ImageView>
-        <Text fx:id="name" strokeType="OUTSIDE" strokeWidth="0.0" text="User interface design" />
+        <Label fx:id="name" text="User interface design" />
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
             <children>
                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">

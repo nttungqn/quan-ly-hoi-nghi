@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -33,7 +34,7 @@ public class CardItem extends VBox implements Initializable {
     private ImageView imgUrl;
 
     @FXML
-    private Text name;
+    private Label name;
 
     public Conference conference;
 
@@ -64,7 +65,7 @@ public class CardItem extends VBox implements Initializable {
             loadFxml(CardItem.class.getResource("/Views/cardViewItem.fxml"), this);
             this.conference = conference;
             this.name.setText(this.conference.getName());
-
+//            System.out.println("1 " + this.conference.getName());
             try {
                 this.startDate.setText(this.conference.getStartDate().toString());
             }catch (Exception ex){

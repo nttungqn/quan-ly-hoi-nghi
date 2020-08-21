@@ -55,7 +55,7 @@ public class DetailConferenceController {
     private Text shortDesc;
 
     @FXML
-    private TextArea detailDesc;
+    private Text detailDesc;
 
     @FXML
     private TableView<Account> tableView;
